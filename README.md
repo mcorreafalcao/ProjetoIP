@@ -5,7 +5,7 @@ Este é o repositório para o projeto de IP.
 
 2-Copiem (clonem) esse repositorio para essa nova pasta dos seus workspaces.
 
-3-Joguem seus codigos lá na pasta clonada em src\ProjetoIP.
+3-Joguem seus codigos lá (em src\ProjetoIP) na pasta clonada.
 
 4-Vamo ver se dá certo.
 
