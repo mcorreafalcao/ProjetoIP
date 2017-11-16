@@ -6,5 +6,5 @@ package pacoteClassesGrupo;
  *
  */
 public class RepositorioGruposLista implements RepositorioGrupos {
-
+	
 }
