@@ -10,12 +10,13 @@ public class RepositorioJogosLista implements RepositorioJogos {//colecao de dad
 		this.proximo=null;
 	}
 	@Override
-	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
+	public void inserir(Jogo jogo) throws Exception {
 		/**
 		 * insere um jogo novo na lista, joga excecao caso ele já exista
 		 */
-		boolean existe = this.existe(this.getNome())
+		boolean existe = this.existe(jogo.getNome());
 		if(existe){
+			Exception JogoJaCadastradoException = null;
 			throw JogoJaCadastradoException;
 		}else {//insere o jogo na lista
 			
@@ -26,11 +27,12 @@ public class RepositorioJogosLista implements RepositorioJogos {//colecao de dad
 	}
 
 	@Override
-	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
+	public void remover(String nomeJogo) throws Exception {
 		/**
 		 * remove jogo da lista, joga escecao caso ele nao exista
 		 */
 		boolean existe = this.existe(nomeJogo);
+		Exception JogoNaoEncontradoException = null;
 		if(!existe)
 			throw JogoNaoEncontradoException;
 		else {//remove da lista
@@ -39,12 +41,13 @@ public class RepositorioJogosLista implements RepositorioJogos {//colecao de dad
 	}
 
 	@Override
-	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
+	public void atualizar(Jogo jogo) throws Exception {
 		/**
 		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo inserido como referencia
 		 */
-		boolean existe = this.existe(nomeJogo);
+		boolean existe = this.existe(jogo.getNome());
 		if(!existe) {
+			Exception JogoNaoEncontradoException = null;
 			throw JogoNaoEncontradoException;
 		}else {//procura e troca os valores ao encontrar
 			

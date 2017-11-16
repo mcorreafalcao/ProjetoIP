@@ -14,9 +14,9 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
+	public void inserir(Jogo jogo) throws Exception {
 		/**
-		 * Insere o jogo no array, joga escecao caso o jogo ja exista
+		 * Insere o jogo no array, joga excecao caso o jogo ja exista
 		 */
 		if (!this.existe(jogo.nome)) {
 			this.jogos[this.indice+1].nome = jogo.nome;
@@ -26,6 +26,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 			this.indice++;
 
 		}  else {
+			Exception JogoJaCadastradoException = null;
 			throw JogoJaCadastradoException;
 			
 		}
@@ -44,7 +45,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
+	public void remover(String nomeJogo) throws Exception {
 		/**
 		 * Remove o jogo do array, joga excecao caso nao encontre o jogo
 		 */
@@ -62,7 +63,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 				return;
 			}
 		}
-		//caso nao tenha encontrado o jogo na lista, o metodo joga excecao
+		Exception JogoNaoEncontradoException = null;
+			//caso nao tenha encontrado o jogo na lista, o metodo joga excecao
 			throw JogoNaoEncontradoException;
 
 	}
@@ -78,7 +80,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		return -1;
 	}
 	@Override
-	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
+	public void atualizar(Jogo jogo) throws Exception {
 		/**
 		 * Procura pelo elemento no array cujo nome eh o mesmo que o jogo inserido na entrada.
 		 * Ao encontrar, substitui seus atributos pelos atributos do jogo inserido na entrada.
@@ -90,11 +92,13 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 				this.jogos[i].setDescricao(jogo.descricao);
 				this.jogos[i].setPreco(jogo.preco);
 				this.indice++;
+				return;
 				
 			}
 
-		  else
-			 throw JogoNaoEncontradoException;
+		  
+			 Exception JogoNaoEncontradoException = null;
+			throw JogoNaoEncontradoException;
 
 	}
 	
