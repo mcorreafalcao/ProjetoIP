@@ -6,6 +6,6 @@ package pacoteClassesJogo;
  * */
 public class CadastroJogo {
 public static void main(String[] args) /*throws JogoNaoEncontradoException*/ {
-	System.out.println("testando alteracao");
+	System.out.println("testando alteracao2");
 }
 }
