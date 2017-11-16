@@ -6,7 +6,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	private int indice;
 
 	public RepositorioJogosArray(int tam) {
-		/**
+		/**oioioi
 		 * construtor
 		 */
 		jogos = new Jogo[tam];
