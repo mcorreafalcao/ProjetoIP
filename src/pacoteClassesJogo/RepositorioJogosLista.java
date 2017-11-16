@@ -12,18 +12,13 @@ public class RepositorioJogosLista implements RepositorioJogos {//colecao de dad
 	@Override
 	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
 		/**
-		 * insere um jogo novo na lista. Por favor, chamar o metodo exixte antes deste metodo,
-		 * assim evitando insercao de jogos repetidos, obrigado.
+		 * insere um jogo novo na lista, joga excecao caso ele já exista
 		 */
-		if(this.jogo.nome==null){
-			this.jogo=jogo;
-			this.proximo=new RepositorioJogosLista();
-		}
-		else if(this.proximo!=null)
-			this.proximo.inserir(jogo);
-		else{
-			this.proximo = new RepositorioJogosLista();
-			this.jogo=jogo;
+		boolean existe = this.existe(this.getNome())
+		if(existe){
+			throw JogoJaCadastradoException;
+		}else {//insere o jogo na lista
+			
 		}
 		
 		
@@ -33,25 +28,28 @@ public class RepositorioJogosLista implements RepositorioJogos {//colecao de dad
 	@Override
 	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
 		/**
-		 * remove jogo da lista, nao faz nada caso o jogo nao exista.
-		 * chamar o existe antes desse metodo, para evitar a tentativa de remover jogo inexistente
-		 * ou fazer sem recursividade e chamar existir aqui dentro
+		 * remove jogo da lista, joga escecao caso ele nao exista
 		 */
-		if(this.jogo!=null) {
-			if(this.jogo.getNome().equals(nomeJogo)) {
-				this.jogo.nome=this.proximo.jogo.nome;
-				this.jogo.preco=this.proximo.jogo.preco;
-				this.jogo.descricao=this.proximo.jogo.descricao;
-				this.jogo.dataLancamento=this.proximo.jogo.dataLancamento;
-			}else
-				this.proximo.remover(nomeJogo);
+		boolean existe = this.existe(nomeJogo);
+		if(!existe)
+			throw JogoNaoEncontradoException;
+		else {//remove da lista
 			
 		}
-
 	}
 
 	@Override
 	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
+		/**
+		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo inserido como referencia
+		 */
+		boolean existe = this.existe(nomeJogo);
+		if(!existe) {
+			throw JogoNaoEncontradoException;
+		}else {//procura e troca os valores ao encontrar
+			
+		}
+		
 		
 
 	}

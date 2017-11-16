@@ -25,8 +25,10 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 			this.jogos[this.indice+1].preco = jogo.preco;
 			this.indice++;
 
-		} // else
-			// throw JogoJaCadastradoException;
+		}  else {
+			throw JogoJaCadastradoException;
+			
+		}
 	}
 
 	@Override
@@ -60,8 +62,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 				return;
 			}
 		}
-		//if(!achou)//redundancia
-			//throw JogoNaoEncontradoException;
+		//caso nao tenha encontrado o jogo na lista, o metodo joga excecao
+			throw JogoNaoEncontradoException;
 
 	}
 	public int procurar(String nomeJogo) {
@@ -91,8 +93,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 				
 			}
 
-		 // else
-			// throw JogoNaoEncontradoException;
+		  else
+			 throw JogoNaoEncontradoException;
 
 	}
 	
