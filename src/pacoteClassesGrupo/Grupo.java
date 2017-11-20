@@ -5,5 +5,6 @@ package pacoteClassesGrupo;
  *
  */
 public class Grupo {
-	
+	private String nomeGrupo;
+	private String categoria;
 }

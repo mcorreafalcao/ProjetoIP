@@ -6,5 +6,13 @@ package pacoteClassesGrupo;
  *
  */
 public interface RepositorioGrupos {
-
+	public void inserir(Grupo grupo);
+	
+	public void atualizar(Grupo grupo);
+	
+	public void remover(String grupo);
+	
+	public Grupo procurar(String grupo);
+	
+	
 }
