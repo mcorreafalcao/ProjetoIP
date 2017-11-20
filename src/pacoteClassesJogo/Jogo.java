@@ -1,34 +1,47 @@
 package pacoteClassesJogo;
 
-public class Jogo extends Produto {//classe básica do projeto
+/**
+ * "Classe basica"
+ * 
+ * @author Gabriel
+ *
+ */
+public class Jogo extends Produto {// classe básica do projeto
 
 	public Jogo() {
 		super();
 	}
-	public void setNome(String nome){
-		this.nome=nome;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getNome(){
+
+	public String getNome() {
 		return this.nome;
 	}
-	public void setDescricao(String descricao){
-		this.descricao=descricao;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	public String getDescricao(){
+
+	public String getDescricao() {
 		return this.descricao;
 	}
-	public void setPreco(double preco){
-		this.preco=preco;
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
-	public double getPreco(){
+
+	public double getPreco() {
 		return this.preco;
 	}
-	public void setData(String data){
-		this.dataLancamento=data;
+
+	public void setData(String data) {
+		this.dataLancamento = data;
 	}
-	public String getData(){
+
+	public String getData() {
 		return this.dataLancamento;
 	}
-	
 
 }

@@ -1,11 +1,9 @@
 package pacoteClassesJogo;
 /**
- * tava testando umas coisas aqui, nao funcionou :P
- * 
- * ignoremos essa classe por enquanto
- * */
+ *"Classe colecao de negocio".
+ *Ainda nao entendi pra que vai servir essa classe.
+ * @author Gabriel
+ */
 public class CadastroJogo {
-public static void main(String[] args) /*throws JogoNaoEncontradoException*/ {
-	System.out.println("testando alteracao3");
-}
+	
 }
