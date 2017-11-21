@@ -105,9 +105,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		int i = this.procurar(jogo.nome);
 		if (i != -1) {// caso contrario (i==-1) significa que o metodo procurar
 						// nao encontrou o jogo na lista
-			this.jogos[i].setData(jogo.dataLancamento);
-			this.jogos[i].setDescricao(jogo.descricao);
-			this.jogos[i].setPreco(jogo.preco);
+			this.jogos[i]=jogo;
 			this.indice++;
 			return;
 

@@ -98,15 +98,15 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo
 		 * inserido como referencia
 		 */
-		boolean existe = this.existe(jogo.getNome());
-		if (!existe) {
+		
+		if (!this.existe(jogo.getNome())) {
 			Exception JogoNaoEncontradoException = null;
 			/**
 			 * inicializar excecao aqui?
 			 */
 			throw JogoNaoEncontradoException;
 		} else {// procura e troca os valores ao encontrar
-
+			
 		}
 
 	}
