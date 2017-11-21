@@ -6,13 +6,15 @@ package pacoteClassesGrupo;
  *
  */
 public interface RepositorioGrupos {
-	public void inserir(Grupo grupo);
+	public void inserir(Grupo grupo) throws Exception;
 	
-	public void atualizar(Grupo grupo);
+	public void atualizar(Grupo grupo) throws Exception;
 	
-	public void remover(String grupo);
+	public void remover(Grupo grupo) throws Exception;
 	
-	public Grupo procurar(String grupo);
+	//public int procurar(String grupo);
+	
+	public boolean existe(String grupo);
 	
 	
 }
