@@ -9,4 +9,5 @@ public interface RepositorioUsuarios {
 	public void atualizar(Usuario usuario);
 
 	public boolean existe(String nomeUsuario);
+	
 }
