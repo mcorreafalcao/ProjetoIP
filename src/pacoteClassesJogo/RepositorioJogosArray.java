@@ -12,11 +12,11 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	private Jogo[] jogos;
 	private int indice;// será sempre o primeiro indice vazio
 
-	public RepositorioJogosArray(int tam) {
+	public RepositorioJogosArray() {
 		/**
 		 * construtor
 		 */
-		jogos = new Jogo[tam];
+		jogos = new Jogo[100];
 		indice = 0;
 	}
 
@@ -26,10 +26,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		 * Insere o jogo no array, joga excecao caso o jogo ja exista
 		 */
 		if (!this.existe(jogo.nome)) {// insere no primeiro indice vazio
-			this.jogos[this.indice + 1].nome = jogo.getNome();
-			this.jogos[this.indice + 1].dataLancamento = jogo.getData();
-			this.jogos[this.indice + 1].descricao = jogo.getDescricao();
-			this.jogos[this.indice + 1].preco = jogo.getPreco();
+			this.jogos[indice]=jogo;
 			this.indice++;
 
 		} else {// excecao
@@ -64,10 +61,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 			if (this.jogos[i].getNome().equals(nomeJogo)) {
 				for (int k = i; k <= indice - 1; k++) {// translada os jogos no
 														// array por um indice
-					this.jogos[k].nome = this.jogos[k + 1].nome;
-					this.jogos[k].preco = this.jogos[k + 1].preco;
-					this.jogos[k].dataLancamento = this.jogos[k + 1].dataLancamento;
-					this.jogos[k].descricao = this.jogos[k + 1].descricao;
+					this.jogos[k] = this.jogos[k + 1];
+					
 				}
 				achou = true;
 				indice--;
