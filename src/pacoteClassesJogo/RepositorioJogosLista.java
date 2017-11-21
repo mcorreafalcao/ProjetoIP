@@ -20,17 +20,14 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void inserir(Jogo jogo) throws Exception {
+	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
 		/**
 		 * insere um jogo novo na lista, joga excecao caso ele já exista
 		 */
 		boolean existe = this.existe(jogo.getNome());
 		if (existe) {
-			Exception JogoJaCadastradoException = null;
-			/**
-			 * inicializar excecao aqui?
-			 */
-			throw JogoJaCadastradoException;
+
+			throw new JogoJaCadastradoException();
 		} else {// insere o jogo na ultima posicao da lista
 			RepositorioJogosLista aux = this;// referencia para percorrer a
 												// lista
@@ -55,17 +52,14 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void remover(String nomeJogo) throws Exception {
+	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
 		/**
 		 * remove jogo da lista, joga escecao caso ele nao exista
 		 */
 		boolean existe = this.existe(nomeJogo);
 		if (!existe) {
-			Exception JogoNaoEncontradoException = null;
-			/**
-			 * inicializar excecao aqui?
-			 */
-			throw JogoNaoEncontradoException;
+
+			throw new JogoNaoEncontradoException();
 		} else {// remove da lista
 			RepositorioJogosLista aux = this;
 			if (this.jogo.getNome().equals(nomeJogo)) {// primeiro elemento
@@ -93,20 +87,17 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void atualizar(Jogo jogo) throws Exception {
+	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
 		/**
-		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo
-		 * inserido como referencia
+		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo inserido
+		 * como referencia
 		 */
-		
+
 		if (!this.existe(jogo.getNome())) {
-			Exception JogoNaoEncontradoException = null;
-			/**
-			 * inicializar excecao aqui?
-			 */
-			throw JogoNaoEncontradoException;
+
+			throw new JogoNaoEncontradoException();
 		} else {// procura e troca os valores ao encontrar
-			
+
 		}
 
 	}
