@@ -8,11 +8,11 @@ package pacoteClassesJogo;
  *
  */
 public interface RepositorioJogos {// interface negocio_dados
-	public void inserir(Jogo jogo) throws JogoJaCadastradoException;
+	public void inserir(Jogo jogo) throws JJCException, SMPCException;
 
-	public void remover(String nomeJogo) throws JogoNaoEncontradoException;
+	public void remover(String nomeJogo) throws JNCException;
 
-	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException;
+	public void atualizar(Jogo jogo) throws JNCException;
 
 	public boolean existe(String nomeJogo);
 }

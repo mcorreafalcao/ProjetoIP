@@ -20,14 +20,10 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 	}
 
 	@Override
-	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
-		/**
-		 * insere um jogo novo na lista, joga excecao caso ele já exista
-		 */
+	public void inserir(Jogo jogo) throws JJCException {
 		boolean existe = this.existe(jogo.getNome());
 		if (existe) {
-
-			throw new JogoJaCadastradoException();
+			throw new JJCException();
 		} else {// insere o jogo na ultima posicao da lista
 			RepositorioJogosLista aux = this;// referencia para percorrer a
 												// lista
@@ -49,17 +45,17 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 
 		}
 
+		/**
+		 * insere um jogo novo na lista, joga excecao caso ele já exista
+		 */
 	}
 
 	@Override
-	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
-		/**
-		 * remove jogo da lista, joga escecao caso ele nao exista
-		 */
+	public void remover(String nomeJogo) throws JNCException {
 		boolean existe = this.existe(nomeJogo);
 		if (!existe) {
 
-			throw new JogoNaoEncontradoException();
+			throw new JNCException();
 		} else {// remove da lista
 			RepositorioJogosLista aux = this;
 			if (this.jogo.getNome().equals(nomeJogo)) {// primeiro elemento
@@ -84,21 +80,30 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 				}
 			}
 		}
+		/**
+		 * remove jogo da lista, joga escecao caso ele nao exista
+		 */
 	}
 
 	@Override
-	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
+	public void atualizar(Jogo jogo) throws JNCException {
+
+		if (!this.existe(jogo.getNome())) {
+			throw new JNCException();
+		} else {// procura e troca os valores ao encontrar
+			boolean achou=false;
+			RepositorioJogosLista aux = this;
+			while(aux!=null&&!achou){
+				if(aux.jogo.getNome().equals(jogo.getNome())){
+					aux.jogo=jogo;//atualiza a referencia da lista com o jogo novo
+					achou = true;//quebra o loop
+				}
+			}
+		}
 		/**
 		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo inserido
 		 * como referencia
 		 */
-
-		if (!this.existe(jogo.getNome())) {
-
-			throw new JogoNaoEncontradoException();
-		} else {// procura e troca os valores ao encontrar
-
-		}
 
 	}
 

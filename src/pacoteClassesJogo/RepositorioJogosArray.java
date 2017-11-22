@@ -11,48 +11,47 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 																// dados array
 	private Jogo[] jogos;
 	private int indice;// será sempre o primeiro indice vazio
+	private int tam=100;//deixar pequeno para testes (<10)
 
 	public RepositorioJogosArray() {
+		jogos = new Jogo[this.tam];
+		indice = 0;
 		/**
 		 * construtor
 		 */
-		jogos = new Jogo[100];
-		indice = 0;
 	}
 
 	@Override
-	public void inserir(Jogo jogo) throws JogoJaCadastradoException {
-		/**
-		 * Insere o jogo no array, joga excecao caso o jogo ja exista
-		 */
-		if (!this.existe(jogo.nome)) {// insere no primeiro indice vazio
+	public void inserir(Jogo jogo) throws JJCException, SMPCException {
+		if (!this.existe(jogo.nome)&&this.indice<this.tam-1) {// insere no primeiro indice vazio
 			this.jogos[indice] = jogo;
 			this.indice++;
 
-		} else {// excecao
-
-			throw new JogoJaCadastradoException();
-
+		} else if(this.indice>=this.tam-1){// excecao caso acabe a memoria do array
+			throw new SMPCException();
+		}else{//excecao caso o jogo ja exista
+			throw new JJCException();
 		}
+		/**
+		 * Insere o jogo no array, joga excecao caso o jogo ja exista
+		 */
 	}
 
 	@Override
 	public boolean existe(String nomeJogo) {
-		/**
-		 * Retorna true se existe jogo no array com o mesmo nome.
-		 */
-		for (int i = 0; i <= indice; i++)
+		boolean achou = false;
+		for (int i = 0; i <= indice && !achou; i++)
 			if (this.jogos[i].getNome().equals(nomeJogo))
-				return true;
+				achou= true;//quebra o loop
 
-		return false;// caso nao encontre
+		return achou;
+		/**
+		 * Retorna true se existe jogo no array com o nome desejado.
+		 */
 	}
 
 	@Override
-	public void remover(String nomeJogo) throws JogoNaoEncontradoException {
-		/**
-		 * Remove o jogo do array, joga excecao caso nao encontre o jogo
-		 */
+	public void remover(String nomeJogo) throws JNCException {
 		boolean achou = false;
 		for (int i = 0; i <= indice && !achou; i++) {
 			if (this.jogos[i].getNome().equals(nomeJogo)) {
@@ -61,50 +60,53 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 					this.jogos[k] = this.jogos[k + 1];
 
 				}
-				achou = true;
+				achou = true;//queba o loop
 				indice--;
 			}
 		}
 		if (!achou)
-			throw new JogoNaoEncontradoException();
+			throw new JNCException();
 
+		/**
+		 * Remove o jogo do array, joga excecao caso nao encontre o jogo
+		 */
 	}
 
-	public int procurar(String nomeJogo) throws JogoNaoEncontradoException {
-		/**
-		 * Retorna o indice do jogo no array. Retorna -1 caso nao encontre (trocar esse
-		 * caso por excecao)
-		 */
-		int i = 0;
-		for (i = 0; i <= indice; i++) {
-			if (this.jogos[i].nome.equals(nomeJogo))
-				return i;
+	public int procurar(String nomeJogo) throws JNCException {
+		int indice = 0;
+		boolean achou=false;
+		for (int i = 0; i <= indice&&!achou; i++) {
+			if (this.jogos[i].nome.equals(nomeJogo)){
+				achou=true;//quebra o loop
+				indice=i;
+			}
+			
 		}
-
-		throw new JogoNaoEncontradoException();
+		if(!achou)
+			throw new JNCException();
+		
+		return indice;
+		/**
+		 * Retorna o indice do jogo no array ou excecao caso
+		 */
 	}
 
 	@Override
-	public void atualizar(Jogo jogo) throws JogoNaoEncontradoException {
+	public void atualizar(Jogo jogo) throws JNCException {
 		/**
 		 * Procura pelo elemento no array cujo nome eh o mesmo que o jogo inserido na
 		 * entrada. Ao encontrar, substitui seus atributos pelos atributos do jogo
 		 * inserido na entrada. caso nao encontre, o int i será igual a -1 (tratar
 		 * excecao nesse caso)
 		 */
-		int i = this.procurar(jogo.nome);
-		if (i != -1) {// caso contrario (i==-1) significa que o metodo procurar
-						// nao encontrou o jogo na lista
+		int i = this.procurar(jogo.nome);//pode levantar excecao
+		
 			this.jogos[i] = jogo;
-			this.indice++;
 
 		}
 
-		else {
-
-			throw new JogoNaoEncontradoException();
-		}
+	
 
 	}
 
-}
+
