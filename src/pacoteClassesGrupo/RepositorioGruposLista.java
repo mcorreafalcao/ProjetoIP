@@ -11,35 +11,34 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	private Grupo prim;
 	private RepositorioGruposLista prox;
 
-	public void RepositorioGruposLista() {
+	public RepositorioGruposLista() {
 		this.prim = null;
 		this.prox = null;
 	}
 
 	@Override
-	public void inserir(Grupo grupo) throws Exception {
+	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
 		if (!this.existe(grupo.nomeGrupo)) {
 			this.prim = grupo;
 			this.prox = new RepositorioGruposLista();
 		} else {
-			Exception GrupoJaCadastradoException = null;
-			throw GrupoJaCadastradoException;
+			throw new GrupoJaCadastradoException();
+			
 		}
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws Exception {
+	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException {
 		if (this.existe(grupo.nomeGrupo)) {
 			RepositorioGruposLista proc = this.procurar(grupo.nomeGrupo);
 			proc.prim.nomeGrupo = grupo.nomeGrupo;
 		} else {
-			Exception GrupoJaCadastradoException = null;
-			throw GrupoJaCadastradoException;
+			throw new GrupoJaCadastradoException();
 		}
 	}
 
 	@Override
-	public void remover(Grupo grupo) throws Exception {
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
 		if (this.existe(grupo.nomeGrupo)) {
 			RepositorioGruposLista proc = this.procurar(grupo.nomeGrupo);
 			if (proc.prox == null) {
@@ -49,8 +48,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 				proc.prox = proc.prox.prox;
 			}
 		} else {
-			Exception GrupoNaoEncontradoException = null;
-			throw GrupoNaoEncontradoException;
+			throw new GrupoNaoEncontradoException();
 		}
 	}
 
@@ -62,6 +60,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		return null;
 	}
 
+	@Override
 	public boolean existe(String grupo) {
 		if (this.prim != null) {
 			if (this.prim.equals(grupo)) {
