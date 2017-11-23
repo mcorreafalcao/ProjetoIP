@@ -12,8 +12,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	private Jogo[] jogos;
 	private int indice;// será sempre o primeiro indice vazio
 
-	public RepositorioJogosArray(int tam) {
-		jogos = new Jogo[tam];
+	public RepositorioJogosArray() {
+		jogos = new Jogo[5];
 		indice = 0;
 		/**
 		 * construtor
@@ -78,19 +78,19 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	}
 
 	public int procurar(String nomeJogo) throws JNCException {
-		int indice = 0;
+		int ind = 0;
 		boolean achou = false;
 		for (int i = 0; i <= indice && !achou; i++) {
 			if (this.jogos[i].nome.equals(nomeJogo)) {
 				achou = true;// quebra o loop
-				indice = i;
+				ind = i;
 			}
 
 		}
 		if (!achou)
 			throw new JNCException();
 
-		return indice;
+		return ind;
 		/**
 		 * Retorna o indice do jogo no array ou excecao caso
 		 */
