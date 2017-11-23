@@ -10,11 +10,13 @@ public class NegocioJogo {
 	
 	RepositorioJogos loja;
 	
-	public NegocioJogo (int a, int tam) {
+	public NegocioJogo (int a) throws EIException {
 		if(a==1)
-			loja = new RepositorioJogosArray(tam);
-		else
+			loja = new RepositorioJogosArray();
+		else if(a==2)
 			loja = new RepositorioJogosLista();
+		else
+			throw new EIException();
 		/**
 		 * caso tenhamos q ler o arquivo, pegar o input de tamanho antes de construir
 		 */

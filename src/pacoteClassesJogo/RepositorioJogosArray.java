@@ -12,8 +12,8 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	private Jogo[] jogos;
 	private int indice;// será sempre o primeiro indice vazio
 
-	public RepositorioJogosArray(int tam) {
-		jogos = new Jogo[tam];
+	public RepositorioJogosArray() {
+		jogos = new Jogo[5];
 		indice = 0;
 		/**
 		 * construtor
