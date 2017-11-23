@@ -1,7 +1,5 @@
 package pacoteClassesUsuario;
 
-import pacoteClassesJogo.JJCException;
-
 /**
  * "classe colecao de dados array"
  * classe que contem um array de usuarios e metodos da interface implementada
@@ -18,18 +16,18 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 		indice = 0;
 	}
 	@Override
-	public void inserir(Usuario usuario) {
+	public void inserir(Usuario usuario) throws UNCException {
 		if (!this.existe(usuario.getNick()) && this.indice < this.usuarios.length - 1) {
 			this.usuarios[indice] = usuario;
 			this.indice++;
 		} else {
-			// throw new UJCException();
+			throw new UNCException();
 		}
 		
 	}
 
 	@Override
-	public void remover(String nomeUsuario) {
+	public void remover(String nomeUsuario) throws UNCException {
 		boolean encontrou = false;
 		for (int i = 0; i <= indice && !encontrou; i++) {
 			if (this.usuarios[i].getNick().equals(nomeUsuario)) {
@@ -41,15 +39,15 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 			}
 		}
 		if (!encontrou) {
-			//throw new UNCException();
+			throw new UNCException();
 		}
 		
 	}
 
 	@Override
-	public void atualizar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
+	public void atualizar(Usuario usuario) throws UNCException {
+		int i = this.procurar(usuario.getNick());
+		this.usuarios[i] = usuario;
 	}
 
 	@Override
@@ -58,7 +56,7 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 		return false;
 	}                     
 	
-	public int procurar(String nomeUsuario) {
+	public int procurar(String nomeUsuario) throws UNCException {
 		int indicee = 0;
 		boolean encontrou = false;
 		for (int i = 0; i <= indice && !encontrou; i++) {
@@ -67,7 +65,11 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 				indicee = i;
 			}
 		}
+		if (!encontrou) {
+			throw new UNCException();
+		}
 		return indicee;
 	}
+	
 
 }
