@@ -11,10 +11,9 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 																// dados array
 	private Jogo[] jogos;
 	private int indice;// será sempre o primeiro indice vazio
-	private int tam=100;//deixar pequeno para testes (<10)
 
-	public RepositorioJogosArray() {
-		jogos = new Jogo[this.tam];
+	public RepositorioJogosArray(int tam) {
+		jogos = new Jogo[tam];
 		indice = 0;
 		/**
 		 * construtor
@@ -23,13 +22,19 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 
 	@Override
 	public void inserir(Jogo jogo) throws JJCException, SMPCException {
-		if (!this.existe(jogo.nome)&&this.indice<this.tam-1) {// insere no primeiro indice vazio
+		if (!this.existe(jogo.nome) && this.indice < this.jogos.length - 1) {// insere
+																				// no
+																				// primeiro
+																				// indice
+																				// vazio
 			this.jogos[indice] = jogo;
 			this.indice++;
 
-		} else if(this.indice>=this.tam-1){// excecao caso acabe a memoria do array
+		} else if (this.indice >= this.jogos.length - 1) {// excecao caso acabe
+															// a memoria do
+															// array
 			throw new SMPCException();
-		}else{//excecao caso o jogo ja exista
+		} else {// excecao caso o jogo ja exista
 			throw new JJCException();
 		}
 		/**
@@ -42,7 +47,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		boolean achou = false;
 		for (int i = 0; i <= indice && !achou; i++)
 			if (this.jogos[i].getNome().equals(nomeJogo))
-				achou= true;//quebra o loop
+				achou = true;// quebra o loop
 
 		return achou;
 		/**
@@ -60,7 +65,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 					this.jogos[k] = this.jogos[k + 1];
 
 				}
-				achou = true;//queba o loop
+				achou = true;// queba o loop
 				indice--;
 			}
 		}
@@ -74,17 +79,17 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 
 	public int procurar(String nomeJogo) throws JNCException {
 		int indice = 0;
-		boolean achou=false;
-		for (int i = 0; i <= indice&&!achou; i++) {
-			if (this.jogos[i].nome.equals(nomeJogo)){
-				achou=true;//quebra o loop
-				indice=i;
+		boolean achou = false;
+		for (int i = 0; i <= indice && !achou; i++) {
+			if (this.jogos[i].nome.equals(nomeJogo)) {
+				achou = true;// quebra o loop
+				indice = i;
 			}
-			
+
 		}
-		if(!achou)
+		if (!achou)
 			throw new JNCException();
-		
+
 		return indice;
 		/**
 		 * Retorna o indice do jogo no array ou excecao caso
@@ -94,19 +99,15 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	@Override
 	public void atualizar(Jogo jogo) throws JNCException {
 		/**
-		 * Procura pelo elemento no array cujo nome eh o mesmo que o jogo inserido na
-		 * entrada. Ao encontrar, substitui seus atributos pelos atributos do jogo
-		 * inserido na entrada. caso nao encontre, o int i será igual a -1 (tratar
-		 * excecao nesse caso)
+		 * Procura pelo elemento no array cujo nome eh o mesmo que o jogo
+		 * inserido na entrada. Ao encontrar, substitui seus atributos pelos
+		 * atributos do jogo inserido na entrada. caso nao encontre, o int i
+		 * será igual a -1 (tratar excecao nesse caso)
 		 */
-		int i = this.procurar(jogo.nome);//pode levantar excecao
-		
-			this.jogos[i] = jogo;
+		int i = this.procurar(jogo.nome);// pode levantar excecao
 
-		}
-
-	
+		this.jogos[i] = jogo;
 
 	}
 
-
+}

@@ -1,5 +1,7 @@
 package pacoteClassesJogo;
 
+import pacoteClassesGrupo.RepositorioGruposLista;
+
 /**
  * "Classe colecao de dados lista". Classe que contem um lista de jogos e
  * metodos da interface implementada.
@@ -54,30 +56,19 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 	public void remover(String nomeJogo) throws JNCException {
 		boolean existe = this.existe(nomeJogo);
 		if (!existe) {
-
 			throw new JNCException();
 		} else {// remove da lista
-			RepositorioJogosLista aux = this;
-			if (this.jogo.getNome().equals(nomeJogo)) {// primeiro elemento
-				if (this.proximo == null) {// so exixte um elemento e ele sera
-											// removido
-					aux = new RepositorioJogosLista();
-					this.jogo = aux.jogo;
-					this.proximo = aux.proximo;
-					return;
-				} else {// faz o primeiro elemento virar referencia pro segundo
-					this.jogo = this.proximo.jogo;
-					this.proximo = this.proximo.proximo;
-					return;
-				}
-			} else {
-				while (aux.proximo.proximo != null) {
-					if (aux.proximo.jogo.getNome().equals(nomeJogo)) {
-						aux.proximo = aux.proximo.proximo;
-						return;
-					}
-					aux = aux.proximo;
-				}
+			RepositorioJogosLista aux = this.procurar(nomeJogo);// nao retorna
+																// null pois só
+																// e chamado se
+																// existe() for
+																// true
+			if (aux.proximo == null) {// significa que só tem um elemento e sera
+										// removido
+				aux.jogo = new Jogo();
+			} else {// existem elementos
+				aux.jogo = aux.proximo.jogo;
+				aux.proximo = aux.proximo.proximo;
 			}
 		}
 		/**
@@ -91,18 +82,19 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 		if (!this.existe(jogo.getNome())) {
 			throw new JNCException();
 		} else {// procura e troca os valores ao encontrar
-			boolean achou=false;
+			boolean achou = false;
 			RepositorioJogosLista aux = this;
-			while(aux!=null&&!achou){
-				if(aux.jogo.getNome().equals(jogo.getNome())){
-					aux.jogo=jogo;//atualiza a referencia da lista com o jogo novo
-					achou = true;//quebra o loop
+			while (aux != null && !achou) {
+				if (aux.jogo.getNome().equals(jogo.getNome())) {
+					aux.jogo = jogo;// atualiza a referencia da lista com o jogo
+									// novo
+					achou = true;// quebra o loop
 				}
 			}
 		}
 		/**
-		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo inserido
-		 * como referencia
+		 * troca os atributos do jogo com mesmo nome pelos atributos do jogo
+		 * inserido como referencia
 		 */
 
 	}
@@ -116,6 +108,14 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 			return this.proximo.existe(nomeJogo);
 		else// caso nao seja o atual e nem exista outros
 			return false;
+	}
+
+	public RepositorioJogosLista procurar(String nomeJogo) {
+		if (this.jogo.getNome().equals(nomeJogo)) {
+			return this;
+		} else if (this.proximo != null)
+			return this.proximo.procurar(nomeJogo);
+		return null;// nunca retorna null, pois o existe é chamado antes dele
 	}
 
 }

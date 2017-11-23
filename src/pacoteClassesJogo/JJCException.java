@@ -1,4 +1,4 @@
- package pacoteClassesJogo;
+package pacoteClassesJogo;
 
 public class JJCException extends Exception {
 	public JJCException() {
