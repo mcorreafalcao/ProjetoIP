@@ -1,5 +1,7 @@
 package pacoteClassesJogo;
 
+import pacoteClassesUsuario.Usuario;
+
 /**
  * "Classe basica"
  * 
@@ -36,12 +38,16 @@ public class Jogo extends Produto {// classe básica do projeto
 		return this.preco;
 	}
 
-	public void setData(String data) {
-		this.dataLancamento = data;
+	@Override
+	protected void setDev(Usuario dev) {
+		this.dev=dev;
+		
 	}
 
-	public String getData() {
-		return this.dataLancamento;
+	@Override
+	protected Usuario getDev() {
+		// TODO Auto-generated method stub
+		return this.dev;
 	}
 
 }

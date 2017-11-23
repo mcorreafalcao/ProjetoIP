@@ -1,5 +1,7 @@
 package pacoteClassesJogo;
 
+import pacoteClassesUsuario.Usuario;
+
 /**
  * Classe abstrata feita com a intencao de utilzar herança alguma vez. A classe
  * Jogo eh subclase desta classe.
@@ -11,13 +13,13 @@ public abstract class Produto {// jogo ou software vao herdar desta classe
 	protected String nome;
 	protected String descricao;
 	protected double preco;
-	protected String dataLancamento;
+	protected Usuario dev;
 
 	public Produto() {// construtor
 		this.nome = null;
 		this.descricao = null;
 		this.preco = 0.0;
-		this.dataLancamento = null;
+		this.dev=new Usuario();
 	}
 
 	protected abstract void setNome(String nome);
@@ -32,8 +34,8 @@ public abstract class Produto {// jogo ou software vao herdar desta classe
 
 	protected abstract double getPreco();
 
-	protected abstract void setData(String data);
+	protected abstract void setDev(Usuario dev );
 
-	protected abstract String getData();
+	protected abstract Usuario getDev();
 
 }
