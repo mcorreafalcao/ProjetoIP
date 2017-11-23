@@ -52,8 +52,13 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 
 	@Override
 	public boolean existe(String nomeUsuario) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean encontrou = false;
+		for (int i = 0; i <= indice && !encontrou; i++) {
+			if (this.usuarios[i].getNick().equals(nomeUsuario)) {
+				encontrou = true;
+			}
+		}
+		return encontrou;
 	}                     
 	
 	public int procurar(String nomeUsuario) throws UNCException {
