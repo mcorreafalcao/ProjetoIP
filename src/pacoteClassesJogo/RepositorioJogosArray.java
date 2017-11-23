@@ -69,8 +69,9 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 				indice--;
 			}
 		}
-		if (!achou)
+		if (!achou) {
 			throw new JNCException();
+		}
 
 		/**
 		 * Remove o jogo do array, joga excecao caso nao encontre o jogo
