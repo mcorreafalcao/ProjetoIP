@@ -11,8 +11,8 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 	private Usuario[] usuarios;
 	private int indice;
 	
-	public RepositorioUsuariosArray (int tamanho) {
-		usuarios = new Usuario[tamanho];
+	public RepositorioUsuariosArray () {
+		usuarios = new Usuario[5];
 		indice = 0;
 	}
 	@Override
