@@ -9,34 +9,32 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	private Grupo[] grupos;
 	private int indice = 0;
 	
-	public void RepositorioGruposArray() {
-		grupos = new Grupo[100];
+	public RepositorioGruposArray() {
+		grupos = new Grupo[5];
 	}
 	
 	@Override
-	public void inserir(Grupo grupo) throws Exception {
+	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
 		if (!this.existe(grupo.nomeGrupo)) {
 			this.grupos[this.indice] = grupo;
 			this.indice++;
 		}else {
-			Exception GrupoJaCadastradoException = null;
-			throw GrupoJaCadastradoException;
+			throw new GrupoJaCadastradoException();
 		}
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws Exception {
+	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException {
 		if (this.existe(grupo.nomeGrupo)) {
 			int proc = this.procurar(grupo.nomeGrupo);
 			this.grupos[proc] = grupo;
 		}else {
-			Exception GrupoJaCadastradoException = null;
-			throw GrupoJaCadastradoException;
+			throw new GrupoJaCadastradoException();
 		}
 	}
 
 	@Override
-	public void remover(Grupo grupo) throws Exception {
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
 		if (this.existe(grupo.nomeGrupo)) {
 			int proc = this.procurar(grupo.nomeGrupo);
 			for (int i = proc; i < indice - 1; i++) {
@@ -44,8 +42,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			}
 			this.indice--;
 		}else {
-			Exception GrupoNaoEncontradoException = null;
-			throw GrupoNaoEncontradoException;
+			throw new GrupoNaoEncontradoException();
 		}
 		
 	}
@@ -60,6 +57,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		return 0;
 	}
 	
+	@Override
 	public boolean existe(String grupo) {
 		for (int i = 0; i < 100; i++) {
 			if (this.grupos[i].nomeGrupo.equals(grupo)) {
