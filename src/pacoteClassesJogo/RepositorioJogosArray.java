@@ -22,11 +22,11 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 
 	@Override
 	public void inserir(Jogo jogo) throws JJCException, SMPCException {
-		if (!this.existe(jogo.nome) && this.indice < this.jogos.length - 1) {// insere
-																				// no
-																				// primeiro
-																				// indice
-																				// vazio
+		if (!this.existe(jogo.getNome()) && this.indice < this.jogos.length - 1) {// insere
+																					// no
+																					// primeiro
+																					// indice
+																					// vazio
 			this.jogos[indice] = jogo;
 			this.indice++;
 
@@ -45,7 +45,7 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 	@Override
 	public boolean existe(String nomeJogo) {
 		boolean achou = false;
-		for (int i = 0; i <= indice && !achou; i++)
+		for (int i = 0; i < indice && !achou; i++)
 			if (this.jogos[i].getNome().equals(nomeJogo))
 				achou = true;// quebra o loop
 
@@ -57,21 +57,14 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 
 	@Override
 	public void remover(String nomeJogo) throws JNCException {
-		boolean achou = false;
-		for (int i = 0; i <= indice && !achou; i++) {
-			if (this.jogos[i].getNome().equals(nomeJogo)) {
-				for (int k = i; k <= indice - 1; k++) {// translada os jogos no
-														// array por um indice
-					this.jogos[k] = this.jogos[k + 1];
+		int i = this.procurar(nomeJogo);// excecao pode ser levantada aqui
 
-				}
-				achou = true;// queba o loop
-				indice--;
-			}
+		for (int k = i; k <= indice - 1; k++) {// translada os jogos no
+												// array por um indice
+			this.jogos[k] = this.jogos[k + 1];
+
 		}
-		if (!achou) {
-			throw new JNCException();
-		}
+		indice--;
 
 		/**
 		 * Remove o jogo do array, joga excecao caso nao encontre o jogo
@@ -82,11 +75,10 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		int ind = 0;
 		boolean achou = false;
 		for (int i = 0; i <= indice && !achou; i++) {
-			if (this.jogos[i].nome.equals(nomeJogo)) {
+			if (this.jogos[i].getNome().equals(nomeJogo)) {
 				achou = true;// quebra o loop
 				ind = i;
 			}
-
 		}
 		if (!achou)
 			throw new JNCException();
@@ -102,11 +94,9 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		/**
 		 * Procura pelo elemento no array cujo nome eh o mesmo que o jogo
 		 * inserido na entrada. Ao encontrar, substitui seus atributos pelos
-		 * atributos do jogo inserido na entrada. caso nao encontre, o int i
-		 * será igual a -1 (tratar excecao nesse caso)
+		 * atributos do jogo inserido na entrada.
 		 */
-		int i = this.procurar(jogo.nome);// pode levantar excecao
-
+		int i = this.procurar(jogo.getNome());// pode levantar excecao
 		this.jogos[i] = jogo;
 
 	}
