@@ -117,5 +117,8 @@ public class RepositorioJogosLista implements RepositorioJogos {// colecao de
 			return this.proximo.procurar(nomeJogo);
 		return null;// nunca retorna null, pois o existe é chamado antes dele
 	}
+	public Jogo getJogo(){
+		return this.jogo;
+	}
 
 }

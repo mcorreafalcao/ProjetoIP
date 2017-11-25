@@ -100,5 +100,9 @@ public class RepositorioJogosArray implements RepositorioJogos {// colecao de
 		this.jogos[i] = jogo;
 
 	}
+	
+	public Jogo getJogo(int indice){
+		return this.jogos[indice];
+	}
 
 }
