@@ -3,6 +3,7 @@ package pacoteClassesUsuario;
 /**
  * "classe colecao de dados array"
  * classe que contem um array de usuarios e metodos da interface implementada
+ * 
  * @author Gabriel
  *
  */
@@ -10,20 +11,21 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 
 	private Usuario[] usuarios;
 	private int indice;
-	
-	public RepositorioUsuariosArray () {
+
+	public RepositorioUsuariosArray() {
 		usuarios = new Usuario[5];
 		indice = 0;
 	}
+
 	@Override
-	public void inserir(Usuario usuario) throws UNCException {
+	public void inserir(Usuario usuario) throws UJCException {
 		if (!this.existe(usuario.getNick()) && this.indice < this.usuarios.length - 1) {
 			this.usuarios[indice] = usuario;
 			this.indice++;
 		} else {
-			throw new UNCException();
+			throw new UJCException();
 		}
-		
+
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 		if (!encontrou) {
 			throw new UNCException();
 		}
-		
+
 	}
 
 	@Override
@@ -59,8 +61,8 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 			}
 		}
 		return encontrou;
-	}                     
-	
+	}
+
 	public int procurar(String nomeUsuario) throws UNCException {
 		int indicee = 0;
 		boolean encontrou = false;
@@ -75,6 +77,5 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 		}
 		return indicee;
 	}
-	
 
 }

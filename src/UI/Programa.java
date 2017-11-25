@@ -1,21 +1,22 @@
 package UI;
+
 /**
  * lembrar de colocar todas as atribuicoes de op em um try catch, pois pode gerar InputMismatchEsception
  */
 import java.util.Scanner;
 
 public class Programa {
+
 	public static Scanner in = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, 
-				Tgrupo = false,Tgrupo1=false, Tperfil = false,Tperfil1=false, sair = false;// telas
+		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false, Tperfil = false, Tperfil1 = false, sair = false;// telas
 		int op;
 
-		while (sair == false) {// programa
+		while (!sair) {// programa
 
-			while (!logado) {//tela inicial
-				System.out.println("Bem vindo à Steam! O que deseja fazer?");
+			while (!logado) {// tela inicial
+				System.out.println("Bem vindo ï¿½ Steam! O que deseja fazer?");
 				System.out.println("1 - Fazer login");
 				System.out.println("2 - Crie sua conta");
 				System.out.println("0 - Sair");
@@ -28,18 +29,18 @@ public class Programa {
 					sair = true;
 				} else if (op == 2) {
 					System.out.println("CADASTRO \n");
-					System.out.println("Digite um novo usuário e senha");
+					System.out.println("Digite um novo usuï¿½rio e senha");
 					System.out.println("Usuario: ");
 					String usuario = in.nextLine();
 					System.out.println("Senha: ");
 					String senha = in.nextLine();
 					System.out.println("Digite o seu email:");
 					String email = in.nextLine();
-					// Testar se usuário já existe, se já existir, tratar exceção através de try catch
-					System.out.println("Cadastro efetuado com sucesso!");// só pode chegar aqui se nao ocorrer excecoes
+					// Testar se usuï¿½rio jï¿½ existe, se jï¿½ existir, tratar exceï¿½ï¿½o atravï¿½s de try catch
+					System.out.println("Cadastro efetuado com sucesso!");// sï¿½ pode chegar aqui se nao ocorrer excecoes
 				} else if (op == 1) {
 					System.out.println("LOGIN \n");
-					System.out.println("Digite seu usuário:");
+					System.out.println("Digite seu usuï¿½rio:");
 					String usuario = in.nextLine();
 					System.out.println("Digite sua senha:");
 					String senha = in.nextLine();
@@ -47,14 +48,14 @@ public class Programa {
 					logado = true;
 					Tprincipal = true;
 					System.out.println("Bem vindo, user.");
-					// Testar se usuario e senha batem, senão, jogar exceção
+					// Testar se usuario e senha batem, senï¿½o, jogar exceï¿½ï¿½o
 				} else {
-					System.out.println("Entrada invalida, tente outra vez");//imprimir a mesma coisa caso capture InputMismatchException
+					System.out.println("Entrada invalida, tente outra vez");// imprimir a mesma coisa caso capture InputMismatchException
 				}
-			}//fim da tela inicial
+			} // fim da tela inicial
 
 			while (!sair && logado) {
-				while (Tprincipal) {//tela principal
+				while (Tprincipal) {// tela principal
 					System.out.println("O que deseja fazer?");
 					System.out.println("1 - Acessar a loja");
 					System.out.println("2 - Acessar a comunidade");
@@ -79,38 +80,38 @@ public class Programa {
 					}
 				}
 
-				while (Tloja) {//menu da loja
-					System.out.println("Estes sao os jogos disponíveis:");
-					//listar catalogo
-					System.out.println("Bem vindo a nossa loja. Escolha uma das opções abaixo!");
+				while (Tloja) {// menu da loja
+					System.out.println("Estes sao os jogos disponï¿½veis:");
+					// listar catalogo
+					System.out.println("Bem vindo a nossa loja. Escolha uma das opï¿½ï¿½es abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
 					op = in.nextInt();
 					in.nextLine();
-					if (op == 0) {//sair do menu de loja
+					if (op == 0) {// sair do menu de loja
 						Tloja = false;
 						Tprincipal = true;
-					} else if (op == 1) {//selecionar jogo do catalogo
+					} else if (op == 1) {// selecionar jogo do catalogo
 						// imprimir catalogo
 						System.out.println("Digite o nome do jogo selecionado:");
 						// chama metodo de procurar dentro de try catch
-						
+
 						Tloja1 = true;// caso procurar funcione
 						Tloja = false;// caso procurar funcione
 
-					} else if (op == 2){//cadastrar jogo
-					System.out.println("Digite o nome do jogo a ser cadastrado:");
-					String nomeJogo = in.nextLine();
-					System.out.println("Digite o valor do jogo a ser cadastrado:");
-					double precoJogo = in.nextDouble();
-					in.nextLine();
-					System.out.println("Insira uma breve descrição do jogo cadastrado:");
-					String descricao = in.nextLine();
-					//cria nova referencia de jogo a ser adicionada na lista, capturando escecao de jogo ja cadastrado
-					
-					//se nao capturar excecao
-					System.out.println("Jogo cadastrado com sucesso!");
+					} else if (op == 2) {// cadastrar jogo
+						System.out.println("Digite o nome do jogo a ser cadastrado:");
+						String nomeJogo = in.nextLine();
+						System.out.println("Digite o valor do jogo a ser cadastrado:");
+						double precoJogo = in.nextDouble();
+						in.nextLine();
+						System.out.println("Insira uma breve descriï¿½ï¿½o do jogo cadastrado:");
+						String descricao = in.nextLine();
+						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de jogo ja cadastrado
+
+						// se nao capturar excecao
+						System.out.println("Jogo cadastrado com sucesso!");
 					}
 				}
 				while (Tloja1) {// encontrou o jogo procurado
@@ -129,36 +130,36 @@ public class Programa {
 						op = in.nextInt();
 						in.nextLine();
 						if (op == 1) {
-							//ver se ele ja possui o jogo na lista de jogos dele
+							// ver se ele ja possui o jogo na lista de jogos dele
 							// adicionar na lista de jogo do usuario e debitar da carteira capturando excecoes
 							System.out.println("Jogo comprado!");
 						}
 					} else if (op == 2) {
-						//metodo que confere se o usuario é o dev do jogo. Se for, remove do catalogo, se nao, captura excecao (voce nao é o criador)
-						//se remover, voltar para a Tloja, pois em Tloja1 a referencia do jogo nao existirá mais
-						Tloja1=false;
-						Tloja=true;
-					}else if(op==3) {
-						//try catch inputmismatchexception aqui
+						// metodo que confere se o usuario ï¿½ o dev do jogo. Se for, remove do catalogo, se nao, captura excecao (voce nao ï¿½ o criador)
+						// se remover, voltar para a Tloja, pois em Tloja1 a referencia do jogo nao existirï¿½ mais
+						Tloja1 = false;
+						Tloja = true;
+					} else if (op == 3) {
+						// try catch inputmismatchexception aqui
 						System.out.println("Digite o nome do jogo a ser alterado: ");
 						String nome = in.nextLine();
 						System.out.println("Digite a nova descricao do jogo: ");
 						String descricao = in.nextLine();
 						System.out.println("digite o novo preco: ");
 						double preco = in.nextDouble();
-						//cria nova referencia para jogo que substituirá a referencia atual
-						//metodo que confere se o usuario é o dev do jogo. Se for, troca a referencia pela nova criada neste if
-						
-					}else {
+						// cria nova referencia para jogo que substituirï¿½ a referencia atual
+						// metodo que confere se o usuario ï¿½ o dev do jogo. Se for, troca a referencia pela nova criada neste if
+
+					} else {
 						System.out.println("Entrada invalida, tente novamente");
 					}
 				}
 
 				while (Tgrupo) {
-					// Imprimir a lista de grupos disponíveis
-					// Se não tiver grupos, apenas exibir Não há grupos disponiveis
+					// Imprimir a lista de grupos disponï¿½veis
+					// Se nï¿½o tiver grupos, apenas exibir Nï¿½o hï¿½ grupos disponiveis
 					System.out.println(
-							"Bem vindo a nossa comunidade. Onde você pode interagir com outros usuários sobre seus jogos favoritos. \n Escolha uma das opções abaixo!");
+							"Bem vindo a nossa comunidade. Onde vocï¿½ pode interagir com outros usuï¿½rios sobre seus jogos favoritos. \n Escolha uma das opï¿½ï¿½es abaixo!");
 					System.out.println("1 - Selecionar Grupo");
 					System.out.println("2 - Cadastrar Grupo");
 					System.out.println("0 - Voltar");
@@ -166,9 +167,9 @@ public class Programa {
 					in.nextLine();
 
 					if (op2 == 0) {
-						Tgrupo=false;
-						Tprincipal=true;
-					} else if (op2 == 1) {//abrir grupo selecionado
+						Tgrupo = false;
+						Tprincipal = true;
+					} else if (op2 == 1) {// abrir grupo selecionado
 						System.out.println("Digite o nome do grupo selecionado:");
 						String nomeGrupo = in.nextLine();
 					} else if (op2 == 2) {
@@ -177,13 +178,13 @@ public class Programa {
 						System.out.println("Digite a categoria do grupo a ser cadastrado:");
 						String categoriaGrupo = in.nextLine();
 
-					}else{
+					} else {
 						System.out.println("Entrada invalida, tente novamente");
 					}
 
 				}
-				while(Tgrupo1){//opcoes para o grupo encontrado em "selecionar"
-					//info do grupo
+				while (Tgrupo1) {// opcoes para o grupo encontrado em "selecionar"
+					// info do grupo
 					System.out.println("1 - Entrar");
 					System.out.println("2 - Sair do grupo");
 					System.out.println("3 - Atualizar informacoes");
@@ -191,29 +192,29 @@ public class Programa {
 					System.out.println(") - Sair");
 					op = in.nextInt();
 					in.nextLine();
-					if(op==0){
-						Tgrupo1=false;
-						Tgrupo=true;
-					}else if(op==1){//entrar em grupo
-						//adicionar grupo na lista de grupos do usuario
-						//adicionar usuario na lista de usuarios do grupo
-					}else if(op==2){
-						//remover usuario da lista de usuarios do grupo
-						//remover grupo da lista de grupos do usuario
-					}else if(op==3){
-						//criar nova referencia para o grupo, perguntar alteraçoec e substituir a referencia atual
-					}else if(op==4){
-						//remover referencia da lista de grupos
-						//isso ja removerá o grupo da lista de grupos do usuario??
-					}else{
+					if (op == 0) {
+						Tgrupo1 = false;
+						Tgrupo = true;
+					} else if (op == 1) {// entrar em grupo
+						// adicionar grupo na lista de grupos do usuario
+						// adicionar usuario na lista de usuarios do grupo
+					} else if (op == 2) {
+						// remover usuario da lista de usuarios do grupo
+						// remover grupo da lista de grupos do usuario
+					} else if (op == 3) {
+						// criar nova referencia para o grupo, perguntar alteraï¿½oec e substituir a referencia atual
+					} else if (op == 4) {
+						// remover referencia da lista de grupos
+						// isso ja removerï¿½ o grupo da lista de grupos do usuario??
+					} else {
 						System.out.println("Entrada invalida, tente novamente");
 					}
 				}
 
-				while (Tperfil) {//tela do usuario atual
+				while (Tperfil) {// tela do usuario atual
 					// NOME DA PESSOA//
 					// Status//
-					System.out.println("Escolha uma das opções abaixo:");
+					System.out.println("Escolha uma das opï¿½ï¿½es abaixo:");
 					System.out.println("1 - Ver lista de amigos");
 					System.out.println("2 - Adicionar amigo");
 					System.out.println("3 - Atualizar status");
@@ -223,33 +224,33 @@ public class Programa {
 					in.nextLine();
 
 					if (op == 0) {
-						Tperfil=false;
-						Tprincipal=true;
+						Tperfil = false;
+						Tprincipal = true;
 					} else if (op == 1) {
-						//listar amigos
+						// listar amigos
 						System.out.println("Digite o nome do amigo que deseja visitar o perfil");
 						String nickAmigo = in.nextLine();
-						//procurar
-						//se encontrar
-						Tperfil=false;
-						Tperfil1=true;
+						// procurar
+						// se encontrar
+						Tperfil = false;
+						Tperfil1 = true;
 					} else if (op == 2) {
-						System.out.println("Digite o nome do usuário que gostaria de adicionar a sua lista de amigos.");
+						System.out.println("Digite o nome do usuï¿½rio que gostaria de adicionar a sua lista de amigos.");
 						String nickAmigo = in.nextLine();
 						// metodo de procurar
-						//confere se ja nao é amigo, depois confere se usuario existe mesmo, entao adiciona caso nao capture exceção
+						// confere se ja nao ï¿½ amigo, depois confere se usuario existe mesmo, entao adiciona caso nao capture exceï¿½ï¿½o
 					} else if (op == 3) {
 						System.out.println("Digite o novo status a ser exibido:");
 						String novoStatus = in.nextLine();
-						//setter aqui
+						// setter aqui
 					}
 				}
-				while(Tperfil1){//perfil do amigo
-					//info
-					System.out.println("Escolha uma das opções abaixo:");
+				while (Tperfil1) {// perfil do amigo
+					// info
+					System.out.println("Escolha uma das opï¿½ï¿½es abaixo:");
 					System.out.println("1 - Remover amigo");
 					System.out.println("0 - Voltar");
-					
+
 				}
 			}
 

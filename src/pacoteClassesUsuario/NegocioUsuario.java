@@ -1,20 +1,26 @@
 package pacoteClassesUsuario;
 
-import pacoteClassesJogo.EIException;
-
 public class NegocioUsuario {
+
 	RepositorioUsuarios usuarios;
 
-	public NegocioUsuario(int a) throws EIException{
-		this.usuarios = usuarios;
-		
+	public NegocioUsuario(int a) {
 		if (a == 1) {
 			usuarios = new RepositorioUsuariosArray();
-		} else (a == 2) {
+		} else if (a == 2) {
 			usuarios = new RepositorioUsuariosLista();
-			
 		}
 	}
 
+	public void inserir(Usuario usuario) throws UJCException {
+		this.usuarios.inserir(usuario);
+	}
 
+	public void remover(String nomeUsuario) throws UNCException {
+		this.usuarios.remover(nomeUsuario);
+	}
+
+	public void atualizar(Usuario usuario) throws UNCException {
+		this.usuarios.atualizar(usuario);
+	}
 }
