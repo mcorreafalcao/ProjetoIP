@@ -1,4 +1,6 @@
-package pacoteClassesJogo;
+package pacoteClassesProduto;
+
+import pacoteClassesUsuario.Usuario;
 
 /**
  * Classe abstrata feita com a intencao de utilzar herança alguma vez. A classe
@@ -10,13 +12,13 @@ package pacoteClassesJogo;
 public abstract class Produto {// jogo ou (outraclassebasica) vao herdar desta classe
 	private String nome;
 	private String descricao;
-	private double preco;
+	private Usuario dev;// desenvolvedor do jogo
 
 
-	public Produto() {// construtor
-		this.nome = null;
-		this.descricao = null;
-		this.preco = 0.0;
+	public Produto(String nome,String descricao,Usuario dev ) {// construtor
+		this.nome = nome;
+		this.descricao = descricao;
+		this.dev = dev;
 		
 	}
 
@@ -36,14 +38,17 @@ public abstract class Produto {// jogo ou (outraclassebasica) vao herdar desta c
 		return this.descricao;
 	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
+	
+	public void setDev(Usuario dev) {
+		this.dev = dev;
 	}
 
-	public double getPreco() {
-		return this.preco;
+	public Usuario getDev() {
+		return this.dev;
 	}
 
+	
+	public abstract String getInfo();//pegará as informacoes do produto (jogo ou demo) para mostrar após a tela de selecao da interface
 
 	
 

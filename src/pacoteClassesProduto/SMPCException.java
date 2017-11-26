@@ -1,4 +1,4 @@
-package pacoteClassesJogo;
+package pacoteClassesProduto;
 
 public class SMPCException extends Exception {// excecao para o caso de acabar a
 												// memoria do array e houver

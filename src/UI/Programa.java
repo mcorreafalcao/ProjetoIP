@@ -9,9 +9,11 @@ import pacoteClassesGrupo.EntradaInvalidaException;
 import pacoteClassesGrupo.Grupo;
 import pacoteClassesGrupo.GrupoJaCadastradoException;
 import pacoteClassesGrupo.GrupoNaoEncontradoException;
-import pacoteClassesJogo.EIException;
-import pacoteClassesJogo.JNCException;
-import pacoteClassesJogo.Jogo;
+import pacoteClassesProduto.EIException;
+import pacoteClassesProduto.JNCException;
+import pacoteClassesProduto.Jogo;
+import pacoteClassesProduto.PNCException;
+import pacoteClassesProduto.Produto;
 import pacoteClassesUsuario.UJCException;
 import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
@@ -24,7 +26,7 @@ public class Programa {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false, Tperfil = false, Tperfil1 = false, sair = false;// telas
 		int op;
 		Usuario usuarioLogado;
-		Jogo jogoSelecionado;
+		Produto produtoSelecionado;
 		Grupo grupoSelecionado;
 
 		System.out.println("Escolha em que tipo de repositório o programa irá rodar!");
@@ -124,7 +126,7 @@ public class Programa {
 
 				while (Tloja) {// menu da loja
 					System.out.println("Estes sao os jogos dispon�veis:");
-					System.out.println(fachada.listarJogos());
+					System.out.println(fachada.listarProdutos());
 					System.out.println("Bem vindo a nossa loja. Escolha uma das op��es abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
@@ -136,13 +138,13 @@ public class Programa {
 						Tprincipal = true;
 					} else if (op == 1) {// selecionar jogo do catalogo
 						System.out.println("Digite o nome do jogo selecionado:");
-						String nomeJogo = in.nextLine();
+						String nomeProduto = in.nextLine();
 						try {
-							jogoSelecionado = fachada.buscarJogo(nomeJogo);
+							produtoSelecionado = fachada.buscarProduto(nomeProduto);
 							Tloja1 = true;// caso procurar funcione
 							Tloja = false;// caso procurar funcione
-						} catch (JNCException e) {
-							System.out.println("Jogo não encontrado.");
+						} catch (PNCException e) {
+							System.out.println("Produto não encontrado.");
 						}
 
 					} else if (op == 2) {// cadastrar jogo
@@ -154,9 +156,9 @@ public class Programa {
 						System.out.println("Insira uma breve descri��o do jogo cadastrado:");
 						String descricao = in.nextLine();
 						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de jogo ja cadastrado
-						Jogo novoJogo = new Jogo();
+						Produto novoJogo = new Produto();
 						try {
-							fachada.cadastrarJogo(novoJogo);
+							fachada.cadastrarProduto(novoJogo);
 							System.out.println("Cadastro efetuado com sucesso!");
 						} catch (UJCException e) {
 							System.out.println("Este jogo já foi cadastrado. Tente novamente com um novo nome.");

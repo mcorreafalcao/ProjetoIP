@@ -5,10 +5,10 @@ import pacoteClassesGrupo.Grupo;
 import pacoteClassesGrupo.GrupoJaCadastradoException;
 import pacoteClassesGrupo.GrupoNaoEncontradoException;
 import pacoteClassesGrupo.NegocioGrupo;
-import pacoteClassesJogo.EIException;
-import pacoteClassesJogo.JNCException;
-import pacoteClassesJogo.Jogo;
-import pacoteClassesJogo.NegocioJogo;
+import pacoteClassesProduto.EIException;
+import pacoteClassesProduto.PNCException;
+import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.NegocioProduto;
 import pacoteClassesUsuario.NegocioUsuario;
 import pacoteClassesUsuario.UJCException;
 import pacoteClassesUsuario.UNCException;
@@ -16,13 +16,13 @@ import pacoteClassesUsuario.Usuario;
 
 public class Fachada {
 
-	private NegocioJogo loja;
+	private NegocioProduto loja;
 	private NegocioGrupo comunidade;
 	private NegocioUsuario usuario;
 
 	public Fachada(int repositorio) throws EIException, EntradaInvalidaException {
 
-		this.loja = new NegocioJogo(repositorio);
+		this.loja = new NegocioProduto(repositorio);
 		this.comunidade = new NegocioGrupo(repositorio);
 		this.usuario = new NegocioUsuario(repositorio);
 	}
@@ -42,15 +42,15 @@ public class Fachada {
 		return null;
 	}
 
-	public String listarJogos() {
+	public String listarProdutos() {
 		// TODO Auto-generated method stub
-		// Retornar uma String com o nome dos jogos separado por \n, lista os jogos assim que acessamos a loja.
+		// Retornar uma String com o nome dos produtos separado por \n, lista os produtos assim que acessamos a loja.
 		return null;
 	}
 
-	public Jogo buscarJogo(String nomeJogo) throws JNCException {
+	public Produto buscarProduto(String nomeProduto) throws PNCException {
 		// TODO Auto-generated method stub
-		// parei com os metodos do jogo pq tu tem q ajeitar a parte de heranca
+		// parei com os metodos do produto pq tu tem q ajeitar a parte de heranca
 		return null;
 	}
 
