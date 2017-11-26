@@ -24,21 +24,21 @@ public class NegocioJogo {
 	}
 	
 	
-	public void cadastrarJogo(Jogo jogo) throws JJCException, SMPCException {
+	public void inserir(Jogo jogo) throws JJCException, SMPCException {
 		this.loja.inserir(jogo);
 		
 	}
 	
 	
 	//metodos para remover abaixo
-	public void descadastrarJogo(Jogo jogo) throws JNCException {//remove uma referencia da lista procurando pelo nome da referencia inserida
+	public void remover(Jogo jogo) throws JNCException {//remove uma referencia da lista procurando pelo nome da referencia inserida
 		/**
 		 *usar esse para remover caso ele já possua a referencia do jogo a remover
 		 */
 		this.loja.remover(jogo.getNome());
 		
 	}
-	public void descadastrarJogo2(String nomeJogo) throws JNCException{//remove uma referencia da lista procurando diretamente pelo nome
+	public void remover2(String nomeJogo) throws JNCException{//remove uma referencia da lista procurando diretamente pelo nome
 		/**
 		 * usar esse para remover caso o usuario só precise dizer o nome para remover
 		 */
@@ -48,7 +48,7 @@ public class NegocioJogo {
 	
 	
 	
-	public Jogo procurarJogo(String nomeJogo) throws JNCException{//retorna uma referencia de um jogo procurado ou levanta excecao caso nao encontre
+	public Jogo procurar(String nomeJogo) throws JNCException{//retorna uma referencia de um jogo procurado ou levanta excecao caso nao encontre
 		Jogo jogo = new Jogo();
 		if(this.loja instanceof RepositorioJogosArray){//se for array, pega o indice e retorna o jogo associado
 			int indice = ((RepositorioJogosArray) this.loja).procurar(nomeJogo);
