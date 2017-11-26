@@ -5,6 +5,16 @@ package UI;
  */
 import java.util.Scanner;
 
+import pacoteClassesGrupo.EntradaInvalidaException;
+import pacoteClassesGrupo.Grupo;
+import pacoteClassesGrupo.GrupoJaCadastradoException;
+import pacoteClassesGrupo.GrupoNaoEncontradoException;
+import pacoteClassesJogo.EIException;
+import pacoteClassesJogo.JNCException;
+import pacoteClassesJogo.Jogo;
+import pacoteClassesUsuario.UJCException;
+import pacoteClassesUsuario.Usuario;
+
 public class Programa {
 
 	public static Scanner in = new Scanner(System.in);
@@ -12,6 +22,23 @@ public class Programa {
 	public static void main(String[] args) {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false, Tperfil = false, Tperfil1 = false, sair = false;// telas
 		int op;
+		Usuario usuarioLogado;
+		Jogo jogoSelecionado;
+		Grupo grupoSelecionado;
+
+		System.out.println("Escolha em que tipo de repositório o programa irá rodar!");
+		System.out.println("Digite 1 array");
+		System.out.println("Ou 2 para lista encadeada");
+		int escolhaRepositorio = in.nextInt();
+		in.nextLine();
+		Fachada fachada = null;
+		try {
+			fachada = new Fachada(escolhaRepositorio);
+		} catch (EIException e) {
+			System.out.println("O tipo de repositório escolhido não é válido.");
+		} catch (EntradaInvalidaException e) {
+			System.out.println("O tipo de repositório escolhido não é válido.");
+		}
 
 		while (!sair) {// programa
 
@@ -36,8 +63,14 @@ public class Programa {
 					String senha = in.nextLine();
 					System.out.println("Digite o seu email:");
 					String email = in.nextLine();
-					// Testar se usu�rio j� existe, se j� existir, tratar exce��o atrav�s de try catch
-					System.out.println("Cadastro efetuado com sucesso!");// s� pode chegar aqui se nao ocorrer excecoes
+
+					Usuario novoUsuario = new Usuario(usuario, senha, email);
+					try {
+						fachada.cadastrarUsuario(novoUsuario);
+						System.out.println("Cadastro efetuado com sucesso!");
+					} catch (UJCException e) {
+						System.out.println("Este usuário já foi cadastrado. Tente novamente com um novo nick.");
+					}
 				} else if (op == 1) {
 					System.out.println("LOGIN \n");
 					System.out.println("Digite seu usu�rio:");
@@ -45,12 +78,20 @@ public class Programa {
 					System.out.println("Digite sua senha:");
 					String senha = in.nextLine();
 					// se conseguir logar
-					logado = true;
-					Tprincipal = true;
-					System.out.println("Bem vindo, user.");
-					// Testar se usuario e senha batem, sen�o, jogar exce��o
+					if (fachada.nickExiste(usuario)) {
+						usuarioLogado = fachada.buscarUsuario(usuario);
+						if (usuarioLogado.getSenha().equals(senha)) {
+							logado = true;
+							Tprincipal = true;
+							System.out.println("Bem vindo, " + usuario + ".");
+						} else {
+							System.out.println("Senha inválida.");
+						}
+					} else {
+						System.out.println("O usuário não existe.");
+					}
 				} else {
-					System.out.println("Entrada invalida, tente outra vez");// imprimir a mesma coisa caso capture InputMismatchException
+					System.out.println("Entrada invalida, tente outra vez");
 				}
 			} // fim da tela inicial
 
@@ -82,7 +123,7 @@ public class Programa {
 
 				while (Tloja) {// menu da loja
 					System.out.println("Estes sao os jogos dispon�veis:");
-					// listar catalogo
+					System.out.println(fachada.listarJogos());
 					System.out.println("Bem vindo a nossa loja. Escolha uma das op��es abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
@@ -93,12 +134,15 @@ public class Programa {
 						Tloja = false;
 						Tprincipal = true;
 					} else if (op == 1) {// selecionar jogo do catalogo
-						// imprimir catalogo
 						System.out.println("Digite o nome do jogo selecionado:");
-						// chama metodo de procurar dentro de try catch
-
-						Tloja1 = true;// caso procurar funcione
-						Tloja = false;// caso procurar funcione
+						String nomeJogo = in.nextLine();
+						try {
+							jogoSelecionado = fachada.buscarJogo(nomeJogo);
+							Tloja1 = true;// caso procurar funcione
+							Tloja = false;// caso procurar funcione
+						} catch (JNCException e) {
+							System.out.println("Jogo não encontrado.");
+						}
 
 					} else if (op == 2) {// cadastrar jogo
 						System.out.println("Digite o nome do jogo a ser cadastrado:");
@@ -109,9 +153,13 @@ public class Programa {
 						System.out.println("Insira uma breve descri��o do jogo cadastrado:");
 						String descricao = in.nextLine();
 						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de jogo ja cadastrado
-
-						// se nao capturar excecao
-						System.out.println("Jogo cadastrado com sucesso!");
+						Jogo novoJogo = new Jogo();
+						try {
+							fachada.cadastrarJogo(novoJogo);
+							System.out.println("Cadastro efetuado com sucesso!");
+						} catch (UJCException e) {
+							System.out.println("Este jogo já foi cadastrado. Tente novamente com um novo nome.");
+						}
 					}
 				}
 				while (Tloja1) {// encontrou o jogo procurado
@@ -172,11 +220,25 @@ public class Programa {
 					} else if (op2 == 1) {// abrir grupo selecionado
 						System.out.println("Digite o nome do grupo selecionado:");
 						String nomeGrupo = in.nextLine();
+						try {
+							grupoSelecionado = fachada.buscarGrupo(nomeGrupo);
+							Tgrupo1 = true;// caso procurar funcione
+							Tgrupo = false;// caso procurar funcione
+						} catch (GrupoNaoEncontradoException e) {
+							System.out.println("Grupo não encontrado.");
+						}
 					} else if (op2 == 2) {
 						System.out.println("Digite o nome do grupo a ser cadastrado:");
 						String nomeGrupo = in.nextLine();
 						System.out.println("Digite a categoria do grupo a ser cadastrado:");
 						String categoriaGrupo = in.nextLine();
+						Grupo novoGrupo = new Grupo();
+						try {
+							fachada.cadastrarGrupo(novoGrupo);
+							System.out.println("Cadastro efetuado com sucesso!");
+						} catch (GrupoJaCadastradoException e) {
+							System.out.println("Este grupo já foi cadastrado. Tente novamente com um novo nome.");
+						}
 
 					} else {
 						System.out.println("Entrada invalida, tente novamente");
@@ -189,20 +251,31 @@ public class Programa {
 					System.out.println("2 - Sair do grupo");
 					System.out.println("3 - Atualizar informacoes");
 					System.out.println("4 - Apagar grupo");
-					System.out.println(") - Sair");
+					System.out.println("0 - Sair");
 					op = in.nextInt();
 					in.nextLine();
 					if (op == 0) {
 						Tgrupo1 = false;
 						Tgrupo = true;
 					} else if (op == 1) {// entrar em grupo
-						// adicionar grupo na lista de grupos do usuario
-						// adicionar usuario na lista de usuarios do grupo
+						if (fachada.entrarGrupo(usuarioLogado, grupoSelecionado)) {
+
+						}
 					} else if (op == 2) {
-						// remover usuario da lista de usuarios do grupo
-						// remover grupo da lista de grupos do usuario
+						if (fachada.sairGrupo(usuarioLogado, grupoSelecionado)) {
+
+						}
 					} else if (op == 3) {
-						// criar nova referencia para o grupo, perguntar altera�oec e substituir a referencia atual
+						System.out.println("Digite a categoria do grupo a ser atualizado:");
+						String categoriaGrupo = in.nextLine();
+						Grupo novoGrupo = new Grupo();
+						try {
+							fachada.atualizarGrupo(novoGrupo);
+							System.out.println("Cadastro efetuado com sucesso!");
+						} catch (GrupoJaCadastradoException e) {
+							System.out.println("Este grupo já foi cadastrado. Tente novamente com um novo nome.");
+						}
+
 					} else if (op == 4) {
 						// remover referencia da lista de grupos
 						// isso ja remover� o grupo da lista de grupos do usuario??
@@ -256,7 +329,6 @@ public class Programa {
 
 		}
 		System.out.println("Programa Encerrado! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
-
 	}
 
 }
