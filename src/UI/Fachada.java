@@ -29,6 +29,7 @@ public class Fachada {
 		this.comunidade = new NegocioGrupo(repositorio);
 		this.usuario = new NegocioUsuario(repositorio);
 	}
+//---------------------------------------------------------------------------------------
 //metodos usuario abaixo
 	public void cadastrarUsuario(Usuario novoUsuario) throws UJCException {
 		// TODO Auto-generated method stub
@@ -45,8 +46,7 @@ public class Fachada {
 		return null;
 	}
 //metodos usuario acima
-	
-	
+//---------------------------------------------------------------------------
 //metodos produto abaixo
 	public String listarProdutos() {
 		String lista ="";
@@ -98,8 +98,7 @@ public class Fachada {
 		
 	}
 //metodos produto acima
-	
-	
+//-------------------------------------------------------------------------------------------------------
 //metodos grupo abaixo
 	public Grupo buscarGrupo(String nomeGrupo)throws GrupoNaoEncontradoException {
 		// TODO Auto-generated method stub
