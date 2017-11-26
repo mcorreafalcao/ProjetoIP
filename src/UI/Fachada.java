@@ -45,6 +45,10 @@ public class Fachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
+		// TODO Auto-generated method stub
+		
+	}
 //metodos usuario acima
 //---------------------------------------------------------------------------
 //metodos produto abaixo
@@ -134,10 +138,6 @@ public class Fachada {
 
 	}
 
-	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
-		// TODO Auto-generated method stub
-
-	}
-//metodos crupo acima
+//metodos grupo acima
 
 }
