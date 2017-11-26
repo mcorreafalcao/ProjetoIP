@@ -122,4 +122,27 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 		return this.produto;
 	}
 
+	@Override
+	public String listarProdutos() {
+		String lista ="\n";
+		RepositorioProdutosLista aux = this;
+		while(aux!=null){
+			if(aux.produto instanceof Jogo)
+				lista+="(Jogo) "+aux.produto.getNome()+"\n";
+			else if(aux.produto instanceof Jogo)
+				lista+="(Demo) "+aux.produto.getNome()+"\n";
+			
+			
+			aux=aux.proximo;
+		}
+	
+		return lista;
+		/**
+		 * será algo como:
+		 * (jogo) zezin
+		 * (jogo) falcaodemel
+		 * (Demo) kimpissoble
+		 */
+	}
+
 }

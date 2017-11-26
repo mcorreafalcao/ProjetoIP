@@ -109,4 +109,22 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 		return this.produtos[indice];
 	}
 
+	@Override
+	public String listarProdutos() {
+		String lista = "\n";
+		for(int i = 0; i<=this.indice-1;i++){
+			if(this.produtos[i] instanceof Jogo)
+				lista+="(Jogo) "+this.produtos[i].getNome()+"\n";
+			else if(this.produtos[i] instanceof Jogo)
+				lista+="(Demo) "+this.produtos[i].getNome()+"\n";
+		}
+		return lista;
+		/**
+		 * será algo como:
+		 * (jogo) zezin
+		 * (jogo) falcaodemel
+		 * (Demo) kimpissoble
+		 */
+	}
+
 }

@@ -6,9 +6,12 @@ import pacoteClassesGrupo.GrupoJaCadastradoException;
 import pacoteClassesGrupo.GrupoNaoEncontradoException;
 import pacoteClassesGrupo.NegocioGrupo;
 import pacoteClassesProduto.EIException;
+import pacoteClassesProduto.Jogo;
 import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.SMPCException;
 import pacoteClassesProduto.NegocioProduto;
+import pacoteClassesProduto.PJCException;
 import pacoteClassesUsuario.NegocioUsuario;
 import pacoteClassesUsuario.UJCException;
 import pacoteClassesUsuario.UNCException;
@@ -26,7 +29,7 @@ public class Fachada {
 		this.comunidade = new NegocioGrupo(repositorio);
 		this.usuario = new NegocioUsuario(repositorio);
 	}
-
+//metodos usuario abaixo
 	public void cadastrarUsuario(Usuario novoUsuario) throws UJCException {
 		// TODO Auto-generated method stub
 
@@ -41,20 +44,64 @@ public class Fachada {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+//metodos usuario acima
+	
+	
+//metodos produto abaixo
 	public String listarProdutos() {
-		// TODO Auto-generated method stub
-		// Retornar uma String com o nome dos produtos separado por \n, lista os produtos assim que acessamos a loja.
-		return null;
+		String lista ="";
+		lista = this.loja.listarProdutos();
+		return lista;
+		// Retorna uma String com o nome dos produtos separado por \n, lista os produtos assim que acessamos a loja.
+		/**
+		 * será algo como:
+		 * (jogo) zezin
+		 * (jogo) falcaodemel
+		 * (Demo) kimpissoble
+		 */
 	}
 
 	public Produto buscarProduto(String nomeProduto) throws PNCException {
-		// TODO Auto-generated method stub
-		// parei com os metodos do produto pq tu tem q ajeitar a parte de heranca
-		return null;
+		return this.loja.procurar(nomeProduto);
+		
 	}
-
-	public Grupo buscarGrupo(String nomeGrupo) {
+	public void cadastrarProduto(Produto novoProduto) throws PJCException, SMPCException {
+		this.loja.inserir(novoProduto);
+		
+	}
+	public void comprarProduto(Produto produtoSelecionado, Usuario usuarioLogado) throws CIException {
+		if(produtoSelecionado instanceof Jogo){
+			if(usuarioLogado.getCarteira()>=((Jogo) produtoSelecionado).getPreco()){
+				double carteira = usuarioLogado.getCarteira();
+				double preco = ((Jogo) produtoSelecionado).getPreco();
+				carteira-=preco;
+				usuarioLogado.setCarteira(carteira);
+			}else
+				throw new CIException();
+		}
+		
+	}
+	public void removerProduto(Produto produtoSelecionado, Usuario usuarioSelecionado) throws PNCException, VNEDException {
+		if(produtoSelecionado.getDev()==usuarioSelecionado){
+			this.loja.remover(produtoSelecionado);
+		}else
+			throw new VNEDException();
+		/**
+		 * remove da loja o produto caso o user logado seja dev do produto, levanta excecao caso coantrario
+		 */
+		
+	}
+	public void atualizarProduto(Produto produtoSelecionado, Produto produtoAlterado) throws PNCException {
+		if(produtoSelecionado.getDev()==produtoAlterado.getDev()){//implica que o user atual é o dono do jogo selecionado, pois o user atual é o dev do alterado
+			this.loja.atualizarProduto(produtoAlterado);//procura e troca a referencia encontraada pela nova
+		}
+		
+	}
+//metodos produto acima
+	
+	
+//metodos grupo abaixo
+	public Grupo buscarGrupo(String nomeGrupo)throws GrupoNaoEncontradoException {
 		// TODO Auto-generated method stub
 		// procura o nome do grupo na parte de selecionar
 
@@ -92,5 +139,6 @@ public class Fachada {
 		// TODO Auto-generated method stub
 
 	}
+//metodos crupo acima
 
 }

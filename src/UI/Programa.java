@@ -1,22 +1,27 @@
 package UI;
 
+
 /**
  *	VER COMENTARIO ABAIXO
  * 
  * Lembrar de colocar todas as atribuicoes de op em um try catch, pois pode gerar InputMismatchEsception.
  * Ou isso é desnecessário??
  */
-import java.util.Scanner;
 
+
+import java.util.Scanner;
 import pacoteClassesGrupo.EntradaInvalidaException;
 import pacoteClassesGrupo.Grupo;
 import pacoteClassesGrupo.GrupoJaCadastradoException;
 import pacoteClassesGrupo.GrupoNaoEncontradoException;
+import pacoteClassesProduto.Demo;
 import pacoteClassesProduto.EIException;
-import pacoteClassesProduto.JNCException;
+import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Jogo;
+import pacoteClassesProduto.PJCException;
 import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.SMPCException;
 import pacoteClassesUsuario.UJCException;
 import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
@@ -28,9 +33,9 @@ public class Programa {
 	public static void main(String[] args) {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false, Tperfil = false, Tperfil1 = false, sair = false;// telas
 		int op;
-		Usuario usuarioLogado;
-		Produto produtoSelecionado;
-		Grupo grupoSelecionado;
+		Usuario usuarioLogado=null;
+		Produto produtoSelecionado=null;
+		Grupo grupoSelecionado=null;
 
 		System.out.println("Escolha em que tipo de repositÃ³rio o programa irÃ¡ rodar!");
 		System.out.println("Digite 1 array");
@@ -128,8 +133,8 @@ public class Programa {
 				}
 
 				while (Tloja) {// menu da loja
-					System.out.println("Estes sao os jogos disponï¿½veis:");
-					System.out.println(fachada.listarProdutos());
+					System.out.println("Estes sao os produtos disponï¿½veis:");
+					System.out.println(fachada.listarProdutos());//implementado
 					System.out.println("Bem vindo a nossa loja. Escolha uma das opï¿½ï¿½es abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
@@ -143,7 +148,7 @@ public class Programa {
 						System.out.println("Digite o nome do jogo selecionado:");
 						String nomeProduto = in.nextLine();
 						try {
-							produtoSelecionado = fachada.buscarProduto(nomeProduto);
+							produtoSelecionado = fachada.buscarProduto(nomeProduto);//implementado
 							Tloja1 = true;// caso procurar funcione
 							Tloja = false;// caso procurar funcione
 						} catch (PNCException e) {
@@ -152,24 +157,32 @@ public class Programa {
 
 					} else if (op == 2) {// cadastrar jogo
 						System.out.println("Digite o nome do jogo a ser cadastrado:");
-						String nomeJogo = in.nextLine();
-						System.out.println("Digite o valor do jogo a ser cadastrado:");
-						double precoJogo = in.nextDouble();
+						String nomeProduto = in.nextLine();
+						System.out.println("Digite o valor do jogo a ser cadastrado (insira 0 caso seja uma demo):");
+						double precoProduto = in.nextDouble();
 						in.nextLine();
 						System.out.println("Insira uma breve descriï¿½ï¿½o do jogo cadastrado:");
 						String descricao = in.nextLine();
 						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de jogo ja cadastrado
-						Produto novoJogo = new Produto();
+						Produto novoProduto;
+						if(precoProduto==0.0){//será demo
+							novoProduto = new Demo(nomeProduto, descricao, usuarioLogado);
+						}else{//será jogo
+							novoProduto = new Jogo(nomeProduto,descricao,usuarioLogado,precoProduto);
+						}
 						try {
-							fachada.cadastrarProduto(novoJogo);
+							fachada.cadastrarProduto(novoProduto);//implementado
 							System.out.println("Cadastro efetuado com sucesso!");
-						} catch (UJCException e) {
+						} catch (PJCException e) {
 							System.out.println("Este jogo jÃ¡ foi cadastrado. Tente novamente com um novo nome.");
+						} catch (SMPCException e) {
+							System.out.println("Não há mais espaco para cadastro nos nossos servidores, desculpe");
+							e.printStackTrace();
 						}
 					}
 				}
 				while (Tloja1) {// encontrou o jogo procurado
-					// informacoes do jogo
+					System.out.println(produtoSelecionado.getInfo());//informacoes do produto
 					System.out.println("1 - Comprar");
 					System.out.println("2 - Remover");
 					System.out.println("3 - Atualizar");
@@ -186,11 +199,25 @@ public class Programa {
 						if (op == 1) {
 							// ver se ele ja possui o jogo na lista de jogos dele
 							// adicionar na lista de jogo do usuario e debitar da carteira capturando excecoes
+							try {
+								fachada.comprarProduto(produtoSelecionado,usuarioLogado);//implementado
+							} catch (CIException e) {
+								e.printStackTrace();
+							}
 							System.out.println("Jogo comprado!");
 						}
 					} else if (op == 2) {
 						// metodo que confere se o usuario ï¿½ o dev do jogo. Se for, remove do catalogo, se nao, captura excecao (voce nao ï¿½ o criador)
 						// se remover, voltar para a Tloja, pois em Tloja1 a referencia do jogo nao existirï¿½ mais
+						try {
+							fachada.removerProduto(produtoSelecionado,usuarioLogado);
+						} catch (PNCException e) {
+							
+							e.printStackTrace();
+						} catch (VNEDException e) {
+		
+							e.printStackTrace();
+						}
 						Tloja1 = false;
 						Tloja = true;
 					} else if (op == 3) {
@@ -201,8 +228,20 @@ public class Programa {
 						String descricao = in.nextLine();
 						System.out.println("digite o novo preco: ");
 						double preco = in.nextDouble();
-						// cria nova referencia para jogo que substituirï¿½ a referencia atual
-						// metodo que confere se o usuario ï¿½ o dev do jogo. Se for, troca a referencia pela nova criada neste if
+						Produto produtoAlterado=null;
+						// cria nova referencia para produto que substituirï¿½ a referencia atual
+						if(preco==0.0){//nova demo
+							produtoAlterado = new Demo(nome,descricao,usuarioLogado);
+						}else{//novo jogo
+							produtoAlterado = new Jogo(nome,descricao,usuarioLogado,preco);
+						}
+						try {
+							produtoSelecionado=fachada.buscarProduto(nome);
+							//abaixo metodo que confere se o usuario ï¿½ o dev do jogo. Se for, troca a referencia pela nova criada neste if
+							fachada.atualizarProduto(produtoSelecionado,produtoAlterado);//implementado
+						} catch (PNCException e) {
+							e.printStackTrace();
+						}
 
 					} else {
 						System.out.println("Entrada invalida, tente novamente");

@@ -15,4 +15,6 @@ public interface RepositorioProdutos {// interface negocio_dados
 	public void atualizar(Produto produto) throws PNCException;
 
 	public boolean existe(String nomeProduto);
+	
+	public String listarProdutos();
 }
