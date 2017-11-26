@@ -13,6 +13,7 @@ import pacoteClassesJogo.EIException;
 import pacoteClassesJogo.JNCException;
 import pacoteClassesJogo.Jogo;
 import pacoteClassesUsuario.UJCException;
+import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
 
 public class Programa {
@@ -232,7 +233,7 @@ public class Programa {
 						String nomeGrupo = in.nextLine();
 						System.out.println("Digite a categoria do grupo a ser cadastrado:");
 						String categoriaGrupo = in.nextLine();
-						Grupo novoGrupo = new Grupo();
+						Grupo novoGrupo = new Grupo(nomeGrupo, categoriaGrupo);
 						try {
 							fachada.cadastrarGrupo(novoGrupo);
 							System.out.println("Cadastro efetuado com sucesso!");
@@ -268,29 +269,28 @@ public class Programa {
 					} else if (op == 3) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
-						Grupo novoGrupo = new Grupo();
+						Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
 						try {
 							fachada.atualizarGrupo(novoGrupo);
-							System.out.println("Cadastro efetuado com sucesso!");
-						} catch (GrupoJaCadastradoException e) {
-							System.out.println("Este grupo já foi cadastrado. Tente novamente com um novo nome.");
+							System.out.println("Grupo atualizado com sucesso!");
+						} catch (GrupoNaoEncontradoException e) {
+							System.out.println("Este grupo já foi atualizado. Tente novamente com um novo grupo.");
 						}
 
 					} else if (op == 4) {
-						// remover referencia da lista de grupos
-						// isso ja remover� o grupo da lista de grupos do usuario??
+						try {
+							fachada.removerGrupo(grupoSelecionado);
+						} catch (GrupoNaoEncontradoException e) {
+							System.out.println("O grupo a ser removido nao existe.");
+						}
 					} else {
 						System.out.println("Entrada invalida, tente novamente");
 					}
 				}
 
 				while (Tperfil) {// tela do usuario atual
-					// NOME DA PESSOA//
-					// Status//
 					System.out.println("Escolha uma das op��es abaixo:");
-					System.out.println("1 - Ver lista de amigos");
-					System.out.println("2 - Adicionar amigo");
-					System.out.println("3 - Atualizar status");
+					System.out.println("1 - Atualizar informacoes");
 					System.out.println("0 - Voltar");
 
 					op = in.nextInt();
@@ -300,35 +300,26 @@ public class Programa {
 						Tperfil = false;
 						Tprincipal = true;
 					} else if (op == 1) {
-						// listar amigos
-						System.out.println("Digite o nome do amigo que deseja visitar o perfil");
-						String nickAmigo = in.nextLine();
-						// procurar
-						// se encontrar
+						System.out.println("Digite as novas informacoes a serem atualizadas");
+						System.out.println("Senha: ");
+						String senha = in.nextLine();
+						System.out.println("Digite o seu email:");
+						String email = in.nextLine();
+
+						Usuario novoUsuario = new Usuario(usuarioLogado.getNick(), senha, email);
+						try {
+							fachada.atualizarUsuario(novoUsuario);
+							System.out.println("Informacoes atualizadas com sucesso!");
+						} catch (UNCException e) {
+							System.out.println("Nao foi encontrado usuario com este nome.");
+						}
 						Tperfil = false;
-						Tperfil1 = true;
-					} else if (op == 2) {
-						System.out.println("Digite o nome do usu�rio que gostaria de adicionar a sua lista de amigos.");
-						String nickAmigo = in.nextLine();
-						// metodo de procurar
-						// confere se ja nao � amigo, depois confere se usuario existe mesmo, entao adiciona caso nao capture exce��o
-					} else if (op == 3) {
-						System.out.println("Digite o novo status a ser exibido:");
-						String novoStatus = in.nextLine();
-						// setter aqui
 					}
 				}
-				while (Tperfil1) {// perfil do amigo
-					// info
-					System.out.println("Escolha uma das op��es abaixo:");
-					System.out.println("1 - Remover amigo");
-					System.out.println("0 - Voltar");
 
-				}
 			}
-
+			System.out.println("Programa Encerrado! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
 		}
-		System.out.println("Programa Encerrado! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
-	}
 
+	}
 }

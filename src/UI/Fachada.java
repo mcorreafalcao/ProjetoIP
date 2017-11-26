@@ -3,6 +3,7 @@ package UI;
 import pacoteClassesGrupo.EntradaInvalidaException;
 import pacoteClassesGrupo.Grupo;
 import pacoteClassesGrupo.GrupoJaCadastradoException;
+import pacoteClassesGrupo.GrupoNaoEncontradoException;
 import pacoteClassesGrupo.NegocioGrupo;
 import pacoteClassesJogo.EIException;
 import pacoteClassesJogo.JNCException;
@@ -10,6 +11,7 @@ import pacoteClassesJogo.Jogo;
 import pacoteClassesJogo.NegocioJogo;
 import pacoteClassesUsuario.NegocioUsuario;
 import pacoteClassesUsuario.UJCException;
+import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
 
 public class Fachada {
@@ -74,6 +76,21 @@ public class Fachada {
 		// TODO Auto-generated method stub
 		// retorna true se o usuario estava no grupo e pode sair
 		return false;
+	}
+
+	public void atualizarGrupo(Grupo novoGrupo) throws GrupoNaoEncontradoException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void removerGrupo(Grupo grupoSelecionado) throws GrupoNaoEncontradoException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
+		// TODO Auto-generated method stub
+
 	}
 
 }
