@@ -1,6 +1,7 @@
 package pacoteClassesUsuario;
 
 public class NegocioUsuario {
+	//negocio
 
 	RepositorioUsuarios usuarios;
 
