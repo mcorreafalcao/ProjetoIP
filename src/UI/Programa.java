@@ -1,7 +1,10 @@
 package UI;
 
 /**
- * lembrar de colocar todas as atribuicoes de op em um try catch, pois pode gerar InputMismatchEsception
+ *	VER COMENTARIO ABAIXO
+ * 
+ * Lembrar de colocar todas as atribuicoes de op em um try catch, pois pode gerar InputMismatchEsception.
+ * Ou isso é desnecessário??
  */
 import java.util.Scanner;
 
