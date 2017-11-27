@@ -49,7 +49,7 @@ public class Fachada {
 	}
 
 	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
-		// TODO Auto-generated method stub
+		this.usuario.atualizar(novoUsuario);
 
 	}
 
