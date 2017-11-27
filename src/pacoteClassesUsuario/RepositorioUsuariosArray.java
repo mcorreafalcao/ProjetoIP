@@ -80,5 +80,19 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 		}
 		return indicee;
 	}
+	public 	Usuario procurarUsuario(String nomeUsuario) throws UNCException {
+		int indicee = 0;
+		boolean encontrou = false;
+		for (int i = 0; i <= indice && !encontrou; i++) {
+			if (this.usuarios[i].getNick().equals(nomeUsuario)) {
+				encontrou = true;
+				indicee = i;
+			}
+		}
+		if (!encontrou) {
+			throw new UNCException();
+		}
+		return this.usuarios[indicee];
+	}
 
 }

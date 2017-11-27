@@ -31,8 +31,8 @@ public class Programa {
 
 	public static void main(String[] args) {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false,
-				Tperfil = false, Tperfil1 = false, sair = false;// telas
-		int op;
+				Tperfil = false, sair = false;// telas
+		String op;
 		Usuario usuarioLogado = null;
 		Produto produtoSelecionado = null;
 		Grupo grupoSelecionado = null;
@@ -57,13 +57,12 @@ public class Programa {
 				System.out.println("2 - Crie sua conta");
 				System.out.println("0 - Sair");
 
-				op = in.nextInt();
-				in.nextLine();
+				op = in.nextLine();
 
-				if (op == 0) {
+				if (op.equals("0")) {
 					logado = true;
 					sair = true;
-				} else if (op == 2) {
+				} else if (op.equals("2")) {
 					System.out.println("CADASTRO \n");
 					System.out.println("Digite um novo usuario e senha");
 					System.out.println("Usuario: ");
@@ -79,8 +78,10 @@ public class Programa {
 						System.out.println("Cadastro efetuado com sucesso!");
 					} catch (UJCException e) {
 						System.out.println("Este usuario ja foi cadastrado. Tente novamente com um novo nick.");
+					} catch (SMPCException e) {
+						System.out.println("Não há memória para cadastro.");
 					}
-				} else if (op == 1) {
+				} else if (op.equals("1")) {
 					System.out.println("LOGIN \n");
 					System.out.println("Digite seu usuario:");
 					String usuario = in.nextLine();
@@ -111,18 +112,18 @@ public class Programa {
 					System.out.println("2 - Acessar a comunidade");
 					System.out.println("3 - Acessar seu perfil");
 					System.out.println("0 - Deslogar");
-					op = in.nextInt();
+					op = in.nextLine();
 					in.nextLine();
-					if (op == 0) {// volta pra tela de login
+					if (op.equals("0")) {// volta pra tela de login
 						logado = false;// isso faz ele voltar pra tela de login
 						Tprincipal = false;// sai da tela principal
-					} else if (op == 1) {
+					} else if (op.equals("1")) {
 						Tprincipal = false;
 						Tloja = true;
-					} else if (op == 2) {
+					} else if (op.equals("2")) {
 						Tprincipal = false;
 						Tgrupo = true;
-					} else if (op == 3) {
+					} else if (op.equals("3")) {
 						Tprincipal = false;
 						Tperfil = true;
 					} else {
@@ -137,12 +138,12 @@ public class Programa {
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
-					op = in.nextInt();
+					op = in.nextLine();
 					in.nextLine();
-					if (op == 0) {// sair do menu de loja
+					if (op.equals("0")) {// sair do menu de loja
 						Tloja = false;
 						Tprincipal = true;
-					} else if (op == 1) {// selecionar jogo do catalogo
+					} else if (op.equals("1")) {// selecionar jogo do catalogo
 						System.out.println("Digite o nome do jogo selecionado:");
 						String nomeProduto = in.nextLine();
 						try {
@@ -153,7 +154,7 @@ public class Programa {
 							System.out.println("Produto nao encontrado.");
 						}
 
-					} else if (op == 2) {// cadastrar jogo
+					} else if (op.equals("2")) {// cadastrar jogo
 						System.out.println("Digite o nome do jogo a ser cadastrado:");
 						String nomeProduto = in.nextLine();
 						System.out.println("Digite o valor do jogo a ser cadastrado (insira 0 caso seja uma demo):");
@@ -186,16 +187,15 @@ public class Programa {
 					System.out.println("2 - Remover");
 					System.out.println("3 - Atualizar");
 					System.out.println("0 - Voltar");
-					op = in.nextInt();
+					op = in.nextLine();
 					in.nextLine();
-					if (op == 0) {
+					if (op.equals("0")) {
 						Tloja1 = false;
 						Tloja = true;
-					} else if (op == 1) {
+					} else if (op.equals("1")) {
 						System.out.println("Tem certeza?\n1 - Sim\n2 - Nao");
-						op = in.nextInt();
-						in.nextLine();
-						if (op == 1) {
+						op = in.nextLine();
+						if (op.equals("1")) {
 							// ver se ele ja possui o jogo na lista de jogos dele
 							// adicionar na lista de jogo do usuario e debitar da carteira capturando
 							// excecoes
@@ -206,7 +206,7 @@ public class Programa {
 							}
 							System.out.println("Jogo comprado!");
 						}
-					} else if (op == 2) {
+					} else if (op.equals("2")) {
 						// metodo que confere se o usuario ï¿½ o dev do jogo. Se for, remove do
 						// catalogo, se nao, captura excecao (voce nao ï¿½ o criador)
 						// se remover, voltar para a Tloja, pois em Tloja1 a referencia do jogo nao
@@ -222,7 +222,7 @@ public class Programa {
 						}
 						Tloja1 = false;
 						Tloja = true;
-					} else if (op == 3) {
+					} else if (op.equals("3")) {
 						// try catch inputmismatchexception aqui
 						System.out.println("Digite o nome do jogo a ser alterado: ");
 						String nome = in.nextLine();
@@ -259,13 +259,12 @@ public class Programa {
 					System.out.println("1 - Selecionar Grupo");
 					System.out.println("2 - Cadastrar Grupo");
 					System.out.println("0 - Voltar");
-					int op2 = in.nextInt();
-					in.nextLine();
+				    op = in.nextLine();
 
-					if (op2 == 0) {
+					if (op.equals("0")) {
 						Tgrupo = false;
 						Tprincipal = true;
-					} else if (op2 == 1) {// abrir grupo selecionado
+					} else if (op.equals("1")) {// abrir grupo selecionado
 						System.out.println("Digite o nome do grupo selecionado:");
 						String nomeGrupo = in.nextLine();
 						try {
@@ -275,7 +274,7 @@ public class Programa {
 						} catch (GNEException e) {
 							System.out.println("Grupo nÃ£o encontrado.");
 						}
-					} else if (op2 == 2) {
+					} else if (op.equals("2")) {
 						System.out.println("Digite o nome do grupo a ser cadastrado:");
 						String nomeGrupo = in.nextLine();
 						System.out.println("Digite a categoria do grupo a ser cadastrado:");
@@ -302,12 +301,11 @@ public class Programa {
 					System.out.println("3 - Atualizar informacoes");
 					System.out.println("4 - Apagar grupo");
 					System.out.println("0 - Sair");
-					op = in.nextInt();
-					in.nextLine();
-					if (op == 0) {
+					op = in.nextLine();
+					if (op.equals("0")) {
 						Tgrupo1 = false;
 						Tgrupo = true;
-					} else if (op == 1) {// entrar em grupo
+					} else if (op.equals("1")) {// entrar em grupo
 						try {
 							fachada.entrarGrupo(usuarioLogado, grupoSelecionado);
 						} catch (UJCException e) {
@@ -315,13 +313,13 @@ public class Programa {
 						}catch (SMPCException e) {
 							e.printStackTrace();
 						}
-					} else if (op == 2) {// sair do grupo
+					} else if (op.equals("2")) {// sair do grupo
 						try {
 							fachada.sairGrupo(usuarioLogado, grupoSelecionado);
 						} catch (UNCException e) {
 							e.printStackTrace();
 						}
-					} else if (op == 3) {
+					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
 						Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
@@ -332,7 +330,7 @@ public class Programa {
 							System.out.println("Este grupo ja foi atualizado. Tente novamente com um novo grupo.");
 						}
 
-					} else if (op == 4) {
+					} else if (op.equals("4")) {
 						try {
 							fachada.removerGrupo(grupoSelecionado);
 						} catch (GNEException e) {
@@ -348,13 +346,13 @@ public class Programa {
 					System.out.println("1 - Atualizar informacoes");
 					System.out.println("0 - Voltar");
 
-					op = in.nextInt();
+					op = in.nextLine();
 					in.nextLine();
 
-					if (op == 0) {
+					if (op.equals("0")) {
 						Tperfil = false;
 						Tprincipal = true;
-					} else if (op == 1) {
+					} else if (op.equals("1")) {
 						System.out.println("Digite as novas informacoes a serem atualizadas");
 						System.out.println("Senha: ");
 						String senha = in.nextLine();

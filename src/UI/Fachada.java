@@ -44,8 +44,8 @@ public class Fachada {
 		return this.usuario.existe(usuario2);
 	}
 
-	public Usuario buscarUsuario(String usuario2) {
-		return this.buscarUsuario(usuario2);
+	public Usuario buscarUsuario(String usuario) {
+		return this.usuario.procurarUsuario(usuario);
 	}
 
 	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {

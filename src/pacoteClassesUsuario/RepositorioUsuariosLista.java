@@ -33,14 +33,14 @@ public class RepositorioUsuariosLista implements RepositorioUsuarios {
 		}
 	}
 
-	public boolean existe(String elemento) {
+	public boolean existe(String usuario2) {
 		boolean existe = false;
 
 		if (this.atual != null) {
-			if (this.atual.getNick().equals(elemento)) {
+			if (this.atual.getNick().equals(usuario2)) {
 				existe = true;
 			} else {
-				existe = this.proximo.existe(elemento);
+				existe = this.proximo.existe(usuario2);
 			}
 		}
 
@@ -70,4 +70,18 @@ public class RepositorioUsuariosLista implements RepositorioUsuarios {
 			throw new UNCException();
 		}
 	}
+	public Usuario procurarUsuario(String nomeUsuario) throws UNCException {
+		Usuario aux = null;
+		if (this.atual != null) {
+			if (this.atual.getNick().equals(nomeUsuario)) {
+			 aux = this.atual;
+			} else {
+				this.proximo.procurarUsuario(nomeUsuario);
+			}
+		} else {
+			throw new UNCException();
+		}
+		return aux;
+	}
+	
 }

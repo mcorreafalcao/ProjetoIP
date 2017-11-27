@@ -30,4 +30,10 @@ public class NegocioUsuario {
 	public void atualizar(Usuario usuario) throws UNCException {
 		this.usuarios.atualizar(usuario);
 	}
+	public boolean existe(String usuario2) {
+		return this.existe(usuario2);
+	}
+	public Usuario procurarUsuario(String nomeUsuario) {
+		return this.procurarUsuario(nomeUsuario);
+	}
 }
