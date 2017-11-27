@@ -17,7 +17,7 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 	private int indice;// será sempre o primeiro indice vazio
 
 	public RepositorioProdutosArray() {
-		produtos = new Produto[20];
+		produtos = new Produto[100];
 		indice = 0;//primeiro indice vazio
 		/**
 		 * construtor
