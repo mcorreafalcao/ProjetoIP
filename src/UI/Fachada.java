@@ -111,6 +111,9 @@ public class Fachada {
 		}
 
 	}
+	public String rodarProduto(Produto produtoSelecionado, Usuario usuarioLogado) {
+		return produtoSelecionado.rodar(usuarioLogado);
+	}
 
 	// metodos produto acima
 	// -------------------------------------------------------------------------------------------------------

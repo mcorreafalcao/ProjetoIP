@@ -50,6 +50,6 @@ public abstract class Produto {// jogo ou (outraclassebasica) vao herdar desta c
 	
 	public abstract String getInfo();//pegará as informacoes do produto (jogo ou demo) para mostrar após a tela de selecao da interface
 
-	
+	public abstract String rodar(Usuario usuarioLogado);
 
 }
