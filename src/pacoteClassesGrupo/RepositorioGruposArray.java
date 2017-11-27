@@ -1,24 +1,30 @@
 package pacoteClassesGrupo;
+
+import pacoteClassesProduto.PJCException;
+import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.SMPCException;
+
 /**
- * "classe colecao de dados array"
- * classe que contem um array de grupos e metodos da interface implementada
+ * "classe colecao de dados lista" classe que contem um lista de grupos e
+ * metodos da interface implementada
+ * 
  * @author Gabriel
  *
  */
 public class RepositorioGruposArray implements RepositorioGrupos {
 	private Grupo[] grupos;
 	private int indice = 0;
-	
+
 	public RepositorioGruposArray() {
 		grupos = new Grupo[5];
 	}
-	
+
 	@Override
 	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
 		if (!this.existe(grupo.nomeGrupo)) {
 			this.grupos[this.indice] = grupo;
 			this.indice++;
-		}else {
+		} else {
 			throw new GrupoJaCadastradoException();
 		}
 	}
@@ -28,7 +34,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		if (this.existe(grupo.nomeGrupo)) {
 			int proc = this.procurar(grupo.nomeGrupo);
 			this.grupos[proc] = grupo;
-		}else {
+		} else {
 			throw new GrupoJaCadastradoException();
 		}
 	}
@@ -41,10 +47,10 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 				this.grupos[i] = this.grupos[i + 1];
 			}
 			this.indice--;
-		}else {
+		} else {
 			throw new GrupoNaoEncontradoException();
 		}
-		
+
 	}
 
 	public int procurar(String nomeg) {
@@ -53,10 +59,14 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 				return i;
 			}
 		}
-		//Nunca vai chegar nesse return
+		// Nunca vai chegar nesse return
 		return 0;
 	}
 	
+	public Grupo procurarInt(int grupo) {
+		return this.grupos[grupo];
+	}
+
 	@Override
 	public boolean existe(String grupo) {
 		for (int i = 0; i < 100; i++) {
@@ -65,7 +75,5 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			}
 		}
 		return false;
-		
 	}
-
 }

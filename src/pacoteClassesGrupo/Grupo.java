@@ -10,8 +10,8 @@ import pacoteClassesUsuario.RepositorioUsuarios;
  */
 public class Grupo {
 
-	private String nomeGrupo;
-	private String categoria;
+	protected String nomeGrupo;
+	protected String categoria;
 	private RepositorioUsuarios membros;
 
 	public Grupo(String nomeGrupo, String categoria) {

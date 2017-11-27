@@ -59,6 +59,14 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			return this.prox.procurar(grupo);
 		return null;
 	}
+	
+	/**
+	 * adicionei esse detalhe abaixo (assim como em NegocioGrupo) apenas para ver se o programa correspondia
+	 * espero que não ocorra erros, rs rs
+	 */
+	public Grupo getNomeGrupo() {
+		return this.getNomeGrupo();
+	}
 
 	@Override
 	public boolean existe(String grupo) {
@@ -71,5 +79,6 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		// Supomos que ele não chegará aqui
 		return false;
 	}
+
 
 }
