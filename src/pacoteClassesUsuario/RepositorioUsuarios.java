@@ -13,5 +13,7 @@ public interface RepositorioUsuarios {
 	public void atualizar(Usuario usuario) throws UNCException;
 
 	public boolean existe(String nomeUsuario);
+	
+	public Usuario procurarUsuario(String nomeUsuario) throws UNCException; 
 
 }
