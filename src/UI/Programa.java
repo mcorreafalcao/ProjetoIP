@@ -13,6 +13,7 @@ import pacoteClassesGrupo.Grupo;
 import pacoteClassesProduto.Demo;
 import pacoteClassesProduto.Jogo;
 import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.RepositorioProdutos;
 import pacoteClassesUsuario.Usuario;
 import pacoteExcecoes.CIException;
 import pacoteExcecoes.EIException;
@@ -29,7 +30,7 @@ public class Programa {
 
 	public static Scanner in = new Scanner(System.in);
 
-	public static void main(String[] args) throws PJCException {
+	public static void main(String[] args) throws PJCException, UNCException {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false,
 				Tperfil = false, sair = false;// telas
 		String op;
@@ -113,7 +114,6 @@ public class Programa {
 					System.out.println("3 - Acessar seu perfil");
 					System.out.println("0 - Deslogar");
 					op = in.nextLine();
-					in.nextLine();
 					if (op.equals("0")) {// volta pra tela de login
 						logado = false;// isso faz ele voltar pra tela de login
 						Tprincipal = false;// sai da tela principal
@@ -347,10 +347,10 @@ public class Programa {
 				while (Tperfil) {// tela do usuario atual
 					System.out.println("Escolha uma das opcoes abaixo:");
 					System.out.println("1 - Atualizar informacoes");
+					System.out.println("2 - Listar jogos");
 					System.out.println("0 - Voltar");
 
 					op = in.nextLine();
-					in.nextLine();
 
 					if (op.equals("0")) {
 						Tperfil = false;
@@ -369,7 +369,9 @@ public class Programa {
 						} catch (UNCException e) {
 							System.out.println("Nao foi encontrado usuario com este nome.");
 						}
-						Tperfil = false;
+					} else if (op.equals("2")) {
+						RepositorioProdutos aux = usuarioLogado.getProdutos();
+						System.out.println("Produtos adquiridos: " + aux.listarProdutos());
 					}
 				}
 

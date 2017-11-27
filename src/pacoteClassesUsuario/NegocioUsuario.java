@@ -31,9 +31,9 @@ public class NegocioUsuario {
 		this.usuarios.atualizar(novoUsuario);
 	}
 	public boolean existe(String usuario2) {
-		return this.existe(usuario2);
+		return this.usuarios.existe(usuario2);
 	}
-	public Usuario procurarUsuario(String nomeUsuario) {
-		return this.procurarUsuario(nomeUsuario);
+	public Usuario procurarUsuario(String nomeUsuario) throws UNCException {
+		return this.usuarios.procurarUsuario(nomeUsuario);
 	}
 }
