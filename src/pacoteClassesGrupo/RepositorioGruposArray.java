@@ -18,7 +18,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	private int indice = 0;
 
 	public RepositorioGruposArray() {
-		grupos = new Grupo[20];
+		grupos = new Grupo[100];
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 
 	public int procurar(String nomeg) {
 		for (int i = 0; i < 100; i++) {
-			if (this.grupos[i].equals(nomeg)) {
+			if (this.grupos[i] != null && this.grupos[i].equals(nomeg)) {
 				return i;
 			}
 		}
@@ -73,7 +73,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	@Override
 	public boolean existe(String grupo) {
 		for (int i = 0; i < 100; i++) {
-			if (this.grupos[i].getNomeGrupo().equals(grupo)) {
+			if (this.grupos[i] != null && this.grupos[i].getNomeGrupo().equals(grupo)) {
 				return true;
 			}
 		}

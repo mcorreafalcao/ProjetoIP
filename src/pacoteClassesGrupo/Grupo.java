@@ -1,6 +1,7 @@
 package pacoteClassesGrupo;
 
 import pacoteClassesUsuario.RepositorioUsuarios;
+import pacoteClassesUsuario.RepositorioUsuariosLista;
 
 /**
  * "classe basica"
@@ -17,7 +18,7 @@ public class Grupo {
 	public Grupo(String nomeGrupo, String categoria) {
 		this.nomeGrupo = nomeGrupo;
 		this.categoria = categoria;
-		this.membros = null;
+		this.membros = new RepositorioUsuariosLista();
 	}
 
 	public String getNomeGrupo() {
