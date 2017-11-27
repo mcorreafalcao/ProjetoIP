@@ -29,7 +29,7 @@ public class Programa {
 
 	public static Scanner in = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PJCException {
 		boolean logado = false, Tprincipal = false, Tloja = false, Tloja1 = false, Tgrupo = false, Tgrupo1 = false,
 				Tperfil = false, sair = false;// telas
 		String op;
