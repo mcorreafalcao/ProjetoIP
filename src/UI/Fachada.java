@@ -35,19 +35,17 @@ public class Fachada {
 
 	// ---------------------------------------------------------------------------------------
 	// metodos usuario abaixo
-	public void cadastrarUsuario(Usuario novoUsuario) throws UJCException {
-		// TODO Auto-generated method stub
+	public void cadastrarUsuario(Usuario novoUsuario) throws UJCException, SMPCException {
+		this.usuario.inserir(novoUsuario);
 
 	}
 
 	public boolean nickExiste(String usuario2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.usuario.existe(usuario2);
 	}
 
 	public Usuario buscarUsuario(String usuario2) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.buscarUsuario(usuario2);
 	}
 
 	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
