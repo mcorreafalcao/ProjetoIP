@@ -9,9 +9,9 @@ import pacoteClassesUsuario.Usuario;
  *
  */
 public class Jogo extends Produto {// classe básica do projeto
-	
+	double tamanhoMB;
 	private double preco;
-	public Jogo(String nome, String descricao, Usuario dev,double preco) {
+	public Jogo(String nome, String descricao, Usuario dev,double preco,double tamanhoMB) {
 		super(nome, descricao, dev);
 		this.preco = preco;
 	}
@@ -31,5 +31,9 @@ public class Jogo extends Produto {// classe básica do projeto
 		
 		return info;
 	}
-	
+	@Override
+	public String rodar(Usuario usuarioLogado) {
+		usuarioLogado.setEspacoDisco(usuarioLogado.getEspacoDisco()-this.tamanhoMB);
+		return "Voce jogou o jogo: " + this.getNome();
+	}
 }

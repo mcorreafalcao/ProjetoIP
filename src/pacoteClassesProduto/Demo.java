@@ -19,6 +19,11 @@ public class Demo extends Produto {
 		return info;
 	}
 
+	@Override
+	public String rodar(Usuario usuarioLogado) {
+		return "Voce jogou a demo: " + this.getNome();
+	}
+
 	
 
 }

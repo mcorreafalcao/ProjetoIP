@@ -84,6 +84,7 @@ public class Fachada {
 				double preco = ((Jogo) produtoSelecionado).getPreco();
 				carteira -= preco;
 				usuarioLogado.setCarteira(carteira);
+				usuarioLogado.adicionarProduto(produtoSelecionado);//melissa ver isso aqui
 			} else
 				throw new CIException();
 		}
@@ -111,6 +112,9 @@ public class Fachada {
 		}
 
 	}
+	public String rodarProduto(Produto produtoSelecionado, Usuario usuarioLogado) {
+		return produtoSelecionado.rodar(usuarioLogado);
+	}
 
 	// metodos produto acima
 	// -------------------------------------------------------------------------------------------------------
@@ -123,7 +127,6 @@ public class Fachada {
 
 	public void cadastrarGrupo(Grupo novoGrupo) throws GJCException, SMPCException {
 		this.comunidade.cadastrarGrupo(novoGrupo);
-
 	}
 	
 	/**
