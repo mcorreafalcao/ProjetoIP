@@ -52,4 +52,6 @@ public abstract class Produto {// jogo ou (outraclassebasica) vao herdar desta c
 
 	public abstract String rodar(Usuario usuarioLogado);
 
+	
+
 }

@@ -77,14 +77,14 @@ public class Fachada {
 
 	}
 
-	public void comprarProduto(Produto produtoSelecionado, Usuario usuarioLogado) throws CIException {
+	public void comprarProduto(Produto produtoSelecionado, Usuario usuarioLogado) throws CIException, PJCException {
 		if (produtoSelecionado instanceof Jogo) {
 			if (usuarioLogado.getCarteira() >= ((Jogo) produtoSelecionado).getPreco()) {
 				double carteira = usuarioLogado.getCarteira();
 				double preco = ((Jogo) produtoSelecionado).getPreco();
 				carteira -= preco;
 				usuarioLogado.setCarteira(carteira);
-				usuarioLogado.adicionarProduto(produtoSelecionado);//melissa ver isso aqui
+				usuarioLogado.adicionarProduto(produtoSelecionado);//addiciona produto na lista de produtos
 			} else
 				throw new CIException();
 		}

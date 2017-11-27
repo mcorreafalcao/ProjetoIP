@@ -1,5 +1,9 @@
 package pacoteClassesUsuario;
 
+import pacoteClassesProduto.Produto;
+import pacoteClassesProduto.RepositorioProdutosLista;
+import pacoteExcecoes.PJCException;
+
 public class Usuario {
 
 	private String nick;
@@ -7,6 +11,7 @@ public class Usuario {
 	private String senha;
 	private double carteira;
 	private double espacoDisco;
+	private RepositorioProdutosLista listaProdutos;
 
 	public Usuario(String usuario, String senha, String email) {
 		this.nick = usuario;
@@ -14,6 +19,7 @@ public class Usuario {
 		this.senha = senha;
 		this.carteira = 50;
 		this.espacoDisco = 5000;
+		this.listaProdutos = new RepositorioProdutosLista();
 	}
 
 	public double getEspacoDisco() {
@@ -54,6 +60,13 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public void adicionarProduto(Produto produtoSelecionado) throws PJCException {
+		this.listaProdutos.inserir(produtoSelecionado);
+	}
+	public RepositorioProdutosLista getProdutos() {
+		return this.listaProdutos;
 	}
 
 }

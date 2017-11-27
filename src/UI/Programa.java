@@ -162,13 +162,16 @@ public class Programa {
 						in.nextLine();
 						System.out.println("Insira uma breve descricao do jogo cadastrado:");
 						String descricao = in.nextLine();
+						System.out.println("Qual o tamanho do jogo");
+						double tamanhoMB = in.nextDouble();
+						in.nextLine();
 						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de
 						// jogo ja cadastrado
 						Produto novoProduto;
 						if (precoProduto == 0.0) {// será demo
 							novoProduto = new Demo(nomeProduto, descricao, usuarioLogado);
 						} else {// será jogo
-							novoProduto = new Jogo(nomeProduto, descricao, usuarioLogado, precoProduto);
+							novoProduto = new Jogo(nomeProduto, descricao, usuarioLogado, precoProduto,tamanhoMB);
 						}
 						try {
 							fachada.cadastrarProduto(novoProduto);// implementado
@@ -235,7 +238,7 @@ public class Programa {
 						if (preco == 0.0) {// nova demo
 							produtoAlterado = new Demo(nome, descricao, usuarioLogado);
 						} else {// novo jogo
-							produtoAlterado = new Jogo(nome, descricao, usuarioLogado, preco);
+							produtoAlterado = new Jogo(nome, descricao, usuarioLogado, preco,((Jogo) produtoSelecionado).getTamanho());
 						}
 						try {
 							produtoSelecionado = fachada.buscarProduto(nome);

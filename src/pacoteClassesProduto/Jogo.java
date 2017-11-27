@@ -31,6 +31,10 @@ public class Jogo extends Produto {// classe básica do projeto
 		
 		return info;
 	}
+	public double getTamanho() {
+		// TODO Auto-generated method stub
+		return this.getTamanho();
+	}
 	@Override
 	public String rodar(Usuario usuarioLogado) {
 		usuarioLogado.setEspacoDisco(usuarioLogado.getEspacoDisco()-this.tamanhoMB);
