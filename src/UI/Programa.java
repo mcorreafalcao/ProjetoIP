@@ -142,7 +142,7 @@ public class Programa {
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
-					in.nextLine();
+			
 					if (op.equals("0")) {// sair do menu de loja
 						Tloja = false;
 						Tprincipal = true;
@@ -195,7 +195,7 @@ public class Programa {
 					System.out.println("4 - rodar");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
-					in.nextLine();
+				
 					if (op.equals("0")) {
 						Tloja1 = false;
 						Tloja = true;
