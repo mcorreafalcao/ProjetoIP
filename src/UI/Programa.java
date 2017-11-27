@@ -346,7 +346,7 @@ public class Programa {
 
 				while (Tperfil) {// tela do usuario atual
 					System.out.println("Escolha uma das opcoes abaixo:");
-					System.out.println("1 - Atualizar informacoes");
+					System.out.println("1 - Atualizar informacoes");//listar,selecionar
 					System.out.println("0 - Voltar");
 
 					op = in.nextLine();
