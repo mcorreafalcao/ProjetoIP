@@ -6,12 +6,22 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private double carteira;
+	private double espacoDisco;
 
 	public Usuario(String usuario, String senha, String email) {
 		this.nick = usuario;
 		this.email = email;
 		this.senha = senha;
 		this.carteira = 50;
+		this.espacoDisco = 5000;
+	}
+
+	public double getEspacoDisco() {
+		return espacoDisco;
+	}
+
+	public void setEspacoDisco(double espacoDisco) {
+		this.espacoDisco = espacoDisco;
 	}
 
 	public String getNick() {
