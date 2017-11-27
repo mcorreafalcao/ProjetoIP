@@ -18,7 +18,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 
 	@Override
 	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
-		if (!this.existe(grupo.nomeGrupo)) {
+		if (!this.existe(grupo.getNomeGrupo())) {
 			this.prim = grupo;
 			this.prox = new RepositorioGruposLista();
 		} else {
@@ -29,9 +29,9 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 
 	@Override
 	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException {
-		if (this.existe(grupo.nomeGrupo)) {
-			RepositorioGruposLista proc = this.procurar(grupo.nomeGrupo);
-			proc.prim.nomeGrupo = grupo.nomeGrupo;
+		if (this.existe(grupo.getNomeGrupo())) {
+			RepositorioGruposLista proc = this.procurar(grupo.getNomeGrupo());
+			proc.prim.setNomeGrupo(grupo.getNomeGrupo());
 		} else {
 			throw new GrupoJaCadastradoException();
 		}
@@ -39,8 +39,8 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 
 	@Override
 	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
-		if (this.existe(grupo.nomeGrupo)) {
-			RepositorioGruposLista proc = this.procurar(grupo.nomeGrupo);
+		if (this.existe(grupo.getNomeGrupo())) {
+			RepositorioGruposLista proc = this.procurar(grupo.getNomeGrupo());
 			if (proc.prox == null) {
 				proc.prim = null;
 			} else {
@@ -53,7 +53,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	}
 
 	public RepositorioGruposLista procurar(String grupo) {
-		if (this.prim.nomeGrupo.equals(grupo)) {
+		if (this.prim.getNomeGrupo().equals(grupo)) {
 			return this;
 		} else if (this.prox != null)
 			return this.prox.procurar(grupo);
@@ -64,8 +64,8 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	 * adicionei esse detalhe abaixo (assim como em NegocioGrupo) apenas para ver se o programa correspondia
 	 * espero que não ocorra erros, rs rs
 	 */
-	public Grupo getNomeGrupo() {
-		return this.getNomeGrupo();
+	public Grupo getGrupo() {
+		return this.prim;
 	}
 
 	@Override

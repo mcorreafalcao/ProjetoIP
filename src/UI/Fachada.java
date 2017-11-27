@@ -13,6 +13,7 @@ import pacoteClassesProduto.SMPCException;
 import pacoteClassesProduto.NegocioProduto;
 import pacoteClassesProduto.PJCException;
 import pacoteClassesUsuario.NegocioUsuario;
+import pacoteClassesUsuario.RepositorioUsuarios;
 import pacoteClassesUsuario.UJCException;
 import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
@@ -129,21 +130,18 @@ public class Fachada {
 	/**
 	 * lembrar de dar uma checada em entrarGrupo e sairGrupo a seguir
 	 * nao tenho certeza se tá certo
+	 * @throws UJCException 
 	 */
-	public boolean entrarGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) {
+	public void entrarGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) throws UJCException {
 		// retorna true se o usuario nao estava no grupo e pode entrar
-		if (!grupoSelecionado.getMembros().equals(usuarioLogado.getNick())) {
-			return true;
-		} else
-			return false;
+		RepositorioUsuarios aux = grupoSelecionado.getMembros();
+		aux.inserir(usuarioLogado);
 	}
 
-	public boolean sairGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) {
+	public void sairGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) throws UNCException {
 		// retorna true se o usuario estava no grupo e pode sair
-		if (grupoSelecionado.getMembros().equals(usuarioLogado.getNick())) {
-			return true;
-		} else
-			return false;
+		RepositorioUsuarios auxRemover = grupoSelecionado.getMembros();
+		auxRemover.remover(usuarioLogado.getNick());
 	}
 
 	public void atualizarGrupo(Grupo categoriaGrupo) throws GrupoJaCadastradoException {

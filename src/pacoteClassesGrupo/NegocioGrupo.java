@@ -41,7 +41,7 @@ public class NegocioGrupo {
 		}else if(this.comunidade instanceof RepositorioGruposLista ){//se for lista só procura e retorna o grupo do objeto da lista
 			RepositorioGruposLista aux;
 			aux=((RepositorioGruposLista) this.comunidade).procurar(nomeGrupo);
-			grupo = aux.getNomeGrupo();
+			grupo = aux.getGrupo();
 		}
 		return grupo;
 	}
@@ -57,6 +57,8 @@ public class NegocioGrupo {
 	public void atualizarGrupo(Grupo grupo) throws GrupoJaCadastradoException{//procura na loja a referencia com o mesmo nome do produto inserido e substitui ela pela referencia inserida
 		this.comunidade.atualizar(grupo);
 	}
+	
+	
 
 	
 }
