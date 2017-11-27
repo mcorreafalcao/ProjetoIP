@@ -9,6 +9,8 @@ package UI;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import pacoteClassesGrupo.Grupo;
 import pacoteClassesProduto.Demo;
 import pacoteClassesProduto.Jogo;
@@ -20,6 +22,7 @@ import pacoteExcecoes.EIException;
 import pacoteExcecoes.GJCException;
 import pacoteExcecoes.GNEException;
 import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PJOException;
 import pacoteExcecoes.PNCException;
 import pacoteExcecoes.SMPCException;
 import pacoteExcecoes.UJCException;
@@ -133,7 +136,7 @@ public class Programa {
 
 				while (Tloja) {// menu da loja
 					System.out.println("Estes sao os produtos disponiveis:");
-					System.out.println(fachada.listarProdutos());// implementado
+					System.out.println(fachada.listarProdutos());
 					System.out.println("Bem vindo a nossa loja. Escolha uma das opcoes abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
@@ -184,11 +187,12 @@ public class Programa {
 						}
 					}
 				}
-				while (Tloja1) {// encontrou o jogo procurado
+				while (Tloja1) {// encontrou o jogo procurado (menu de selecao)
 					System.out.println(produtoSelecionado.getInfo());// informacoes do produto
 					System.out.println("1 - Comprar");
 					System.out.println("2 - Remover");
 					System.out.println("3 - Atualizar");
+					System.out.println("4 - rodar");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
 					in.nextLine();
@@ -199,15 +203,18 @@ public class Programa {
 						System.out.println("Tem certeza?\n1 - Sim\n2 - Nao");
 						op = in.nextLine();
 						if (op.equals("1")) {
-							// ver se ele ja possui o jogo na lista de jogos dele
-							// adicionar na lista de jogo do usuario e debitar da carteira capturando
-							// excecoes
-							try {
-								fachada.comprarProduto(produtoSelecionado, usuarioLogado);// implementado
-							} catch (CIException e) {
-								e.printStackTrace();
-							}
-							System.out.println("Jogo comprado!");
+							
+								try {
+									fachada.comprarProduto(produtoSelecionado, usuarioLogado);
+									System.out.println("Produto comprado");//chega aqui se n levantar nenhuma excecao
+								} catch (PJOException e) {
+									e.printStackTrace();
+								} catch (CIException e) {
+									e.printStackTrace();
+								} catch (SMPCException e) {
+									e.printStackTrace();
+								}
+							
 						}
 					} else if (op.equals("2")) {
 						// metodo que confere se o usuario � o dev do jogo. Se for, remove do
@@ -249,7 +256,11 @@ public class Programa {
 							e.printStackTrace();
 						}
 
-					} else {
+					} else if(op.equals("4")){//rodar produto
+						String aux = fachada.rodarProduto(produtoSelecionado, usuarioLogado);
+						System.out.println(aux);
+					}
+					else {
 						System.out.println("Entrada invalida, tente novamente");
 					}
 				}
