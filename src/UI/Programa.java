@@ -16,9 +16,8 @@ import pacoteClassesProduto.Produto;
 import pacoteClassesUsuario.Usuario;
 import pacoteExcecoes.CIException;
 import pacoteExcecoes.EIException;
-import pacoteExcecoes.EntradaInvalidaException;
-import pacoteExcecoes.GrupoJaCadastradoException;
-import pacoteExcecoes.GrupoNaoEncontradoException;
+import pacoteExcecoes.GJCException;
+import pacoteExcecoes.GNEException;
 import pacoteExcecoes.PJCException;
 import pacoteExcecoes.PNCException;
 import pacoteExcecoes.SMPCException;
@@ -48,9 +47,7 @@ public class Programa {
 			fachada = new Fachada(escolhaRepositorio);
 		} catch (EIException e) {
 			System.out.println("O tipo de repositorio escolhido nao e valido.");
-		} catch (EntradaInvalidaException e) {
-			System.out.println("O tipo de repositorio escolhido nao e valido.");
-		}
+		} 
 
 		while (!sair) {// programa
 
@@ -275,7 +272,7 @@ public class Programa {
 							grupoSelecionado = fachada.buscarGrupo(nomeGrupo);
 							Tgrupo1 = true;// caso procurar funcione
 							Tgrupo = false;// caso procurar funcione
-						} catch (GrupoNaoEncontradoException e) {
+						} catch (GNEException e) {
 							System.out.println("Grupo não encontrado.");
 						}
 					} else if (op2 == 2) {
@@ -287,8 +284,10 @@ public class Programa {
 						try {
 							fachada.cadastrarGrupo(novoGrupo);
 							System.out.println("Cadastro efetuado com sucesso!");
-						} catch (GrupoJaCadastradoException e) {
+						} catch (GJCException e) {
 							System.out.println("Este grupo ja foi cadastrado. Tente novamente com um novo nome.");
+						}catch(SMPCException e) {
+							e.printStackTrace();
 						}
 
 					} else {
@@ -313,6 +312,8 @@ public class Programa {
 							fachada.entrarGrupo(usuarioLogado, grupoSelecionado);
 						} catch (UJCException e) {
 							e.printStackTrace();
+						}catch (SMPCException e) {
+							e.printStackTrace();
 						}
 					} else if (op == 2) {// sair do grupo
 						try {
@@ -327,14 +328,14 @@ public class Programa {
 						try {
 							fachada.atualizarGrupo(novoGrupo);
 							System.out.println("Grupo atualizado com sucesso!");
-						} catch (GrupoJaCadastradoException e) {
+						} catch (GNEException e) {
 							System.out.println("Este grupo ja foi atualizado. Tente novamente com um novo grupo.");
 						}
 
 					} else if (op == 4) {
 						try {
 							fachada.removerGrupo(grupoSelecionado);
-						} catch (GrupoNaoEncontradoException e) {
+						} catch (GNEException e) {
 							System.out.println("O grupo a ser removido nao existe.");
 						}
 					} else {

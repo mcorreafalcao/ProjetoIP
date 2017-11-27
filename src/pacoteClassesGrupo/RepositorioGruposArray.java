@@ -18,7 +18,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	private int indice = 0;
 
 	public RepositorioGruposArray() {
-		grupos = new Grupo[5];
+		grupos = new Grupo[20];
 	}
 
 	@Override

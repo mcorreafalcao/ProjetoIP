@@ -61,10 +61,7 @@ public class NegocioGrupo {
 		return this.getNomeGrupo();
 	}
 
-	public void atualizarGrupo(Grupo grupo) throws GJCException, GNEException {// procura na loja a referencia com o
-																				// mesmo nome do produto inserido e
-																				// substitui ela pela referencia
-																				// inserida
+	public void atualizarGrupo(Grupo grupo) throws GNEException {// procura na loja a referencia com o mesmo nome do produto inserido e substitui ela pela referencia inserida
 		this.comunidade.atualizar(grupo);
 	}
 

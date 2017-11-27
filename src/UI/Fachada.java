@@ -10,9 +10,8 @@ import pacoteClassesUsuario.RepositorioUsuarios;
 import pacoteClassesUsuario.Usuario;
 import pacoteExcecoes.CIException;
 import pacoteExcecoes.EIException;
-import pacoteExcecoes.EntradaInvalidaException;
-import pacoteExcecoes.GrupoJaCadastradoException;
-import pacoteExcecoes.GrupoNaoEncontradoException;
+import pacoteExcecoes.GJCException;
+import pacoteExcecoes.GNEException;
 import pacoteExcecoes.PJCException;
 import pacoteExcecoes.PNCException;
 import pacoteExcecoes.SMPCException;
@@ -27,7 +26,7 @@ public class Fachada {
 	private NegocioUsuario usuario;
 	private Grupo categoria;
 
-	public Fachada(int repositorio) throws EIException, EntradaInvalidaException {
+	public Fachada(int repositorio) throws EIException{
 
 		this.loja = new NegocioProduto(repositorio);
 		this.comunidade = new NegocioGrupo(repositorio);
@@ -118,13 +117,13 @@ public class Fachada {
 	// metodos produto acima
 	// -------------------------------------------------------------------------------------------------------
 	// metodos grupo abaixo
-	public Grupo buscarGrupo(String nomeGrupo) throws GrupoNaoEncontradoException {
+	public Grupo buscarGrupo(String nomeGrupo) throws GNEException {
 		return this.comunidade.procurar(nomeGrupo);
 		// procura o nome do grupo na parte de selecionar
 
 	}
 
-	public void cadastrarGrupo(Grupo novoGrupo) throws GrupoJaCadastradoException {
+	public void cadastrarGrupo(Grupo novoGrupo) throws GJCException, SMPCException {
 		this.comunidade.cadastrarGrupo(novoGrupo);
 
 	}
@@ -133,8 +132,9 @@ public class Fachada {
 	 * lembrar de dar uma checada em entrarGrupo e sairGrupo a seguir
 	 * nao tenho certeza se tá certo
 	 * @throws UJCException 
+	 * @throws SMPCException 
 	 */
-	public void entrarGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) throws UJCException {
+	public void entrarGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) throws UJCException, SMPCException {
 		// retorna true se o usuario nao estava no grupo e pode entrar
 		RepositorioUsuarios aux = grupoSelecionado.getMembros();
 		aux.inserir(usuarioLogado);
@@ -146,14 +146,14 @@ public class Fachada {
 		auxRemover.remover(usuarioLogado.getNick());
 	}
 
-	public void atualizarGrupo(Grupo categoriaGrupo) throws GrupoJaCadastradoException {
+	public void atualizarGrupo(Grupo categoriaGrupo) throws GNEException {
 		if (categoriaGrupo.getNomeGrupo() != categoria.getNomeGrupo()) {// ver se a categoria informada não é a mesma
 																		// jaexistente
 			this.comunidade.atualizarGrupo(categoriaGrupo);// procura e troca a referencia encontrada pela nova
 		}
 	}
 
-	public void removerGrupo(Grupo grupoSelecionado) throws GrupoNaoEncontradoException {
+	public void removerGrupo(Grupo grupoSelecionado) throws GNEException {
 		if (grupoSelecionado.getNomeGrupo() == comunidade.getNomeGrupo()) {
 			this.comunidade.removerGrupo(grupoSelecionado);
 		}

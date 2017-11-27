@@ -16,7 +16,7 @@ public class RepositorioUsuariosArray implements RepositorioUsuarios {
 	private int indice;
 
 	public RepositorioUsuariosArray() {
-		usuarios = new Usuario[5];
+		usuarios = new Usuario[20];
 		indice = 0;
 	}
 
