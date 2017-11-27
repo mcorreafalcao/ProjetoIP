@@ -102,13 +102,20 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 
 	@Override
 	public boolean existe(String nomeProduto) {
-		if (this.produto.getNome().equals(nomeProduto)) {// caso tenha encontrado
-			return true;
-		} else if (this.proximo != null) // caso nao tenha encontrado e existam
-											// outros
-			return this.proximo.existe(nomeProduto);
-		else// caso nao seja o atual e nem exista outros
+		if(this.produto != null) {
+			
+			if ( this.produto.getNome().equals(nomeProduto)) {// caso tenha encontrado
+				return true;
+			} else if (this.proximo != null) // caso nao tenha encontrado e existam
+				// outros
+				return this.proximo.existe(nomeProduto);
+			else// caso nao seja o atual e nem exista outros
+				return false;
+		}else {
 			return false;
+			
+		}
+		
 	}
 
 	public RepositorioProdutosLista procurar(String nomeProduto) {

@@ -322,6 +322,7 @@ public class Programa {
 					} else if (op.equals("1")) {// entrar em grupo
 						try {
 							fachada.entrarGrupo(usuarioLogado, grupoSelecionado);
+							System.out.println("Você agora faz parte do grupo " + grupoSelecionado.getNomeGrupo());
 						} catch (UJCException e) {
 							e.printStackTrace();
 						}catch (SMPCException e) {
@@ -330,6 +331,7 @@ public class Programa {
 					} else if (op.equals("2")) {// sair do grupo
 						try {
 							fachada.sairGrupo(usuarioLogado, grupoSelecionado);
+							System.out.println("Você saiu do grupo " + grupoSelecionado.getNomeGrupo());
 						} catch (UNCException e) {
 							e.printStackTrace();
 						}
