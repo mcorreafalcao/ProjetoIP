@@ -142,7 +142,7 @@ public class Programa {
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
-					in.nextLine();
+			
 					if (op.equals("0")) {// sair do menu de loja
 						Tloja = false;
 						Tprincipal = true;
@@ -195,7 +195,7 @@ public class Programa {
 					System.out.println("4 - rodar");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
-					in.nextLine();
+				
 					if (op.equals("0")) {
 						Tloja1 = false;
 						Tloja = true;
@@ -208,11 +208,11 @@ public class Programa {
 									fachada.comprarProduto(produtoSelecionado, usuarioLogado);
 									System.out.println("Produto comprado");//chega aqui se n levantar nenhuma excecao
 								} catch (PJOException e) {
-									e.printStackTrace();
+									System.out.println("Produto já obtidor");
 								} catch (CIException e) {
-									e.printStackTrace();
+									System.out.println("Credito insuficiente");
 								} catch (SMPCException e) {
-									e.printStackTrace();
+									System.out.println("Sem memoria para download");
 								}
 							
 						}
@@ -224,11 +224,9 @@ public class Programa {
 						try {
 							fachada.removerProduto(produtoSelecionado, usuarioLogado);
 						} catch (PNCException e) {
-
-							e.printStackTrace();
+							System.out.println("Produto nao cadastrado");
 						} catch (VNEDException e) {
-
-							e.printStackTrace();
+							System.out.println("Voce nao eh o desenvolvedor");
 						}
 						Tloja1 = false;
 						Tloja = true;
@@ -253,7 +251,7 @@ public class Programa {
 							// referencia pela nova criada neste if
 							fachada.atualizarProduto(produtoSelecionado, produtoAlterado);// implementado
 						} catch (PNCException e) {
-							e.printStackTrace();
+							System.out.println("Produto nao cadastrado");
 						}
 
 					} else if(op.equals("4")){//rodar produto
@@ -324,16 +322,16 @@ public class Programa {
 							fachada.entrarGrupo(usuarioLogado, grupoSelecionado);
 							System.out.println("Você agora faz parte do grupo " + grupoSelecionado.getNomeGrupo());
 						} catch (UJCException e) {
-							e.printStackTrace();
+							System.out.println("Usuario ja cadastrado");
 						}catch (SMPCException e) {
-							e.printStackTrace();
+							System.out.println("Sem memoria para cadastro");
 						}
 					} else if (op.equals("2")) {// sair do grupo
 						try {
 							fachada.sairGrupo(usuarioLogado, grupoSelecionado);
 							System.out.println("Você saiu do grupo " + grupoSelecionado.getNomeGrupo());
 						} catch (UNCException e) {
-							e.printStackTrace();
+							System.out.println("Usuario nao cadastrado");
 						}
 					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
