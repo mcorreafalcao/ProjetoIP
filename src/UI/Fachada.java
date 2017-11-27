@@ -78,15 +78,17 @@ public class Fachada {
 	}
 
 	public void comprarProduto(Produto produtoSelecionado, Usuario usuarioLogado) throws CIException, PJCException {
-		if (produtoSelecionado instanceof Jogo) {
-			if (usuarioLogado.getCarteira() >= ((Jogo) produtoSelecionado).getPreco()) {
-				double carteira = usuarioLogado.getCarteira();
-				double preco = ((Jogo) produtoSelecionado).getPreco();
-				carteira -= preco;
-				usuarioLogado.setCarteira(carteira);
-				usuarioLogado.adicionarProduto(produtoSelecionado);//addiciona produto na lista de produtos
-			} else
-				throw new CIException();
+		if (produtoSelecionado instanceof Jogo) {//se for jogo
+			if(!usuarioLogado.getProdutos().existe(produtoSelecionado.getNome())) {//e existir na lista de jogos do user
+				if (usuarioLogado.getCarteira() >= ((Jogo) produtoSelecionado).getPreco()) {//e 
+					double carteira = usuarioLogado.getCarteira();
+					double preco = ((Jogo) produtoSelecionado).getPreco();
+					carteira -= preco;
+					usuarioLogado.setCarteira(carteira);
+					usuarioLogado.adicionarProduto(produtoSelecionado);//addiciona produto na lista de produtos
+				} else
+					throw new CIException();
+			}
 		}
 
 	}
@@ -113,7 +115,9 @@ public class Fachada {
 
 	}
 	public String rodarProduto(Produto produtoSelecionado, Usuario usuarioLogado) {
-		return produtoSelecionado.rodar(usuarioLogado);
+		if(usuarioLogado.getProdutos().existe(produtoSelecionado.getNome()))
+			return produtoSelecionado.rodar(usuarioLogado);
+		return "\nVoce nao possiu este produto";
 	}
 
 	// metodos produto acima
