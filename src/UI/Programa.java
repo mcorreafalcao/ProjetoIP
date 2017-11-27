@@ -346,12 +346,7 @@ public class Programa {
 
 				while (Tperfil) {// tela do usuario atual
 					System.out.println("Escolha uma das opcoes abaixo:");
-<<<<<<< HEAD
 					System.out.println("1 - Atualizar informacoes");//listar,selecionar
-=======
-					System.out.println("1 - Atualizar informacoes");
-					System.out.println("2 - Listar jogos");
->>>>>>> branch 'master' of https://github.com/zegabr/ProjetoIP
 					System.out.println("0 - Voltar");
 
 					op = in.nextLine();
