@@ -67,6 +67,6 @@ public class Usuario {
 	}
 	public RepositorioProdutosLista getProdutos() {
 		return this.listaProdutos;
-	}
+	}//
 
 }
