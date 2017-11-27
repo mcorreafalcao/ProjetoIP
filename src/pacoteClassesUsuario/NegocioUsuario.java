@@ -27,8 +27,8 @@ public class NegocioUsuario {
 		this.usuarios.remover(nomeUsuario);
 	}
 
-	public void atualizar(Usuario usuario) throws UNCException {
-		this.usuarios.atualizar(usuario);
+	public void atualizar(Usuario novoUsuario) throws UNCException {
+		this.usuarios.atualizar(novoUsuario);
 	}
 	public boolean existe(String usuario2) {
 		return this.existe(usuario2);
