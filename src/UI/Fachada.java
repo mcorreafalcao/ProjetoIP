@@ -49,7 +49,7 @@ public class Fachada {
 	}
 
 	public void atualizarUsuario(Usuario novoUsuario) throws UNCException {
-		return this.usuario.atualizar(novoUsuario);
+		this.usuario.atualizar(novoUsuario);
 
 	}
 
