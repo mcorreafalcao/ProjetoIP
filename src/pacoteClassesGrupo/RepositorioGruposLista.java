@@ -1,5 +1,8 @@
 package pacoteClassesGrupo;
 
+import pacoteExcecoes.GJCException;
+import pacoteExcecoes.GNEException;
+
 /**
  * "classe colecao de dados lista" classe que contem um lista de grupos e
  * metodos da interface implementada
@@ -17,28 +20,28 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	}
 
 	@Override
-	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
+	public void inserir(Grupo grupo) throws GJCException {
 		if (!this.existe(grupo.getNomeGrupo())) {
 			this.prim = grupo;
 			this.prox = new RepositorioGruposLista();
 		} else {
-			throw new GrupoJaCadastradoException();
+			throw new GJCException();
 			
 		}
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException {
+	public void atualizar(Grupo grupo) throws GNEException {
 		if (this.existe(grupo.getNomeGrupo())) {
 			RepositorioGruposLista proc = this.procurar(grupo.getNomeGrupo());
 			proc.prim.setNomeGrupo(grupo.getNomeGrupo());
 		} else {
-			throw new GrupoJaCadastradoException();
+			throw new GNEException();
 		}
 	}
 
 	@Override
-	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
+	public void remover(Grupo grupo) throws GNEException {
 		if (this.existe(grupo.getNomeGrupo())) {
 			RepositorioGruposLista proc = this.procurar(grupo.getNomeGrupo());
 			if (proc.prox == null) {
@@ -48,7 +51,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 				proc.prox = proc.prox.prox;
 			}
 		} else {
-			throw new GrupoNaoEncontradoException();
+			throw new GNEException();
 		}
 	}
 

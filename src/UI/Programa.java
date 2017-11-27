@@ -8,21 +8,23 @@ package UI;
  */
 
 import java.util.Scanner;
-import pacoteClassesGrupo.EntradaInvalidaException;
+
 import pacoteClassesGrupo.Grupo;
-import pacoteClassesGrupo.GrupoJaCadastradoException;
-import pacoteClassesGrupo.GrupoNaoEncontradoException;
 import pacoteClassesProduto.Demo;
-import pacoteClassesProduto.EIException;
-import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Jogo;
-import pacoteClassesProduto.PJCException;
-import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Produto;
-import pacoteClassesProduto.SMPCException;
-import pacoteClassesUsuario.UJCException;
-import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
+import pacoteExcecoes.CIException;
+import pacoteExcecoes.EIException;
+import pacoteExcecoes.EntradaInvalidaException;
+import pacoteExcecoes.GrupoJaCadastradoException;
+import pacoteExcecoes.GrupoNaoEncontradoException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
+import pacoteExcecoes.SMPCException;
+import pacoteExcecoes.UJCException;
+import pacoteExcecoes.UNCException;
+import pacoteExcecoes.VNEDException;
 
 public class Programa {
 

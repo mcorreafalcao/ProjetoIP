@@ -1,5 +1,9 @@
 package pacoteClassesProduto;
 
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
+import pacoteExcecoes.SMPCException;
+
 /**
  * "Interface negocio-dados". Interface implementada em RepositrioUsuariosJogos
  * e RepositorioUsuariosJogos.

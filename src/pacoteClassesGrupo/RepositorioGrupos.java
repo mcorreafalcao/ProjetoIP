@@ -1,4 +1,11 @@
 package pacoteClassesGrupo;
+
+
+
+import pacoteExcecoes.GJCException;
+import pacoteExcecoes.GNEException;
+import pacoteExcecoes.SMPCException;
+
 /**
  * "interface negocio-dades"
  * será implementada em RepositorioGruposArray e RepositoiroGruposLista
@@ -6,11 +13,11 @@ package pacoteClassesGrupo;
  *
  */
 public interface RepositorioGrupos {
-	public void inserir(Grupo grupo) throws GrupoJaCadastradoException;
+	public void inserir(Grupo grupo) throws GJCException, SMPCException;
 	
-	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException;
+	public void atualizar(Grupo grupo) throws GNEException;
 	
-	public void remover(Grupo grupo) throws GrupoNaoEncontradoException;
+	public void remover(Grupo grupo) throws GNEException;
 	
 	public boolean existe(String grupo);
 	

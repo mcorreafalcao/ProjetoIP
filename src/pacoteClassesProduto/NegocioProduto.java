@@ -1,8 +1,10 @@
 package pacoteClassesProduto;
 
-import pacoteClassesProduto.PJCException;
-import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.RepositorioProdutosArray;
+import pacoteExcecoes.EIException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
+import pacoteExcecoes.SMPCException;
 
 /**
  * "Classe colecao de negocio". Ainda nao entendi pra que vai servir essa

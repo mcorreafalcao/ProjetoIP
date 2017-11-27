@@ -1,4 +1,4 @@
-package pacoteClassesProduto;
+package pacoteExcecoes;
 
 public class PJCException extends Exception {
 	public PJCException() {

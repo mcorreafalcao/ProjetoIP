@@ -1,4 +1,4 @@
-package pacoteClassesUsuario;
+package pacoteExcecoes;
 
 public class UNCException extends Exception {
 	public UNCException() {

@@ -1,8 +1,10 @@
 package pacoteClassesGrupo;
 
-import pacoteClassesProduto.PJCException;
 import pacoteClassesProduto.Produto;
-import pacoteClassesProduto.SMPCException;
+import pacoteExcecoes.GJCException;
+import pacoteExcecoes.GNEException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.SMPCException;
 
 /**
  * "classe colecao de dados lista" classe que contem um lista de grupos e
@@ -20,27 +22,27 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
 	@Override
-	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
+	public void inserir(Grupo grupo) throws GJCException {
 		if (!this.existe(grupo.getNomeGrupo())) {
 			this.grupos[this.indice] = grupo;
 			this.indice++;
 		} else {
-			throw new GrupoJaCadastradoException();
+			throw new GJCException();
 		}
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws GrupoJaCadastradoException {
+	public void atualizar(Grupo grupo) throws GNEException {
 		if (this.existe(grupo.getNomeGrupo())) {
 			int proc = this.procurar(grupo.getNomeGrupo());
 			this.grupos[proc] = grupo;
 		} else {
-			throw new GrupoJaCadastradoException();
+			throw new GNEException();
 		}
 	}
 
 	@Override
-	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
+	public void remover(Grupo grupo) throws GNEException {
 		if (this.existe(grupo.getNomeGrupo())) {
 			int proc = this.procurar(grupo.getNomeGrupo());
 			for (int i = proc; i < indice - 1; i++) {
@@ -48,7 +50,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			}
 			this.indice--;
 		} else {
-			throw new GrupoNaoEncontradoException();
+			throw new GNEException();
 		}
 
 	}

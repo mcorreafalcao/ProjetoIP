@@ -1,4 +1,4 @@
-package pacoteClassesProduto;
+package pacoteExcecoes;
 
 public class PNCException extends Exception {
 	public PNCException() {

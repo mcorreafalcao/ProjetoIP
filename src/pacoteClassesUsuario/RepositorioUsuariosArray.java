@@ -1,5 +1,8 @@
 package pacoteClassesUsuario;
 
+import pacoteExcecoes.UJCException;
+import pacoteExcecoes.UNCException;
+
 /**
  * "classe colecao de dados array"
  * classe que contem um array de usuarios e metodos da interface implementada

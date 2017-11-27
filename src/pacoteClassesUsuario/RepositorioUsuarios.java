@@ -1,8 +1,12 @@
 package pacoteClassesUsuario;
 
+import pacoteExcecoes.SMPCException;
+import pacoteExcecoes.UJCException;
+import pacoteExcecoes.UNCException;
+
 public interface RepositorioUsuarios {
 
-	public void inserir(Usuario usuario) throws UJCException;
+	public void inserir(Usuario usuario) throws UJCException, SMPCException;
 
 	public void remover(String nomeUsuario) throws UNCException;
 

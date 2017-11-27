@@ -1,7 +1,7 @@
 package pacoteClassesProduto;
 
-import pacoteClassesProduto.PJCException;
-import pacoteClassesProduto.PNCException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
 
 /**
  * "Classe colecao de dados lista". Classe que contem um lista de produtos e

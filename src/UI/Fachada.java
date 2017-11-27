@@ -1,22 +1,24 @@
 package UI;
 
-import pacoteClassesGrupo.EntradaInvalidaException;
 import pacoteClassesGrupo.Grupo;
-import pacoteClassesGrupo.GrupoJaCadastradoException;
-import pacoteClassesGrupo.GrupoNaoEncontradoException;
 import pacoteClassesGrupo.NegocioGrupo;
-import pacoteClassesProduto.EIException;
 import pacoteClassesProduto.Jogo;
-import pacoteClassesProduto.PNCException;
 import pacoteClassesProduto.Produto;
-import pacoteClassesProduto.SMPCException;
 import pacoteClassesProduto.NegocioProduto;
-import pacoteClassesProduto.PJCException;
 import pacoteClassesUsuario.NegocioUsuario;
 import pacoteClassesUsuario.RepositorioUsuarios;
-import pacoteClassesUsuario.UJCException;
-import pacoteClassesUsuario.UNCException;
 import pacoteClassesUsuario.Usuario;
+import pacoteExcecoes.CIException;
+import pacoteExcecoes.EIException;
+import pacoteExcecoes.EntradaInvalidaException;
+import pacoteExcecoes.GrupoJaCadastradoException;
+import pacoteExcecoes.GrupoNaoEncontradoException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
+import pacoteExcecoes.SMPCException;
+import pacoteExcecoes.UJCException;
+import pacoteExcecoes.UNCException;
+import pacoteExcecoes.VNEDException;
 
 public class Fachada {
 

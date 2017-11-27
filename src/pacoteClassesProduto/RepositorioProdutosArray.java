@@ -1,8 +1,8 @@
 package pacoteClassesProduto;
 
-import pacoteClassesProduto.SMPCException;
-import pacoteClassesProduto.PJCException;
-import pacoteClassesProduto.PNCException;
+import pacoteExcecoes.PJCException;
+import pacoteExcecoes.PNCException;
+import pacoteExcecoes.SMPCException;
 
 /**
  * "Classe colecao de dados array". Classe que contem um array de produtos e
