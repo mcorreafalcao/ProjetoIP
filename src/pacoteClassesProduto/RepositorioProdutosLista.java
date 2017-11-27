@@ -30,7 +30,7 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 		} else {// insere o produto na ultima posicao da lista
 			RepositorioProdutosLista aux = this;// referencia para percorrer a
 												// lista
-			if (this.produto.getNome() == null) {// lista vazia
+			if (this.produto == null) {// lista vazia
 				this.produto = produto;
 				this.proximo = new RepositorioProdutosLista();
 				return;

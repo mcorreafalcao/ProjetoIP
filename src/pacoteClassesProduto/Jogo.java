@@ -33,7 +33,7 @@ public class Jogo extends Produto {// classe básica do projeto
 	}
 	public double getTamanho() {
 		// TODO Auto-generated method stub
-		return this.getTamanho();
+		return this.tamanhoMB;
 	}
 	@Override
 	public String rodar(Usuario usuarioLogado) {

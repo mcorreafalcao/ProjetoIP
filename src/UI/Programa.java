@@ -223,6 +223,7 @@ public class Programa {
 						// existir� mais
 						try {
 							fachada.removerProduto(produtoSelecionado, usuarioLogado);
+							System.out.println("Produto removido com sucesso.");
 						} catch (PNCException e) {
 							System.out.println("Produto nao cadastrado");
 						} catch (VNEDException e) {
