@@ -10,7 +10,7 @@ import pacoteExcecoes.SMPCException;
  * 
  * @author Gabriel
  *
- */
+ */ 
 public interface RepositorioProdutos {// interface negocio_dados
 	public void inserir(Produto produto) throws PJCException, SMPCException;
 

@@ -56,7 +56,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	}
 
 	public RepositorioGruposLista procurar(String grupo) throws GNEException {
-		if (this.prim.getNomeGrupo().equals(grupo)) {
+		if (this.prim != null && this.prim.getNomeGrupo().equals(grupo)) {
 			return this;
 		} else if (this.prox != null) {
 			return this.prox.procurar(grupo);
