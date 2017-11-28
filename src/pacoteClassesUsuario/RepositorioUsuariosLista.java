@@ -59,7 +59,6 @@ public class RepositorioUsuariosLista implements RepositorioUsuarios {
 
 	@Override
 	public void atualizar(Usuario usuario) throws UNCException {
-		// TODO Auto-generated method stub
 		if (this.atual != null) {
 			if (this.atual.getNick().equals(usuario.getNick())) {
 				this.atual = usuario;

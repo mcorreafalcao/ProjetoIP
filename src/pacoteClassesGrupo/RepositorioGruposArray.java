@@ -32,13 +32,13 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws GNEException {
-		if (this.existe(grupo.getNomeGrupo())) {
+	public void atualizar(Grupo grupo, String categoriaGrupo) throws GNEException {
+		//if (this.existe(grupo.getNomeGrupo())) {
 			int proc = this.procurar(grupo.getNomeGrupo());
 			this.grupos[proc] = grupo;
-		} else {
-			throw new GNEException();
-		}
+		//} else {
+			//throw new GNEException();
+		//}
 	}
 
 	@Override
@@ -55,14 +55,14 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 
 	}
 
-	public int procurar(String nomeg) {
+	public int procurar(String nomeg) throws GNEException {
 		for (int i = 0; i < 100; i++) {
-			if (this.grupos[i] != null && this.grupos[i].equals(nomeg)) {
+			if (this.grupos[i] != null && this.grupos[i].getNomeGrupo().equals(nomeg)) {
 				return i;
 			}
+				
 		}
-		// Nunca vai chegar nesse return
-		return 0;
+		throw new GNEException();
 	}
 	
 	//Isso e tipo um getGrupo

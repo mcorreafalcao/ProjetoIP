@@ -41,22 +41,22 @@ public class Programa {
 		Produto produtoSelecionado = null;
 		Grupo grupoSelecionado = null;
 
-		System.out.println("Escolha em que tipo de repositorio o programa ira rodar!");
-		System.out.println("Digite 1 array");
-		System.out.println("Ou 2 para lista encadeada");
+		System.out.println("Bem vindo a Stin! Um programa desenvolvido para voce aproveitar dos seus jogos favoritos. \nOu ainda compartilhar o seu trabalho conosco, seja empresa ou desenvolvedor amador.\nComo presente de boas vindas, toda nova conta receberá um bonus de 50 COINS para gastar com produtos! \nPara começar, escolha em que tipo de repositorio o programa ira rodar!\n");
+		System.out.println("1 - Array");
+		System.out.println("2 - Lista");
 		int escolhaRepositorio = in.nextInt();
 		in.nextLine();
 		Fachada fachada = null;
 		try {
 			fachada = new Fachada(escolhaRepositorio);
 		} catch (EIException e) {
-			System.out.println("O tipo de repositorio escolhido nao e valido.");
+			System.out.println("O tipo de repositorio escolhido nao e valido. Por favor, reveja as opçoes e escolha novamente.");
 		} 
 
 		while (!sair) {// programa
 
 			while (!logado) {// tela inicial
-				System.out.println("Bem vindo a Steam! O que deseja fazer?");
+				System.out.println("Bem vindo a Stin! O que deseja fazer?");
 				System.out.println("1 - Fazer login");
 				System.out.println("2 - Crie sua conta");
 				System.out.println("0 - Sair");
@@ -68,7 +68,7 @@ public class Programa {
 					sair = true;
 				} else if (op.equals("2")) {
 					System.out.println("CADASTRO \n");
-					System.out.println("Digite um novo usuario e senha");
+					System.out.println("Digite um novo usuario e senha:\n");
 					System.out.println("Usuario: ");
 					String usuario = in.nextLine();
 					System.out.println("Senha: ");
@@ -83,7 +83,7 @@ public class Programa {
 					} catch (UJCException e) {
 						System.out.println("Este usuario ja foi cadastrado. Tente novamente com um novo nick.");
 					} catch (SMPCException e) {
-						System.out.println("Não há memória para cadastro.");
+						System.out.println("Não há memória para cadastro. Sentimos pelo transtorno, nossa equipe já está trabalhando no problema.");
 					}
 				} else if (op.equals("1")) {
 					System.out.println("LOGIN \n");
@@ -135,9 +135,9 @@ public class Programa {
 				}
 
 				while (Tloja) {// menu da loja
-					System.out.println("Estes sao os produtos disponiveis:");
+					System.out.println("Bem vindo a nossa loja./nEstes sao os produtos disponiveis:");
 					System.out.println(fachada.listarProdutos());
-					System.out.println("Bem vindo a nossa loja. Escolha uma das opcoes abaixo!");
+					System.out.println("Escolha uma das opcoes abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
@@ -274,6 +274,7 @@ public class Programa {
 					System.out.println("2 - Cadastrar Grupo");
 					System.out.println("0 - Voltar");
 				    op = in.nextLine();
+				    in.nextLine();
 
 					if (op.equals("0")) {
 						Tgrupo = false;
@@ -286,7 +287,7 @@ public class Programa {
 							Tgrupo1 = true;// caso procurar funcione
 							Tgrupo = false;// caso procurar funcione
 						} catch (GNEException e) {
-							System.out.println("Grupo nÃ£o encontrado.");
+							System.out.println("Grupo nao encontrado.");
 						}
 					} else if (op.equals("2")) {
 						System.out.println("Digite o nome do grupo a ser cadastrado:");
@@ -335,12 +336,17 @@ public class Programa {
 						} catch (UNCException e) {
 							System.out.println("Usuario nao cadastrado");
 						}
+						
+						/**
+						 * vou precisar de ajuda no 3 e no 4
+						 */
 					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
-						Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
+						Grupo.setCategoria(categoriaGrupo);
+						//Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
 						try {
-							fachada.atualizarGrupo(novoGrupo);
+							fachada.atualizarGrupo(grupoSelecionado, categoriaGrupo);
 							System.out.println("Grupo atualizado com sucesso!");
 						} catch (GNEException e) {
 							System.out.println("Este grupo ja foi atualizado. Tente novamente com um novo grupo.");
@@ -349,6 +355,7 @@ public class Programa {
 					} else if (op.equals("4")) {
 						try {
 							fachada.removerGrupo(grupoSelecionado);
+							System.out.println("Grupo removido com sucesso.");
 						} catch (GNEException e) {
 							System.out.println("O grupo a ser removido nao existe.");
 						}
@@ -360,6 +367,7 @@ public class Programa {
 				while (Tperfil) {// tela do usuario atual
 					System.out.println("Escolha uma das opcoes abaixo:");
 					System.out.println("1 - Atualizar informacoes");//listar,selecionar
+					System.out.println("3 - Ver saldo da conta");
 					System.out.println("0 - Voltar");
 
 					op = in.nextLine();
@@ -384,11 +392,14 @@ public class Programa {
 					} else if (op.equals("2")) {
 						RepositorioProdutos aux = usuarioLogado.getProdutos();
 						System.out.println("Produtos adquiridos: " + aux.listarProdutos());
+					} else if (op.equals("3")) {
+						double saldo = usuarioLogado.getCarteira();
+						System.out.println(saldo);
 					}
 				}
 
 			}
-			System.out.println("Programa Encerrado! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
+			System.out.println("PROGRAMA ENCERRADO\nTchau! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
 		}
 
 	}
