@@ -272,6 +272,7 @@ public class Programa {
 					System.out.println("2 - Cadastrar Grupo");
 					System.out.println("0 - Voltar");
 				    op = in.nextLine();
+				    in.nextLine();
 
 					if (op.equals("0")) {
 						Tgrupo = false;
@@ -284,7 +285,7 @@ public class Programa {
 							Tgrupo1 = true;// caso procurar funcione
 							Tgrupo = false;// caso procurar funcione
 						} catch (GNEException e) {
-							System.out.println("Grupo não encontrado.");
+							System.out.println("Grupo nao encontrado.");
 						}
 					} else if (op.equals("2")) {
 						System.out.println("Digite o nome do grupo a ser cadastrado:");
@@ -333,12 +334,17 @@ public class Programa {
 						} catch (UNCException e) {
 							System.out.println("Usuario nao cadastrado");
 						}
+						
+						/**
+						 * vou precisar de ajuda no 3 e no 4
+						 */
 					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
-						Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
+						Grupo.setCategoria(categoriaGrupo);
+						//Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
 						try {
-							fachada.atualizarGrupo(novoGrupo);
+							fachada.atualizarGrupo(grupoSelecionado, categoriaGrupo);
 							System.out.println("Grupo atualizado com sucesso!");
 						} catch (GNEException e) {
 							System.out.println("Este grupo ja foi atualizado. Tente novamente com um novo grupo.");
@@ -347,6 +353,7 @@ public class Programa {
 					} else if (op.equals("4")) {
 						try {
 							fachada.removerGrupo(grupoSelecionado);
+							System.out.println("Grupo removido com sucesso.");
 						} catch (GNEException e) {
 							System.out.println("O grupo a ser removido nao existe.");
 						}
