@@ -89,8 +89,10 @@ public class Fachada {
 			
 		}
 		double carteira = usuarioLogado.getCarteira();
-		double preco = ((Jogo) produtoSelecionado).getPreco();
-		carteira -= preco;
+		if(produtoSelecionado instanceof Jogo) {
+			double preco = ((Jogo) produtoSelecionado).getPreco();
+			carteira -= preco;			
+		}
 		usuarioLogado.setCarteira(carteira);
 		usuarioLogado.adicionarProduto(produtoSelecionado);//addiciona produto na lista de produtos
 	}

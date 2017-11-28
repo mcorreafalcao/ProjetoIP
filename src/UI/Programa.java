@@ -91,7 +91,7 @@ public class Programa {
 						if (usuarioLogado.getSenha().equals(senha)) {
 							logado = true;
 							Tprincipal = true;
-							System.out.println("Bem vindo, " + usuario + ".");
+							System.out.println("Bem vind@, " + usuario + ".");
 						} else {
 							System.out.println("Senha invalida.");
 						}
@@ -129,7 +129,7 @@ public class Programa {
 				}
 
 				while (Tloja) {// menu da loja
-					System.out.println("Bem vindo a nossa loja./nEstes sao os produtos disponiveis:");
+					System.out.println("Bem vindo a nossa loja.\nEstes sao os produtos disponiveis:");
 					System.out.println(fachada.listarProdutos());
 					System.out.println("Escolha uma das opcoes abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
@@ -196,10 +196,13 @@ public class Programa {
 						Tloja1 = false;
 						Tloja = true;
 					} else if (op.equals("1")) {
-						System.out.println("Tem certeza?\n1 - Sim\n2 - Nao");
-						op = in.nextLine();
-						if (op.equals("1")) {
-							
+						if(produtoSelecionado instanceof Demo) {
+							System.out.println("Voce nao precisa comprar este produto para roda-lo.");
+						}else {
+							System.out.println("Tem certeza?\n1 - Sim\n2 - Nao");
+							op = in.nextLine();
+							if (op.equals("1")) {
+								
 								try {
 									fachada.comprarProduto(produtoSelecionado, usuarioLogado);
 									System.out.println("Produto comprado");//chega aqui se n levantar nenhuma excecao
@@ -210,6 +213,8 @@ public class Programa {
 								} catch (SMPCException e) {
 									System.out.println("Sem memoria para download");
 								}
+								
+							}
 							
 						}
 					} else if (op.equals("2")) {
