@@ -41,22 +41,22 @@ public class Programa {
 		Produto produtoSelecionado = null;
 		Grupo grupoSelecionado = null;
 
-		System.out.println("Escolha em que tipo de repositorio o programa ira rodar!");
-		System.out.println("Digite 1 array");
-		System.out.println("Ou 2 para lista encadeada");
+		System.out.println("Bem vindo a Stin! Um programa desenvolvido para voce aproveitar dos seus jogos favoritos. \nOu ainda compartilhar o seu trabalho conosco, seja empresa ou desenvolvedor amador. \nPara começar, escolha em que tipo de repositorio o programa ira rodar!\n");
+		System.out.println("1 - Array");
+		System.out.println("2 - Lista");
 		int escolhaRepositorio = in.nextInt();
 		in.nextLine();
 		Fachada fachada = null;
 		try {
 			fachada = new Fachada(escolhaRepositorio);
 		} catch (EIException e) {
-			System.out.println("O tipo de repositorio escolhido nao e valido.");
+			System.out.println("O tipo de repositorio escolhido nao e valido. Por favor, reveja as opçoes e escolha novamente.");
 		} 
 
 		while (!sair) {// programa
 
 			while (!logado) {// tela inicial
-				System.out.println("Bem vindo a Steam! O que deseja fazer?");
+				System.out.println("Bem vindo a Stin! O que deseja fazer?");
 				System.out.println("1 - Fazer login");
 				System.out.println("2 - Crie sua conta");
 				System.out.println("0 - Sair");
@@ -68,7 +68,7 @@ public class Programa {
 					sair = true;
 				} else if (op.equals("2")) {
 					System.out.println("CADASTRO \n");
-					System.out.println("Digite um novo usuario e senha");
+					System.out.println("Digite um novo usuario e senha:\n");
 					System.out.println("Usuario: ");
 					String usuario = in.nextLine();
 					System.out.println("Senha: ");
@@ -83,7 +83,7 @@ public class Programa {
 					} catch (UJCException e) {
 						System.out.println("Este usuario ja foi cadastrado. Tente novamente com um novo nick.");
 					} catch (SMPCException e) {
-						System.out.println("Não há memória para cadastro.");
+						System.out.println("Não há memória para cadastro. Sentimos pelo transtorno, nossa equipe já está trabalhando no problema.");
 					}
 				} else if (op.equals("1")) {
 					System.out.println("LOGIN \n");
@@ -135,9 +135,9 @@ public class Programa {
 				}
 
 				while (Tloja) {// menu da loja
-					System.out.println("Estes sao os produtos disponiveis:");
+					System.out.println("Bem vindo a nossa loja./nEstes sao os produtos disponiveis:");
 					System.out.println(fachada.listarProdutos());
-					System.out.println("Bem vindo a nossa loja. Escolha uma das opcoes abaixo!");
+					System.out.println("Escolha uma das opcoes abaixo!");
 					System.out.println("1 - Selecionar Jogo no Catalogo");
 					System.out.println("2 - Cadastrar Jogo");
 					System.out.println("0 - Voltar");
@@ -397,7 +397,7 @@ public class Programa {
 				}
 
 			}
-			System.out.println("Programa Encerrado! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
+			System.out.println("PROGRAMA ENCERRADO\nTchau! Obrigado pela visita.\n\n\t\t\tVolte Sempre!!!");
 		}
 
 	}
