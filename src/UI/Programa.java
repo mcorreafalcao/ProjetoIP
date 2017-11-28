@@ -185,6 +185,8 @@ public class Programa {
 							System.out.println("Não ha mais espaco para cadastro nos nossos servidores, desculpe");
 							e.printStackTrace();
 						}
+					}else{
+						System.out.println("Entrada invalida");
 					}
 				}
 				while (Tloja1) {// encontrou o jogo procurado (menu de selecao)
@@ -237,14 +239,13 @@ public class Programa {
 						//String nome = in.nextLine();
 						System.out.println("Digite a nova descricao do produto: ");
 						String descricao = in.nextLine();
-						System.out.println("digite o novo preco: ");
-						double preco = in.nextDouble();
 						Produto produtoAlterado = null;
-						// cria nova referencia para produto que substituirï¿½ a referencia atual
-						if (preco == 0.0) {// nova demo
-							produtoAlterado = new Demo(produtoSelecionado.getNome(), descricao, usuarioLogado);
-						} else {// novo jogo
+						if(produtoSelecionado instanceof Jogo){
+							System.out.println("digite o novo preco: ");
+							double preco = in.nextDouble();							
 							produtoAlterado = new Jogo(produtoSelecionado.getNome(), descricao, usuarioLogado, preco,((Jogo) produtoSelecionado).getTamanho());
+						} else {// nova demo
+							produtoAlterado = new Demo(produtoSelecionado.getNome(), descricao, usuarioLogado);
 						}
 						try {
 							// abaixo metodo que confere se o usuario ï¿½ o dev do jogo. Se for, troca a

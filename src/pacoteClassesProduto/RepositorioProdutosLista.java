@@ -125,7 +125,7 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 		while(aux!=null){
 			if(aux.produto instanceof Jogo)
 				lista+="(Jogo) "+aux.produto.getNome()+"\n";
-			else if(aux.produto instanceof Jogo)
+			else if(aux.produto instanceof Demo)
 				lista+="(Demo) "+aux.produto.getNome()+"\n";
 			
 			

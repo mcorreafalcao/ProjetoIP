@@ -108,10 +108,10 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 	@Override
 	public String listarProdutos() {
 		String lista = "\n";
-		for(int i = 0; i<=this.indice-1;i++){
+		for(int i = 0; i<this.indice;i++){
 			if(this.produtos[i] instanceof Jogo)
 				lista+="(Jogo) "+this.produtos[i].getNome()+"\n";
-			else if(this.produtos[i] instanceof Jogo)
+			else if(this.produtos[i] instanceof Demo)
 				lista+="(Demo) "+this.produtos[i].getNome()+"\n";
 		}
 		return lista;
