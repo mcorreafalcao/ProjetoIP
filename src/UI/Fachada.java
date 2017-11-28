@@ -88,12 +88,12 @@ public class Fachada {
 				throw new SMPCException();
 			
 		}
-		double carteira = usuarioLogado.getCarteira();
 		if(produtoSelecionado instanceof Jogo) {
+			double carteira = usuarioLogado.getCarteira();
 			double preco = ((Jogo) produtoSelecionado).getPreco();
 			carteira -= preco;			
+			usuarioLogado.setCarteira(carteira);
 		}
-		usuarioLogado.setCarteira(carteira);
 		usuarioLogado.adicionarProduto(produtoSelecionado);//addiciona produto na lista de produtos
 	}
 
@@ -122,7 +122,7 @@ public class Fachada {
 	public String rodarProduto(Produto produtoSelecionado, Usuario usuarioLogado) {
 		if(usuarioLogado.getProdutos().existe(produtoSelecionado.getNome()))
 			return produtoSelecionado.rodar(usuarioLogado);
-		return "\nVoce nao possiu este produto";
+		return "\nVoce nao possi este produto";
 	}
 
 	// metodos produto acima

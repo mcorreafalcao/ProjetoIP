@@ -132,8 +132,8 @@ public class Programa {
 					System.out.println("Bem vindo a nossa loja.\nEstes sao os produtos disponiveis:");
 					System.out.println(fachada.listarProdutos());
 					System.out.println("Escolha uma das opcoes abaixo!");
-					System.out.println("1 - Selecionar Jogo no Catalogo");
-					System.out.println("2 - Cadastrar Jogo");
+					System.out.println("1 - Selecionar Produto no Catalogo");
+					System.out.println("2 - Cadastrar Produto");
 					System.out.println("0 - Voltar");
 					op = in.nextLine();
 			
@@ -141,7 +141,7 @@ public class Programa {
 						Tloja = false;
 						Tprincipal = true;
 					} else if (op.equals("1")) {// selecionar jogo do catalogo
-						System.out.println("Digite o nome do jogo selecionado:");
+						System.out.println("Digite o nome do produto a selecionar:");
 						String nomeProduto = in.nextLine();
 						try {
 							produtoSelecionado = fachada.buscarProduto(nomeProduto);// implementado
@@ -151,15 +151,15 @@ public class Programa {
 							System.out.println("Produto nao encontrado.");
 						}
 
-					} else if (op.equals("2")) {// cadastrar jogo
-						System.out.println("Digite o nome do jogo a ser cadastrado:");
+					} else if (op.equals("2")) {// cadastrar produto
+						System.out.println("Digite o nome do produto a ser cadastrado:");
 						String nomeProduto = in.nextLine();
-						System.out.println("Digite o valor do jogo a ser cadastrado (insira 0 caso seja uma demo):");
+						System.out.println("Digite o valor do produto a ser cadastrado (insira 0 caso seja uma demo):");
 						double precoProduto = in.nextDouble();
 						in.nextLine();
-						System.out.println("Insira uma breve descricao do jogo cadastrado:");
+						System.out.println("Insira uma breve descricao do produto cadastrado:");
 						String descricao = in.nextLine();
-						System.out.println("Qual o tamanho do jogo");
+						System.out.println("Qual o tamanho do produto em MB?");
 						double tamanhoMB = in.nextDouble();
 						in.nextLine();
 						// cria nova referencia de jogo a ser adicionada na lista, capturando escecao de
@@ -174,7 +174,7 @@ public class Programa {
 							fachada.cadastrarProduto(novoProduto);// implementado
 							System.out.println("Cadastro efetuado com sucesso!");
 						} catch (PJCException e) {
-							System.out.println("Este jogo ja foi cadastrado. Tente novamente com um novo nome.");
+							System.out.println("Este produto ja foi cadastrado. Tente novamente com um novo nome.");
 						} catch (SMPCException e) {
 							System.out.println("Não ha mais espaco para cadastro nos nossos servidores, desculpe");
 							e.printStackTrace();
@@ -197,7 +197,9 @@ public class Programa {
 						Tloja = true;
 					} else if (op.equals("1")) {
 						if(produtoSelecionado instanceof Demo) {
-							System.out.println("Voce nao precisa comprar este produto para roda-lo.");
+							usuarioLogado.getProdutos().inserir(produtoSelecionado);
+							System.out.println("Voce ja adiquiriu ou acabou de adiquirir este produto.");
+						
 						}else {
 							System.out.println("Tem certeza?\n1 - Sim\n2 - Nao");
 							op = in.nextLine();
@@ -228,7 +230,7 @@ public class Programa {
 						} catch (PNCException e) {
 							System.out.println("Produto nao cadastrado");
 						} catch (VNEDException e) {
-							System.out.println("Voce nao eh o desenvolvedor");
+							System.out.println("Voce nao eh o desenvolvedor, nao pode remover");
 						}
 						Tloja1 = false;
 						Tloja = true;
@@ -249,7 +251,7 @@ public class Programa {
 							fachada.atualizarProduto(produtoSelecionado, produtoAlterado);// implementado
 							produtoSelecionado = produtoAlterado;
 						} catch (VNEDException e) {
-							System.out.println("vc n eh dev, nao pode atualizars");
+							System.out.println("vc n eh dev, nao pode atualizar");
 						} catch (PNCException e) {
 							// TODO Auto-generated catch block
 							System.out.println("produto nao cadastrado");//n chega nessa linha pq tá no menu de produtoselecionado
