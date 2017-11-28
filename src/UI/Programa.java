@@ -295,7 +295,7 @@ public class Programa {
 						} catch (GJCException e) {
 							System.out.println("Este grupo ja foi cadastrado. Tente novamente com um novo nome.");
 						}catch(SMPCException e) {
-							e.printStackTrace();
+							System.out.println("Sem memoria nos servidores para o cadastro deste grupo");
 						}
 
 					} else {
@@ -337,7 +337,7 @@ public class Programa {
 					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
-						Grupo.setCategoria(categoriaGrupo);
+						grupoSelecionado.setCategoria(categoriaGrupo);
 						//Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
 						try {
 							fachada.atualizarGrupo(grupoSelecionado, categoriaGrupo);
