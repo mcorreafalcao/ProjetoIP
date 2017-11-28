@@ -26,15 +26,11 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 
 	@Override
 	public void inserir(Produto produto) throws PJCException, SMPCException {
-		if (!this.existe(produto.getNome()) && this.indice < this.produtos.length - 1) {// insere
-																					// no
-																					// primeiro
-																					// indice
-																					// vazio
-			this.produtos[indice] = produto;
+		if (!this.existe(produto.getNome()) && this.indice < this.produtos.length) {//insere em indice
+			this.produtos[indice]=produto;
 			this.indice++;
 
-		} else if (this.indice >= this.produtos.length - 1) {// excecao caso acabe
+		} else if (this.indice >= this.produtos.length) {// excecao caso acabe
 															// a memoria do
 															// array
 			throw new SMPCException();

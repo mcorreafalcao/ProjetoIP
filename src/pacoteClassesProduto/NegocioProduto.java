@@ -31,7 +31,8 @@ public class NegocioProduto {
 	
 	
 	public void inserir(Produto produto) throws PJCException, SMPCException {
-		this.loja.inserir(produto);
+		if(!this.loja.existe(produto.getNome()))
+			this.loja.inserir(produto);//insere recursivamente caso seja lista, insere normal caso array
 		
 	}
 	
