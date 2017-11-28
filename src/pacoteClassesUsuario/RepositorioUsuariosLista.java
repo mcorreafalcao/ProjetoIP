@@ -75,7 +75,7 @@ public class RepositorioUsuariosLista implements RepositorioUsuarios {
 			if (this.atual.getNick().equals(nomeUsuario)) {
 			 aux = this.atual;
 			} else {
-				this.proximo.procurarUsuario(nomeUsuario);
+				aux = this.proximo.procurarUsuario(nomeUsuario);
 			}
 		} else {
 			throw new UNCException();
