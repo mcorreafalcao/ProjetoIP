@@ -55,14 +55,14 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 
 	}
 
-	public int procurar(String nomeg) {
+	public int procurar(String nomeg) throws GNEException {
 		for (int i = 0; i < 100; i++) {
-			if (this.grupos[i] != null && this.grupos[i].equals(nomeg)) {
+			if (this.grupos[i] != null && this.grupos[i].getNomeGrupo().equals(nomeg)) {
 				return i;
 			}
+				
 		}
-		// Nunca vai chegar nesse return
-		return 0;
+		throw new GNEException();
 	}
 	
 	//Isso e tipo um getGrupo

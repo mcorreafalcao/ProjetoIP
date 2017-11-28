@@ -161,7 +161,7 @@ public class Fachada {
 	}
 
 	public void removerGrupo(Grupo grupoSelecionado) throws GNEException {
-		if (grupoSelecionado.getNomeGrupo() == comunidade.getNomeGrupo()) {
+		if (grupoSelecionado.getNomeGrupo().equals(comunidade.getNomeGrupo())) {
 			this.comunidade.removerGrupo(grupoSelecionado);
 		}
 

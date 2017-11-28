@@ -272,6 +272,7 @@ public class Programa {
 					System.out.println("2 - Cadastrar Grupo");
 					System.out.println("0 - Voltar");
 				    op = in.nextLine();
+				    in.nextLine();
 
 					if (op.equals("0")) {
 						Tgrupo = false;
@@ -284,7 +285,7 @@ public class Programa {
 							Tgrupo1 = true;// caso procurar funcione
 							Tgrupo = false;// caso procurar funcione
 						} catch (GNEException e) {
-							System.out.println("Grupo não encontrado.");
+							System.out.println("Grupo nao encontrado.");
 						}
 					} else if (op.equals("2")) {
 						System.out.println("Digite o nome do grupo a ser cadastrado:");
