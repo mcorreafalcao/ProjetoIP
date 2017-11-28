@@ -75,8 +75,8 @@ public class NegocioProduto {
 	
 	
 	
-	public void atualizarProduto(Produto produto) throws PNCException{//procura na loja a referencia com o mesmo nome do produto inserido e substitui ela pela referencia inserida
-		this.loja.atualizar(produto);
+	public void atualizarProduto(Produto produtoAlterado) throws PNCException{//procura na loja a referencia com o mesmo nome do produto inserido e substitui ela pela referencia inserida
+		this.loja.atualizar(produtoAlterado);
 	}
 	public String listarProdutos(){
 		return this.loja.listarProdutos();//metodo implementado nos repositorios

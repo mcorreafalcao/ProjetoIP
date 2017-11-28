@@ -234,9 +234,6 @@ public class Programa {
 						Tloja1 = false;
 						Tloja = true;
 					} else if (op.equals("3")) {
-						// try catch inputmismatchexception aqui
-						//System.out.println("Digite o nome do produto a ser alterado: ");
-						//String nome = in.nextLine();
 						System.out.println("Digite a nova descricao do produto: ");
 						String descricao = in.nextLine();
 						Produto produtoAlterado = null;
@@ -251,8 +248,12 @@ public class Programa {
 							// abaixo metodo que confere se o usuario ï¿½ o dev do jogo. Se for, troca a
 							// referencia pela nova criada neste if
 							fachada.atualizarProduto(produtoSelecionado, produtoAlterado);// implementado
+							produtoSelecionado = produtoAlterado;
+						} catch (VNEDException e) {
+							System.out.println("vc n eh dev, nao pode atualizars");
 						} catch (PNCException e) {
-							System.out.println("Produto nao cadastrado");
+							// TODO Auto-generated catch block
+							System.out.println("produto nao cadastrado");//n chega nessa linha pq tá no menu de produtoselecionado
 						}
 
 					} else if(op.equals("4")){//rodar produto

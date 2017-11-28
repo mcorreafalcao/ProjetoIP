@@ -108,12 +108,13 @@ public class Fachada {
 
 	}
 
-	public void atualizarProduto(Produto produtoSelecionado, Produto produtoAlterado) throws PNCException {
+	public void atualizarProduto(Produto produtoSelecionado, Produto produtoAlterado) throws VNEDException, PNCException {
 		if (produtoSelecionado.getDev() == produtoAlterado.getDev()) {// implica que o user atual é o dono do jogo
 																		// selecionado, pois o user atual é o dev do
 																		// alterado
 			this.loja.atualizarProduto(produtoAlterado);// procura e troca a referencia encontraada pela nova
-		}
+		}else
+			throw new VNEDException();
 
 	}
 	public String rodarProduto(Produto produtoSelecionado, Usuario usuarioLogado) {

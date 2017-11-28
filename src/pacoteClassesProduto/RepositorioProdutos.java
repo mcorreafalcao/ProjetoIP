@@ -16,7 +16,7 @@ public interface RepositorioProdutos {// interface negocio_dados
 
 	public void remover(String nomeProduto) throws PNCException;
 
-	public void atualizar(Produto produto) throws PNCException;
+	public void atualizar(Produto produtoAlterado) throws PNCException;
 
 	public boolean existe(String nomeProduto);
 	
