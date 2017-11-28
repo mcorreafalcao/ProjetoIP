@@ -33,19 +33,16 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 
 	@Override
 	public void atualizar(Grupo grupo, String categoriaGrupo) throws GNEException {
-		//if (this.existe(grupo.getNomeGrupo())) {
-			int proc = this.procurar(grupo.getNomeGrupo());
-			this.grupos[proc] = grupo;
-		//} else {
-			//throw new GNEException();
-		//}
+		int proc = this.procurar(grupo.getNomeGrupo());
+		this.grupos[proc].setCategoria(categoriaGrupo);
+
 	}
 
 	@Override
-	public void remover(Grupo grupo) throws GNEException {
+	public void remover(Grupo grupo) throws GNEException{
 		if (this.existe(grupo.getNomeGrupo())) {
 			int proc = this.procurar(grupo.getNomeGrupo());
-			for (int i = proc; i < indice - 1; i++) {
+			for (int i = proc; i <= indice - 1; i++) {
 				this.grupos[i] = this.grupos[i + 1];
 			}
 			this.indice--;
@@ -60,12 +57,12 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			if (this.grupos[i] != null && this.grupos[i].getNomeGrupo().equals(nomeg)) {
 				return i;
 			}
-				
+
 		}
 		throw new GNEException();
 	}
-	
-	//Isso e tipo um getGrupo
+
+	// Isso e tipo um getGrupo
 	public Grupo procurarInt(int grupo) {
 		return this.grupos[grupo];
 	}

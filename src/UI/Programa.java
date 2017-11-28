@@ -312,6 +312,8 @@ public class Programa {
 				}
 				while (Tgrupo1) {// opcoes para o grupo encontrado em "selecionar"
 					// info do grupo
+					System.out.println("Grupo selecionado: " + grupoSelecionado.getNomeGrupo());
+					System.out.println("Grupo selecionado: " + grupoSelecionado.getCategoria() + "\n");
 					System.out.println("1 - Entrar");
 					System.out.println("2 - Sair do grupo");
 					System.out.println("3 - Atualizar informacoes");
@@ -325,6 +327,7 @@ public class Programa {
 						try {
 							fachada.entrarGrupo(usuarioLogado, grupoSelecionado);
 							System.out.println("Você agora faz parte do grupo " + grupoSelecionado.getNomeGrupo());
+							
 						} catch (UJCException e) {
 							System.out.println("Usuario ja cadastrado");
 						}catch (SMPCException e) {
@@ -338,14 +341,11 @@ public class Programa {
 							System.out.println("Usuario nao cadastrado");
 						}
 						
-						/**
-						 * vou precisar de ajuda no 3 e no 4
-						 */
+						
 					} else if (op.equals("3")) {
 						System.out.println("Digite a categoria do grupo a ser atualizado:");
 						String categoriaGrupo = in.nextLine();
 						grupoSelecionado.setCategoria(categoriaGrupo);
-						//Grupo novoGrupo = new Grupo(grupoSelecionado.getNomeGrupo(), categoriaGrupo);
 						try {
 							fachada.atualizarGrupo(grupoSelecionado, categoriaGrupo);
 							System.out.println("Grupo atualizado com sucesso!");
@@ -356,7 +356,9 @@ public class Programa {
 					} else if (op.equals("4")) {
 						try {
 							fachada.removerGrupo(grupoSelecionado);
-							System.out.println("Grupo removido com sucesso.");
+							System.out.println("Grupo removido com sucesso. \n");
+							Tgrupo1 = false;
+							Tgrupo = true;
 						} catch (GNEException e) {
 							System.out.println("O grupo a ser removido nao existe.");
 						}

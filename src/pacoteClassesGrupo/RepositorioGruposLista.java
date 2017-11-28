@@ -30,7 +30,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		}
 	}
 
-	@Override
+	/*@Override
 	public void atualizar(Grupo grupo) throws GNEException {
 		if (this.existe(grupo.getNomeGrupo())) {
 			RepositorioGruposLista proc = this.procurar(grupo.getNomeGrupo());
@@ -38,7 +38,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		} else {
 			throw new GNEException();
 		}
-	}
+	}*/
 
 	@Override
 	public void remover(Grupo grupo) throws GNEException {
@@ -64,10 +64,6 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GNEException();
 	}
 	
-	/**
-	 * adicionei esse detalhe abaixo (assim como em NegocioGrupo) apenas para ver se o programa correspondia
-	 * espero que não ocorra erros, rs rs
-	 */
 	public Grupo getGrupo() {
 		return this.prim;
 	}
@@ -75,13 +71,19 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 	@Override
 	public boolean existe(String grupo) {
 		if (this.prim != null) {
-			if (this.prim.equals(grupo)) {
+			if (this.prim.getNomeGrupo().equals(grupo)) {
 				return true;
-			}
-		} else
+			}else 
+				return this.prox.existe(grupo);
+		} else {
 			return false;
-		// Supomos que ele não chegará aqui
-		return false;
+		}
+		
+	}
+
+	@Override
+	public void atualizar(Grupo grupoSelecionado, String categoriaGrupo) throws GNEException {
+		grupoSelecionado.setCategoria(categoriaGrupo);
 	}
 
 

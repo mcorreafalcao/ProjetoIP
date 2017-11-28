@@ -138,12 +138,6 @@ public class Fachada {
 		this.comunidade.cadastrarGrupo(novoGrupo);
 	}
 	
-	/**
-	 * lembrar de dar uma checada em entrarGrupo e sairGrupo a seguir
-	 * nao tenho certeza se tá certo
-	 * @throws UJCException 
-	 * @throws SMPCException 
-	 */
 	public void entrarGrupo(Usuario usuarioLogado, Grupo grupoSelecionado) throws UJCException, SMPCException {
 		// retorna true se o usuario nao estava no grupo e pode entrar
 		RepositorioUsuarios aux = grupoSelecionado.getMembros();
@@ -158,16 +152,11 @@ public class Fachada {
 
 	public void atualizarGrupo(Grupo novoGrupo, String categoriaGrupo) throws GNEException {
 		//Lembrar de ver esse tambem
-		//if (!novoGrupo.getCategoria().equals(categoria.getCategoria())) {// ver se a categoria informada não é a mesma
-																		// jaexistente
-			this.comunidade.atualizarGrupo(novoGrupo, categoriaGrupo);// procura e troca a referencia encontrada pela nova
-		//}
+		this.comunidade.atualizarGrupo(novoGrupo, categoriaGrupo);// procura e troca a referencia encontrada pela nova
 	}
 
 	public void removerGrupo(Grupo grupoSelecionado) throws GNEException {
-		if (grupoSelecionado.getNomeGrupo().equals(comunidade.getNomeGrupo())) {
-			this.comunidade.removerGrupo(grupoSelecionado);
-		}
+		this.comunidade.removerGrupo(grupoSelecionado);
 
 	}
 

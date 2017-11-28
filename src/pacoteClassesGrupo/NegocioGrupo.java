@@ -53,10 +53,6 @@ public class NegocioGrupo {
 		return grupo;
 	}
 
-	/**
-	 * adicionei esse detalhe abaixo (como em RepoGruposLista) apenas para ver se o
-	 * programa correspondia espero que não ocorra erros, rs rs
-	 */
 	public String getNomeGrupo() {
 		return this.getNomeGrupo();
 	}
