@@ -41,7 +41,7 @@ public class Programa {
 		Produto produtoSelecionado = null;
 		Grupo grupoSelecionado = null;
 
-		System.out.println("Bem vindo a Stin! Um programa desenvolvido para voce aproveitar dos seus jogos favoritos. \nOu ainda compartilhar o seu trabalho conosco, seja empresa ou desenvolvedor amador. \nPara começar, escolha em que tipo de repositorio o programa ira rodar!\n");
+		System.out.println("Bem vindo a Stin! Um programa desenvolvido para voce aproveitar dos seus jogos favoritos. \nOu ainda compartilhar o seu trabalho conosco, seja empresa ou desenvolvedor amador.\nComo presente de boas vindas, toda nova conta receberá um bonus de 50 COINS para gastar com produtos! \nPara começar, escolha em que tipo de repositorio o programa ira rodar!\n");
 		System.out.println("1 - Array");
 		System.out.println("2 - Lista");
 		int escolhaRepositorio = in.nextInt();
