@@ -63,7 +63,7 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 	public void remover(String nomeProduto) throws PNCException {
 		int i = this.procurar(nomeProduto);// excecao pode ser levantada aqui
 
-		for (int k = i; k <= indice - 1; k++) {// translada os produtos no
+		for (int k = i; k < indice; k++) {// translada os produtos no
 												// array por um indice
 			this.produtos[k] = this.produtos[k + 1];
 
@@ -78,7 +78,7 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 	public int procurar(String nomeProduto) throws PNCException {
 		int ind = 0;
 		boolean achou = false;
-		for (int i = 0; i <= indice && !achou; i++) {
+		for (int i = 0; i < indice && !achou; i++) {
 			if (this.produtos[i].getNome().equals(nomeProduto)) {
 				achou = true;// quebra o loop
 				ind = i;
@@ -89,7 +89,7 @@ public class RepositorioProdutosArray implements RepositorioProdutos {// colecao
 
 		return ind;
 		/**
-		 * Retorna o indice do produto no array ou excecao caso
+		 * Retorna o indice do produto no array ou excecao caso contrario
 		 */
 	}
 

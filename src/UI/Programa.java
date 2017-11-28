@@ -233,21 +233,20 @@ public class Programa {
 						Tloja = true;
 					} else if (op.equals("3")) {
 						// try catch inputmismatchexception aqui
-						System.out.println("Digite o nome do jogo a ser alterado: ");
-						String nome = in.nextLine();
-						System.out.println("Digite a nova descricao do jogo: ");
+						//System.out.println("Digite o nome do produto a ser alterado: ");
+						//String nome = in.nextLine();
+						System.out.println("Digite a nova descricao do produto: ");
 						String descricao = in.nextLine();
 						System.out.println("digite o novo preco: ");
 						double preco = in.nextDouble();
 						Produto produtoAlterado = null;
 						// cria nova referencia para produto que substituir� a referencia atual
 						if (preco == 0.0) {// nova demo
-							produtoAlterado = new Demo(nome, descricao, usuarioLogado);
+							produtoAlterado = new Demo(produtoSelecionado.getNome(), descricao, usuarioLogado);
 						} else {// novo jogo
-							produtoAlterado = new Jogo(nome, descricao, usuarioLogado, preco,((Jogo) produtoSelecionado).getTamanho());
+							produtoAlterado = new Jogo(produtoSelecionado.getNome(), descricao, usuarioLogado, preco,((Jogo) produtoSelecionado).getTamanho());
 						}
 						try {
-							produtoSelecionado = fachada.buscarProduto(nome);
 							// abaixo metodo que confere se o usuario � o dev do jogo. Se for, troca a
 							// referencia pela nova criada neste if
 							fachada.atualizarProduto(produtoSelecionado, produtoAlterado);// implementado

@@ -56,13 +56,18 @@ public class NegocioProduto {
 	
 	public Produto procurar(String nomeProduto) throws PNCException{//retorna uma referencia de um produto procurado ou levanta excecao caso nao encontre
 		Produto produto=null;
-		if(this.loja instanceof RepositorioProdutosArray){//se for array, pega o indice e retorna o produto associado
-			int indice = ((RepositorioProdutosArray) this.loja).procurar(nomeProduto);
-			produto = ((RepositorioProdutosArray) this.loja).getProduto(indice);
-		}else if(this.loja instanceof RepositorioProdutosLista ){//se for lista só procura e retorna o produto do objeto da lista
-			RepositorioProdutosLista aux;
-			aux=((RepositorioProdutosLista) this.loja).procurar(nomeProduto);
-			produto = aux.getProduto();
+		if(this.loja.existe(nomeProduto)){
+			if(this.loja instanceof RepositorioProdutosArray){//se for array, pega o indice e retorna o produto associado
+				int indice = ((RepositorioProdutosArray) this.loja).procurar(nomeProduto);
+				produto = ((RepositorioProdutosArray) this.loja).getProduto(indice);
+			}else if(this.loja instanceof RepositorioProdutosLista ){//se for lista só procura e retorna o produto do objeto da lista
+				RepositorioProdutosLista aux;
+				aux=((RepositorioProdutosLista) this.loja).procurar(nomeProduto);
+				produto = aux.getProduto();
+			}
+			
+		}else{
+			throw new PNCException();
 		}
 		return produto;
 	}
@@ -75,7 +80,9 @@ public class NegocioProduto {
 	public String listarProdutos(){
 		return this.loja.listarProdutos();//metodo implementado nos repositorios
 	}
-	
+
+
+
 	
 	
 	

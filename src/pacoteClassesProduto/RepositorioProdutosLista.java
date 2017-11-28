@@ -119,10 +119,13 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 	}
 
 	public RepositorioProdutosLista procurar(String nomeProduto) {
-		if (this.produto.getNome().equals(nomeProduto)) {
-			return this;
-		} else if (this.proximo != null)
-			return this.proximo.procurar(nomeProduto);
+		if(this.produto!= null){
+			if (this.produto.getNome().equals(nomeProduto)) {
+				return this;
+			} else if (this.proximo != null)
+				return this.proximo.procurar(nomeProduto);
+			
+		}
 		return null;// nunca retorna null, pois o existe é chamado antes dele
 	}
 	public Produto getProduto(){
