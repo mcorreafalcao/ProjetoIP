@@ -359,6 +359,7 @@ public class Programa {
 				while (Tperfil) {// tela do usuario atual
 					System.out.println("Escolha uma das opcoes abaixo:");
 					System.out.println("1 - Atualizar informacoes");//listar,selecionar
+					System.out.println("3 - Ver saldo da conta");
 					System.out.println("0 - Voltar");
 
 					op = in.nextLine();
@@ -383,6 +384,9 @@ public class Programa {
 					} else if (op.equals("2")) {
 						RepositorioProdutos aux = usuarioLogado.getProdutos();
 						System.out.println("Produtos adquiridos: " + aux.listarProdutos());
+					} else if (op.equals("3")) {
+						double saldo = usuarioLogado.getCarteira();
+						System.out.println(saldo);
 					}
 				}
 

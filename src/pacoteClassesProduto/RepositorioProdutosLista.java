@@ -1,5 +1,6 @@
 package pacoteClassesProduto;
 
+import pacoteClassesUsuario.RepositorioUsuariosLista;
 import pacoteExcecoes.PJCException;
 import pacoteExcecoes.PNCException;
 
@@ -24,29 +25,14 @@ public class RepositorioProdutosLista implements RepositorioProdutos {// colecao
 
 	@Override
 	public void inserir(Produto produto) throws PJCException {
-		boolean existe = this.existe(produto.getNome());
-		if (existe) {
-			throw new PJCException();
-		} else {// insere o produto na ultima posicao da lista
-			RepositorioProdutosLista aux = this;// referencia para percorrer a
-												// lista
-			if (this.produto == null) {// lista vazia
-				this.produto = produto;
-				this.proximo = new RepositorioProdutosLista();
-				return;
-			} else {// lista nao vazia
-				while (aux != null) {// percorre a lista
-					if (aux.proximo == null) {
-						aux.proximo = new RepositorioProdutosLista();
-						aux.proximo.produto = produto;
-						return;
-					}
-					aux = aux.proximo;// passa para o proximo
-
-				}
-			}
-
+		if (this.produto == null) {
+			this.produto = produto;
+			this.proximo = new RepositorioProdutosLista();
+		} else {
+			this.proximo.inserir(produto);
 		}
+
+		
 
 		/**
 		 * insere um produto novo na lista, joga excecao caso ele já exista
