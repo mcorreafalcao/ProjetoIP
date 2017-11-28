@@ -32,13 +32,13 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
 	@Override
-	public void atualizar(Grupo grupo) throws GNEException {
-		if (this.existe(grupo.getNomeGrupo())) {
+	public void atualizar(Grupo grupo, String categoriaGrupo) throws GNEException {
+		//if (this.existe(grupo.getNomeGrupo())) {
 			int proc = this.procurar(grupo.getNomeGrupo());
 			this.grupos[proc] = grupo;
-		} else {
-			throw new GNEException();
-		}
+		//} else {
+			//throw new GNEException();
+		//}
 	}
 
 	@Override

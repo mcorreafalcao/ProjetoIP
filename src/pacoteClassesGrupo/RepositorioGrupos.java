@@ -15,7 +15,7 @@ import pacoteExcecoes.SMPCException;
 public interface RepositorioGrupos {
 	public void inserir(Grupo grupo) throws GJCException, SMPCException;
 	
-	public void atualizar(Grupo grupo) throws GNEException;
+	public void atualizar(Grupo novoGrupo, String categoriaGrupo) throws GNEException;
 	
 	public void remover(Grupo grupo) throws GNEException;
 	

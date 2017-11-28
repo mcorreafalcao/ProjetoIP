@@ -153,11 +153,11 @@ public class Fachada {
 		auxRemover.remover(usuarioLogado.getNick());
 	}
 
-	public void atualizarGrupo(Grupo categoriaGrupo) throws GNEException {
-		if (categoriaGrupo.getNomeGrupo() != categoria.getNomeGrupo()) {// ver se a categoria informada não é a mesma
+	public void atualizarGrupo(Grupo novoGrupo, String categoriaGrupo) throws GNEException {
+		//if (!novoGrupo.getCategoria().equals(categoria.getCategoria())) {// ver se a categoria informada não é a mesma
 																		// jaexistente
-			this.comunidade.atualizarGrupo(categoriaGrupo);// procura e troca a referencia encontrada pela nova
-		}
+			this.comunidade.atualizarGrupo(novoGrupo, categoriaGrupo);// procura e troca a referencia encontrada pela nova
+		//}
 	}
 
 	public void removerGrupo(Grupo grupoSelecionado) throws GNEException {
